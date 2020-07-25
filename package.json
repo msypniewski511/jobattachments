@@ -1,0 +1,15 @@
+{
+  "name": "jobattachments",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@rails/webpacker": "5.1.1",
+    "bootstrap": "4.5",
+    "jquery": "^3.5.1",
+    "poper": "^0.1.1",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.0"
+  }
+}
