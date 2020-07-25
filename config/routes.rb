@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'admin/dashboard#index'
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
   end
