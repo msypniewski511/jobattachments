@@ -1,0 +1,2 @@
+class PrAddress < Location
+end

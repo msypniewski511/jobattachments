@@ -1,0 +1,73 @@
+= form_for @person do |f|
+  - if @person.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@person.errors.count, "error")} prohibited this person from being saved:"
+      %ul
+        - @person.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :telephone
+    = f.telephone_field :telephone
+  .field
+    = f.label :mobile_phone
+    = f.telephone_field :mobile_phone
+  .field
+    = f.label :job_title
+    = f.text_field :job_title
+  .field
+    = f.label :date_of_birth
+    = f.date_field :date_of_birth
+  .field
+    = f.label :gender
+    = f.select :gender, options_for_select([['male', 1], ['female', 1]])
+  .field
+    = f.label :keywords
+    = f.text_field :keywords
+  .field
+    = f.label :notes
+    = f.text_area :notes
+    .field
+    = f.label :keywords
+    = f.text_field :keywords
+    .field
+
+      Addresses:
+      %ul
+        = f.fields_for :addresses do |addresses_form|
+          %li
+              .field
+                = addresses_form.label :city
+                = addresses_form.text_field :city
+              .field
+                = addresses_form.label :street
+                = addresses_form.text_field :street
+              .field
+                = addresses_form.label :street1
+                = addresses_form.text_field :street1
+              .field
+                = addresses_form.label :street2
+                = addresses_form.text_field :street2
+              .field
+                = addresses_form.label :post_code
+                = addresses_form.text_field :post_code
+
+
+    = f.hidden_field :_slugs
+
+    city street street1 street2 post_code:  _slugs, company_ids
+    .field
+    = f.label :companies, "Company:"
+    = f.text_field :companies
+    // = form_for 
+  .actions
+    = f.submit 'Save'

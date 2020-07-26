@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  
+
+  # get 'companies/index'
+  resources :addresses
+  resources :people
+  resources :companies
   root to: 'admin/dashboard#index'
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'

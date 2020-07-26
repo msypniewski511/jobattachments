@@ -1,0 +1,29 @@
+%h1 Listing addresses
+
+%table.table-sm.table
+  %thead
+    %tr
+      %th City
+      %th Street
+      %th Street1
+      %th Street2
+      %th Post code
+      %th
+      %th
+      %th
+
+  %tbody
+    - @addresses.each do |address|
+      %tr
+        %td= address.city
+        %td= address.street
+        %td= address.street1
+        %td= address.street2
+        %td= address.post_code
+        %td= link_to 'Show', address
+        %td= link_to 'Edit', edit_address_path(address)
+        %td= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Address', new_address_path
