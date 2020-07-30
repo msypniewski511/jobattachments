@@ -1,0 +1,132 @@
+.section.section-tabs
+  .container
+    / nav tabs
+    #nav-tabs
+      %h3 Navigation Tabs
+      .row
+        .col-md-6
+          %h3
+            %small Tabs with Icons on Card
+          / Tabs with icons on Card
+          .card.card-nav-tabs
+            .card-header.card-header-primary
+              / colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger"
+              .nav-tabs-navigation
+                .nav-tabs-wrapper
+                  %ul.nav.nav-tabs{"data-tabs" => "tabs"}
+                    %li.nav-item
+                      %a.nav-link.active{"data-toggle" => "tab", :href => "#profile"}
+                        %i.material-icons face
+                        Profile
+                    %li.nav-item
+                      %a.nav-link{"data-toggle" => "tab", :href => "#messages"}
+                        %i.material-icons chat
+                        Messages
+                    %li.nav-item
+                      %a.nav-link{"data-toggle" => "tab", :href => "#settings"}
+                        %i.material-icons build
+                        Settings
+            .card-body
+              .tab-content.text-center
+                #profile.tab-pane.active
+                  %p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+                #messages.tab-pane
+                  %p I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+                #settings.tab-pane
+                  %p I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.
+          / End Tabs with icons on Card
+        .col-md-6
+          %h3
+            %small Tabs on Plain Card
+          / Tabs on Plain Card
+          .card.card-nav-tabs.card-plain
+            .card-header.card-header-danger
+              / colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger"
+              .nav-tabs-navigation
+                .nav-tabs-wrapper
+                  %ul.nav.nav-tabs{"data-tabs" => "tabs"}
+                    %li.nav-item
+                      %a.nav-link.active{"data-toggle" => "tab", :href => "#home"} Home
+                    %li.nav-item
+                      %a.nav-link{"data-toggle" => "tab", :href => "#updates"} Updates
+                    %li.nav-item
+                      %a.nav-link{"data-toggle" => "tab", :href => "#history"} History
+            .card-body
+              .tab-content.text-center
+                #home.tab-pane.active
+                  %p I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.
+                #updates.tab-pane
+                  %p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+                #history.tab-pane
+                  %p I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+          / End Tabs on plain Card
+/ end nav tabs
+.section.section-white
+  .container
+    / nav pills
+    #navigation-pills
+      .title
+        %h3 Navigation Pills
+      .title
+        %h3
+          %small With Icons
+      .row
+        .col-lg-6.col-md-8
+          %ul.nav.nav-pills.nav-pills-icons{:role => "tablist"}
+            /
+              color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+            %li.nav-item
+              %a.nav-link{"data-toggle" => "tab", :href => "#dashboard-1", :role => "tab"}
+                %i.material-icons dashboard
+                Dashboard
+            %li.nav-item
+              %a.nav-link.active{"data-toggle" => "tab", :href => "#schedule-1", :role => "tab"}
+                %i.material-icons schedule
+                Schedule
+            %li.nav-item
+              %a.nav-link{"data-toggle" => "tab", :href => "#tasks-1", :role => "tab"}
+                %i.material-icons list
+                Tasks
+          .tab-content.tab-space
+            #dashboard-1.tab-pane.active
+              Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+              %br/
+              %br/
+              Dramatically visualize customer directed convergence without revolutionary ROI.
+            #schedule-1.tab-pane
+              Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+              %br/
+              = succeed "Dramatically" do
+                %br/
+            #tasks-1.tab-pane
+              Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+              %br/
+              = succeed "Dynamically" do
+                %br/
+        .col-lg-6.col-md-12
+          .row
+            .col-md-3
+              %ul.nav.nav-pills.nav-pills-icons.flex-column{:role => "tablist"}
+                /
+                  color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                %li.nav-item
+                  %a.nav-link.active{"data-toggle" => "tab", :href => "#dashboard-2", :role => "tab"}
+                    %i.material-icons dashboard
+                    Dashboard
+                %li.nav-item
+                  %a.nav-link{"data-toggle" => "tab", :href => "#schedule-2", :role => "tab"}
+                    %i.material-icons schedule
+                    Schedule
+            .col-md-8
+              .tab-content
+                #dashboard-2.tab-pane.active
+                  Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                  %br/
+                  %br/
+                  Dramatically visualize customer directed convergence without revolutionary ROI.
+                #schedule-2.tab-pane
+                  Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                  %br/
+                  = succeed "Dramatically" do
+                    %br/
+    / end nav pills

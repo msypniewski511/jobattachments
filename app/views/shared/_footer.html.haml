@@ -1,0 +1,35 @@
+%footer.footer{"data-background-color" => "black"}
+  .container
+    %nav.float-left
+      %ul
+        %li
+          %a{:href => "https://www.creative-tim.com/"}
+            Creative Tim
+        %li
+          %a{:href => "https://www.creative-tim.com/presentation"}
+            About Us
+        %li
+          %a{:href => "https://www.creative-tim.com/blog"}
+            Blog
+        %li
+          %a{:href => "https://www.creative-tim.com/license"}
+            Licenses
+    .copyright.float-right
+      ©
+      :javascript
+        document.write(new Date().getFullYear())
+      , made with
+      %i.material-icons favorite
+      by
+      %a{:href => "https://www.creative-tim.com/", :target => "_blank"} Creative Tim
+      for a better web.
+
+%script{:src => ".", :type => "text/javascript"}
+
+%script{:async => "", :defer => "defer", :src => "https://buttons.github.io/buttons.js"}
+%script{src: "https://use.fontawesome.com/releases/v5.14.0/js/all.js", 'data-mutate-approach':"sync"}
+
+}
+%noscript
+  -# %img{height:"1", width="1", style:"display:none", src:"https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1"}
+  

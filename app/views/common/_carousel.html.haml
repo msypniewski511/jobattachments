@@ -1,0 +1,39 @@
+/ carousel
+#carousel.section
+  .container
+    .row
+      .col-md-8.mr-auto.ml-auto
+        / Carousel Card
+        .card.card-raised.card-carousel
+          #carouselExampleIndicators.carousel.slide{"data-interval" => "3000", "data-ride" => "carousel"}
+            %ol.carousel-indicators
+              %li.active{"data-slide-to" => "0", "data-target" => "#carouselExampleIndicators"}
+              %li{"data-slide-to" => "1", "data-target" => "#carouselExampleIndicators"}
+              %li{"data-slide-to" => "2", "data-target" => "#carouselExampleIndicators"}
+            .carousel-inner
+              .carousel-item.active
+                %img.d-block.w-100{:alt => "First slide", :src => "#{asset_pack_path 'bg2.jpg'}"}/
+                .carousel-caption.d-none.d-md-block
+                  %h4
+                    %i.material-icons location_on
+                    Yellowstone National Park, United States
+              .carousel-item
+                %img.d-block.w-100{:alt => "Second slide", :src => "#{asset_pack_path 'bg3.jpg'}"}}/
+                .carousel-caption.d-none.d-md-block
+                  %h4
+                    %i.material-icons location_on
+                    Somewhere Beyond, United States
+              .carousel-item
+                %img.d-block.w-100{:alt => "Third slide", :src => "#{asset_pack_path 'bg2.jpg'}"}}/
+                .carousel-caption.d-none.d-md-block
+                  %h4
+                    %i.material-icons location_on
+                    Yellowstone National Park, United States
+            %a.carousel-control-prev{"data-slide" => "prev", :href => "#carouselExampleIndicators", :role => "button"}
+              %i.material-icons keyboard_arrow_left
+              %span.sr-only Previous
+            %a.carousel-control-next{"data-slide" => "next", :href => "#carouselExampleIndicators", :role => "button"}
+              %i.material-icons keyboard_arrow_right
+              %span.sr-only Next
+        / End Carousel Card
+/ end carousel

@@ -1,0 +1,38 @@
+#javascriptComponents.section.cd-section
+  .container
+    .title
+      %h2 Javascript components
+    / modals
+    #modals.row
+      .col-md-6
+        .title
+          %h3 Modal
+        .row
+          .col-lg-4.col-md-6
+            %button.btn.btn-block.btn-primary{"data-target" => "#myModal", "data-toggle" => "modal"}
+              %i.material-icons library_books
+              Classic
+        .col-md-12
+          .title
+            %h3 Datetime Picker
+          .row
+            .col-md-6
+              .form-group
+                %label.label-control Datetime Picker
+                %input.form-control.datetimepicker{:type => "text", :value => "10/05/2016"}/
+      .col-md-6
+        .title
+          %h3 Popovers
+        %button.btn{"data-container" => "body", "data-content" => "Here will be some very useful information about his popover. Here will be some very useful information about his popover.", "data-placement" => "left", "data-toggle" => "popover", :title => "Popover on left", :type => "button"} On left
+        %button.btn{"data-container" => "body", "data-content" => "Here will be some very useful information about his popover.", "data-placement" => "top", "data-toggle" => "popover", :title => "Popover on top", :type => "button"} On top
+        %button.btn{"data-container" => "body", "data-content" => "Here will be some very useful information about his popover.", "data-placement" => "bottom", "data-toggle" => "popover", :title => "Popover on bottom", :type => "button"} On bottom
+        %button.btn{"data-container" => "body", "data-content" => "Here will be some very useful information about his popover.", "data-placement" => "right", "data-toggle" => "popover", :title => "Popover on right", :type => "button"} On right
+        %br/
+        %br/
+        .title
+          %h3 Tooltips
+        %button.btn{"data-container" => "body", "data-placement" => "left", "data-toggle" => "tooltip", :title => "Tooltip on left", :type => "button"} On left
+        %button.btn{"data-container" => "body", "data-placement" => "top", "data-toggle" => "tooltip", :title => "Tooltip on top", :type => "button"} On top
+        %button.btn{"data-container" => "body", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Tooltip on bottom", :type => "button"} On bottom
+        %button.btn{"data-container" => "body", "data-placement" => "right", "data-toggle" => "tooltip", :title => "Tooltip on right", :type => "button"} On right
+        / end modals

@@ -22,37 +22,76 @@ import 'regenerator-runtime/runtime'
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+require.context("../packs/assets/img", true);
+import "@fortawesome/fontawesome-free/js/all";
+require("@fortawesome/fontawesome-free");
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+// import { far } from '@fortawesome/free-regular-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+
+// Add all icons to the library so you can use it in your page
+library.add(fas, fab)
 
 var jQuery = require("jquery");
-
 // import jQuery from "jquery";
 global.$ = global.jQuery = jQuery;
 window.$ = window.jQuery = jQuery;
 
-console.log('Hello World from Webpacker')
-
 import "bootstrap";
-import "../packs/scripts/custom";
-import "@fortawesome/fontawesome-free/js/all";
+import "../packs/assets/js/core/bootstrap-material-design.min.js";
 import "moment";
+require("../packs/assets/js/plugins/bootstrap-datetimepicker");
 var noUiSlider = require("nouislider");
 global.noUiSlider = noUiSlider;
-window.noUiSlider = noUiSlider;
-import "../packs/assets/js/core/bootstrap-material-design.min.js";
+window.noUiSlider = noUiSlider
+import 'nouislider/distribute/nouislider.css';
+import "../src/plugins/jquery.sharrre";
+
+
+
+import "../packs/scripts/custom";
 import "../packs/assets/js/material-kit";
 
+// $(document).ready(function () { $('body').bootstrapMaterialDesign(); });
+// $(document).ready(function () {
 
-// import "nouislider";
-// // import moment from 'moment';
-// import * as moment from 'moment';
-// import 'moment/locale/pl';
-// moment().format();
 
-// moment = require("../packs/assets/js/plugins/moment.min.js");
 
-require("../packs/assets/js/plugins/bootstrap-datetimepicker")
+//   if ($('.datetimepicker').length != 0) {
+//     // init DateTimePickers
+//     materialKit.initFormExtendedDatetimepickers();
+//   }
+//   // var noUiSlider = require("nouislider");
+//   // global.noUiSlider = noUiSlider;
+//   // window.noUiSlider = noUiSlider;
+//   if ($('.slider').length != 0) {
+//     // Sliders Init
+//     materialKit.initSliders();
+//   }
+// });
 
-require.context("../packs/assets/img", true);
+
+
+
+$(document).ready(function () {
+
+
+  //init DateTimePickers
+  materialKit.initFormExtendedDatetimepickers();
+
+  // Sliders Init
+  materialKit.initSliders();
+});
+
+
+function scrollToDownload() {
+  if ($('.section-download').length != 0) {
+    $("html, body").animate({
+      scrollTop: $('.section-download').offset().top
+    }, 1000);
+  }
+}
 
 
 
@@ -60,4 +99,4 @@ require.context("../packs/assets/img", true);
 
 // importAll(require.context('packs/assets/img/', true, /\.(png|jpe?g|svg)$/));
 
-$(document).on('page:change', function () { /* your code here */ });
+// $(document).ready(function () { $('body').bootstrapMaterialDesign(); });

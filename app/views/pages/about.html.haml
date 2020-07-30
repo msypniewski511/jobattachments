@@ -1,0 +1,450 @@
+= render "shared/header"
+.main.main-raised
+  .section.section-basic
+    .container
+      .title
+        %h2 Basic Elements
+      / buttons
+      #buttons.cd-section
+        .title
+          %h3
+            Buttons
+            %br/
+            %small Pick your style
+        .row
+          .col-md-8.mx-auto
+            %button.btn.btn-primary Default
+            %button.btn.btn-primary.btn-round Round
+            %button.btn.btn-primary.btn-round
+              %i.material-icons favorite
+              With Icon
+            %button.btn.btn-primary.btn-fab.btn-round
+              %i.material-icons favorite
+            %button.btn.btn-primary.btn-link Simple
+        .title
+          %h3
+            %small Pick your size
+        .row
+          .col-md-8.mx-auto
+            %button.btn.btn-primary.btn-sm Small
+            %button.btn.btn-primary Regular
+            %button.btn.btn-primary.btn-lg Large
+        .title
+          %h3
+            %small Pick your color
+        .row
+          .col-md-10.ml-auto
+            %button.btn Default
+            %button.btn.btn-primary Primary
+            %button.btn.btn-info Info
+            %button.btn.btn-success Success
+            %button.btn.btn-warning Warning
+            %button.btn.btn-danger Danger
+            %button.btn.btn-rose Rose
+      / end buttons
+      .space-50
+      / inputs
+      #inputs
+        .title
+          %h3 Inputs
+        .row
+          .col-lg-3.col-sm-4
+            .form-group.has-default
+              %input.form-control{:placeholder => "Regular", :type => "text"}/
+          .col-lg-3.col-sm-4
+            .form-group
+              %label.bmd-label-floating{:for => "exampleInput1"} With Floating Label
+              %input#exampleInput1.form-control{:type => "email"}/
+              %span.bmd-help We'll never share your email with anyone else.
+          .col-lg-3.col-sm-4
+            .form-group.has-success
+              %label.bmd-label-floating{:for => "exampleInput2"} Success input
+              %input#exampleInput2.form-control{:type => "text"}/
+              %span.form-control-feedback
+                %i.material-icons done
+          .col-lg-3.col-sm-4
+            .form-group.has-danger
+              %label.bmd-label-floating{:for => "exampleInput3"} Error input
+              %input#exampleInput3.form-control{:type => "email"}/
+              %span.form-control-feedback
+                %i.material-icons clear
+          .col-lg-3.col-sm-4
+            .form-group
+              .input-group
+                .input-group-prepend
+                  %span.input-group-text
+                    %i.material-icons group
+                %input.form-control{:placeholder => "With Material Icons", :type => "text"}/
+          .col-lg-3.col-sm-4
+            .form-group
+              .input-group
+                .input-group-prepend
+                  %span.input-group-text
+                    %i.fa.fa-group
+                %input.form-control{:placeholder => "With Font Awesome Icons", :type => "text"}/
+      / end inputs
+      .space-70
+      / textarea/checkbox/radio/toggle
+      #checkRadios
+        .row
+          .col-lg-3.col-md-4.col-sm-6
+            .title
+              %h3 Checkboxes
+            .form-check
+              %label.form-check-label
+                %input.form-check-input{:type => "checkbox", :value => ""}/
+                Unchecked
+                %span.form-check-sign
+                  %span.check
+            .form-check
+              %label.form-check-label
+                %input.form-check-input{:checked => "checked", :type => "checkbox", :value => ""}/
+                Checked
+                %span.form-check-sign
+                  %span.check
+            .form-check.disabled
+              %label.form-check-label
+                %input.form-check-input{:disabled => "disabled", :type => "checkbox", :value => ""}/
+                Disabled unchecked
+                %span.form-check-sign
+                  %span.check
+            .form-check.disabled
+              %label.form-check-label
+                %input.form-check-input{:checked => "checked", :disabled => "disabled", :type => "checkbox", :value => ""}/
+                Disabled checked
+                %span.form-check-sign
+                  %span.check
+          .col-lg-3.col-md-4.col-sm-6
+            .title
+              %h3 Radio Buttons
+            .form-check
+              %label.form-check-label
+                %input#exampleRadios1.form-check-input{:name => "exampleRadios", :type => "radio", :value => "option1"}/
+                Radio is off
+                %span.circle
+                  %span.check
+            .form-check
+              %label.form-check-label
+                %input#exampleRadios2.form-check-input{:checked => "checked", :name => "exampleRadios", :type => "radio", :value => "option2"}/
+                Radio is on
+                %span.circle
+                  %span.check
+            .form-check.disabled
+              %label.form-check-label
+                %input#exampleRadios11.form-check-input{:disabled => "disabled", :name => "exampleRadios1", :type => "radio", :value => "option1"}/
+                Disabled radio is off
+                %span.circle
+                  %span.check
+            .form-check.disabled
+              %label.form-check-label
+                %input#exampleRadios21.form-check-input{:checked => "checked", :disabled => "disabled", :name => "exampleRadio1", :type => "radio", :value => "option2"}/
+                Disabled radio is on
+                %span.circle
+                  %span.check
+          .col-lg-3.col-md-4.col-sm-6
+            .title
+              %h3 Toggle Buttons
+            .togglebutton
+              %label
+                %input{:checked => "checked", :type => "checkbox"}/
+                %span.toggle
+                Toggle is on
+            .togglebutton
+              %label
+                %input{:type => "checkbox"}/
+                %span.toggle
+                Toggle is off
+      .space-70
+      / progress/sliders
+      #progress
+        .row
+          .col-md-6
+            .title
+              %h3 Progress Bars
+            .progress.progress-line-primary
+              .progress-bar.progress-bar-primary{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 30%;"}
+                %span.sr-only 60% Complete
+            .progress.progress-line-info
+              .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 60%;"}
+                %span.sr-only 60% Complete
+            .progress.progress-line-danger
+              .progress-bar.progress-bar-success{:style => "width: 35%"}
+                %span.sr-only 35% Complete (success)
+              .progress-bar.progress-bar-warning{:style => "width: 20%"}
+                %span.sr-only 20% Complete (warning)
+              .progress-bar.progress-bar-danger{:style => "width: 10%"}
+                %span.sr-only 10% Complete (danger)
+          .col-md-6
+            .title
+              %h3 Pagination
+            %ul.pagination.pagination-primary
+              /
+                color-classes: "pagination-primary", "pagination-info", "pagination-success", "pagination-warning", "pagination-danger"
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} 1
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} ...
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} 5
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} 6
+              %li.active.page-item
+                %a.page-link{:href => "javascript:void(0);"} 7
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} 8
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} 9
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} ...
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} 12
+            %ul.pagination.pagination-info
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} prev
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} 1
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} 2
+              %li.active.page-item
+                %a.page-link{:href => "javascript:void(0);"} 3
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} 4
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} 5
+              %li.page-item
+                %a.page-link{:href => "javascript:void(0);"} next
+      / end progress
+      / sliders
+      #sliders
+        .row
+          .col-md-6
+            .title
+              %h3 Sliders
+            #sliderRegular.slider
+            #sliderDouble.slider.slider-info
+          .col-md-6.ml-auto
+            .title
+              %h3 Badges
+            %span.badge.badge-pill.badge-secondary Default
+            %span.badge.badge-pill.badge-primary Primary
+            %span.badge.badge-pill.badge-info Info
+            %span.badge.badge-pill.badge-success Success
+            %span.badge.badge-pill.badge-warning Warning
+            %span.badge.badge-pill.badge-danger Danger
+            %span.badge.badge-pill.badge-rose Rose
+      / end sliders
+  #navigation.section.section-navbars.cd-section
+    .container
+      / menu
+      .row
+        .col-md-6
+          .title
+            %h3 Menu
+          %nav.navbar.navbar-expand-lg.bg-primary
+            .container
+              .navbar-translate
+                %a.navbar-brand{:href => "javascript:;"} Menu
+                %button.navbar-toggler{"aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-toggle" => "collapse", :type => "button"}
+                  %span.sr-only Toggle navigation
+                  %span.navbar-toggler-icon
+                  %span.navbar-toggler-icon
+                  %span.navbar-toggler-icon
+              .collapse.navbar-collapse
+                %ul.navbar-nav
+                  %li.active.nav-item
+                    %a.nav-link{:href => "javascript:;"} Link
+                  %li.nav-item
+                    %a.nav-link{:href => "javascript:;"} Link
+                  %li.dropdown.nav-item
+                    %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown", :href => "javascript:;"} Dropdown
+                    .dropdown-menu
+                      %h6.dropdown-header Dropdown header
+                      %a.dropdown-item{:href => "javascript:;"} Action
+                      %a.dropdown-item{:href => "javascript:;"} Another action
+                      %a.dropdown-item{:href => "javascript:;"} Something else here
+                      .dropdown-divider
+                      %a.dropdown-item{:href => "javascript:;"} Separated link
+                      .dropdown-divider
+                      %a.dropdown-item{:href => "javascript:;"} One more separated link
+        .col-md-6
+          .title
+            %h3 Menu with Icons
+          %nav.navbar.navbar-expand-lg.bg-info
+            .container
+              .navbar-translate
+                %a.navbar-brand{:href => "javascript:;"} Icons
+                %button.navbar-toggler{"aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-toggle" => "collapse", :type => "button"}
+                  %span.sr-only Toggle navigation
+                  %span.navbar-toggler-icon
+                  %span.navbar-toggler-icon
+                  %span.navbar-toggler-icon
+              .collapse.navbar-collapse
+                %ul.navbar-nav.ml-auto
+                  %li.nav-item
+                    %a.nav-link{:href => "javascript:;"}
+                      %i.material-icons email
+                  %li.nav-item
+                    %a.nav-link{:href => "javascript:;"}
+                      %i.material-icons face
+                  %li.dropdown.nav-item
+                    %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown", :href => "javascript:;"}
+                      %i.material-icons settings
+                      %b.caret
+                    .dropdown-menu.dropdown-menu-right
+                      %h6.dropdown-header Dropdown header
+                      %a.dropdown-item{:href => "javascript:;"} Action
+                      %a.dropdown-item{:href => "javascript:;"} Another action
+                      %a.dropdown-item{:href => "javascript:;"} Something else here
+                      .dropdown-divider
+                      %a.dropdown-item{:href => "javascript:;"} Separated link
+                      .dropdown-divider
+                      %a.dropdown-item{:href => "javascript:;"} One more separated link
+      / end menu
+      .title
+        %h3 Navigation
+
+
+
+  .col-md-12.text-center
+    %a.btn.btn-link.btn-primary.btn-lg{:href => "examples/login-page.html", :target => "_blank"} View Login Page
+  .section.section-examples
+    .container-fluid.text-center
+      .row
+        .col-md-6
+          %a{:href => "examples/landing-page.html", :target => "_blank"}
+            %img.img-raised.rounded.img-fluid{:alt => "Rounded Image", :src => "#{asset_pack_path('landing.jpg')}"}/
+            %button.btn.btn-link.btn-primary.btn-lg View Landing Page
+        .col-md-6
+          %a{:href => "examples/profile-page.html", :target => "_blank"}
+            = image_tag "#{asset_pack_path('profile.jpg')}", class: "img-raised rounded img-fluid", :alt => "Rounded Image"
+            %button.btn.btn-link.btn-primary.btn-lg View Profile Page
+
+
+      = render 'common/navs'
+      = render "shared/notifications"
+      .section
+        .container.tim-container
+          / typography
+          #typography.cd-section
+            .title
+              %h2 Typography
+            .row
+              .tim-typo
+                %h1
+                  %span.tim-note> Header 1
+                  The Life of Material Kit
+              .tim-typo
+                %h2
+                  %span.tim-note> Header 2
+                  The Life of Material Kit
+              .tim-typo
+                %h3
+                  %span.tim-note> Header 3
+                  The Life of Material Kit
+              .tim-typo
+                %h4
+                  %span.tim-note> Header 4
+                  The Life of Material Kit
+              .tim-typo
+                %h5
+                  %span.tim-note> Header 5
+                  The Life of Material Kit
+              .tim-typo
+                %h6
+                  %span.tim-note> Header 6
+                  The Life of Material Kit
+              .tim-typo
+                %h1.title
+                  %span.tim-note> Header 1 Title
+                  The Life of Material Kit
+              .tim-typo
+                %h2.title
+                  %span.tim-note> Header 2 Title
+                  The Life of Material Kit
+              .tim-typo
+                %h3.title
+                  %span.tim-note> Header 3 Title
+                  The Life of Material Kit
+              .tim-typo
+                %h4.title
+                  %span.tim-note> Header 4 Title
+                  The Life of Material Kit
+              .tim-typo
+                %p
+                  %span.tim-note Paragraph
+                  I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+              .tim-typo
+                %span.tim-note Quote
+                .blockquote.undefined
+                  %p
+                    I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+                  %small
+                    Kanye West, Musician
+              .tim-typo
+                %span.tim-note Muted Text
+                %p.text-muted
+                  I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+              .tim-typo
+                %span.tim-note Primary Text
+                %p.text-primary
+                  I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+              .tim-typo
+                %span.tim-note Info Text
+                %p.text-info
+                  I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+              .tim-typo
+                %span.tim-note Success Text
+                %p.text-success
+                  I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+              .tim-typo
+                %span.tim-note Warning Text
+                %p.text-warning
+                  I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+              .tim-typo
+                %span.tim-note Danger Text
+                %p.text-danger
+                  I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+              .tim-typo
+                %h2
+                  %span.tim-note Small Tag
+                  Header with small subtitle
+                  %br/
+                  %small Use "small" tag for the headers
+          / end typography
+          .space-50
+          / images
+          #images
+            .title
+              %h2 Images
+            %br/
+            .row
+              .col-sm-2
+                %h4 Rounded Image
+                %img.rounded.img-fluid{:alt => "Rounded Image", :src => "#{asset_pack_path 'avatar.jpg'}"}}/
+              .col-sm-2.ml-auto
+                %h4 Circle Image
+                %img.rounded-circle.img-fluid{:alt => "Circle Image", :src => "#{asset_pack_path 'avatar.jpg'}"}}/
+              .col-sm-2.ml-auto
+                %h4 Rounded Raised
+                %img.img-raised.rounded.img-fluid{:alt => "Raised Image", :src => "#{asset_pack_path 'avatar.jpg'}"}}/
+              .col-sm-2.ml-auto
+                %h4 Circle Raised
+                %img.img-raised.rounded-circle.img-fluid{:alt => "Thumbnail Image", :src => "#{asset_pack_path 'avatar.jpg'}"}}/
+            .row
+          / end images
+          .space-50
+        = render 'common/jscomponent'
+        .title
+          %h3 Carousel
+      = render 'common/carousel'
+      .section
+        .container.text-center
+          .row
+            .col-md-8.mx-auto.text-center
+              %h2 Completed with examples
+              %h4 The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go. More importantly, looking at them will give you a picture of what you can built with this powerful kit.
+      = render 'shared/signin'
+
+      
+    = render 'shared/modal'
+

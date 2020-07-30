@@ -56,3 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "haml-rails", "~> 2.0"
 gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
 gem 'mongoid-slug'
+gem 'high_voltage', '~> 3.1'
+gem "inline_svg"

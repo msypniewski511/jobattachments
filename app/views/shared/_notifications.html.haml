@@ -1,0 +1,43 @@
+/ notifications
+#notifications.section.cd-section.section-notifications
+  .container
+    .title
+      %h3 Notifications
+  .alert.alert-info
+    .container
+      .alert-icon
+        %i.material-icons info_outline
+      %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+        %span{"aria-hidden" => "true"}
+          %i.material-icons clear
+      %b Info alert:
+      You've got some friends nearby, stop looking at your phone and find them...
+  .alert.alert-success
+    .container
+      .alert-icon
+        %i.material-icons check
+      %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+        %span{"aria-hidden" => "true"}
+          %i.material-icons clear
+      %b Success Alert:
+      Yuhuuu! You've got your $11.99 album from The Weeknd
+  .alert.alert-warning
+    .container
+      .alert-icon
+        %i.material-icons warning
+      %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+        %span{"aria-hidden" => "true"}
+          %i.material-icons clear
+      %b Warning Alert:
+      Hey, it looks like you still have the "copyright © 2015" in your footer. Please update it!
+  .alert.alert-danger
+    .container
+      .alert-icon
+        %i.material-icons error_outline
+      %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+        %span{"aria-hidden" => "true"}
+          %i.material-icons clear
+      %b Error Alert:
+      Damn man! You screwed up the server this time. You should find a good excuse for your Boss...
+  .clearfix
+/ end notifications

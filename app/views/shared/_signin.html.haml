@@ -1,0 +1,34 @@
+.section.section-signup.page-header
+  .container
+    .row
+      .col-lg-4.col-md-6.mx-auto
+        .card.card-login
+          %form.form
+            .card-header.card-header-primary.text-center
+              %h4.card-title Login
+              .social-line
+                %a.btn.btn-just-icon.btn-link{:href => "javascript:;"}
+                  %i.fab.fa-facebook-square
+                %a.btn.btn-just-icon.btn-link{:href => "javascript:;"}
+                  %i.fab.fa-twitter
+                %a.btn.btn-just-icon.btn-link{:href => "javascript:;"}
+                  %i.fab.fa-google-plus
+            %p.description.text-center Or Be Classical
+            .card-body
+              .input-group
+                .input-group-prepend
+                  %span.input-group-text
+                    %i.material-icons face
+                %input.form-control{:placeholder => "First Name", :type => "text"}/
+              .input-group
+                .input-group-prepend
+                  %span.input-group-text
+                    %i.material-icons mail
+                %input.form-control{:placeholder => "Email", :type => "email"}/
+              .input-group
+                .input-group-prepend
+                  %span.input-group-text
+                    %i.material-icons lock_outline
+                %input.form-control{:autocomplete => "", :placeholder => "Password", :type => "password"}/
+            .footer.text-center
+              %a.btn.btn-primary.btn-link.btn-wd.btn-lg{:href => "javascript:;"} Get Started

@@ -1,0 +1,159 @@
+/ navbar
+#navbar
+  .navigation-example
+    / rose navbar with search form
+    %nav.navbar.navbar-expand-lg.bg-rose
+      .container
+        .navbar-translate
+          %a.navbar-brand{:href => "#0"} Brand
+          %button.navbar-toggler{"aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+        .collapse.navbar-collapse
+          %ul.navbar-nav
+            %li.nav-item.active
+              %a.nav-link{:href => "javascript:;"} link
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"} link
+          %form.form-inline.ml-auto
+            .form-group.has-white
+              %input.form-control{:placeholder => "Search", :type => "text"}/
+            %button.btn.btn-white.btn-raised.btn-fab.btn-round{:type => "submit"}
+              %i.material-icons search
+    / end rose navbar
+    / info navbar
+    %nav.navbar.navbar-expand-lg.bg-info
+      .container
+        .navbar-translate
+          %a.navbar-brand{:href => "#0"} Info Color
+          %button.navbar-toggler{"aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+        .collapse.navbar-collapse
+          %ul.navbar-nav.ml-auto
+            %li.active.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                Discover
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                Profile
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                Settings
+    / end info navbar
+    / primary navbar
+    %nav.navbar.navbar-expand-lg.bg-primary
+      .container
+        .navbar-translate
+          %a.navbar-brand{:href => "#0"} Primary Color
+          %button.navbar-toggler{"aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+        .collapse.navbar-collapse
+          %ul.navbar-nav.ml-auto
+            %li.active.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                %i.material-icons explore
+                Discover
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                %i.material-icons account_circle
+                Profile
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                %i.material-icons settings
+                Settings
+    / end primary navbar
+    / inverse navbar with notifications
+    %nav.navbar.navbar-inverse.navbar-expand-lg.bg-dark{:role => "navigation-demo"}
+      .container
+        / Brand and toggle get grouped for better mobile display
+        .navbar-translate
+          %a.navbar-brand{:href => "#0"} Navbar with notification
+          %button.navbar-toggler{"aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+        / Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse
+          %ul.navbar-nav.ml-auto
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                Discover
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                Wishlist
+            %li.nav-item
+              %a.btn.btn-rose.btn-raised.btn-fab.btn-round{"data-toggle" => "dropdown", :href => "javascript:;"}
+                %i.material-icons email
+            %li.dropdown.nav-item
+              %a.profile-photo.dropdown-toggle.nav-link{"data-toggle" => "dropdown", :href => "javascript:;"}
+                .profile-photo-small
+                  %img.rounded-circle.img-fluid{:alt => "Circle Image", :src => "#{asset_pack_path 'avatar.jpg'}"}/
+              .dropdown-menu.dropdown-menu-right
+                %h6.dropdown-header Dropdown header
+                %a.dropdown-item{:href => "javascript:;"} Me
+                %a.dropdown-item{:href => "javascript:;"} Settings and other stuff
+                %a.dropdown-item{:href => "javascript:;"} Sign out
+        / /.navbar-collapse
+      / /.container
+    / end inverse navbar
+    / default navbar with profile photo
+    %nav.navbar.navbar-default.navbar-expand-lg{:role => "navigation-demo"}
+      .container
+        / Brand and toggle get grouped for better mobile display
+        .navbar-translate
+          %a.navbar-brand{:href => "#0"} Navbar with profile
+          %button.navbar-toggler{"aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+        / Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse
+          %ul.navbar-nav.ml-auto
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                Discover
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                Wishlist
+            %li.nav-item
+              %a.btn.btn-rose.btn-raised.btn-round{"data-toggle" => "dropdown", :href => "javascript:;"}
+                Register
+        / /.navbar-collapse
+      / /.container
+    / end default navbar
+    / transparent navbar
+    %nav.navbar.navbar-transparent.navbar-expand-lg
+      .container
+        .navbar-translate
+          %a.navbar-brand{:href => "javascript:;"} Transparent
+          %button.ml-auto.navbar-toggler{"data-target" => "#example-navbar-transparent", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+            %span.navbar-toggler-icon
+        #example-navbar-transparent.collapse.navbar-collapse
+          %ul.navbar-nav.ml-auto
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                %i.fab.fa-facebook-square
+                Facebook
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                %i.fab.fa-twitter
+                Twitter
+            %li.nav-item
+              %a.nav-link{:href => "javascript:;"}
+                %i.fab.fa-instagram
+                Instagram
+    / end transparent navbar
+/ end navbar
