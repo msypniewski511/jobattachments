@@ -1,38 +1,39 @@
+%h1 People list
 %section
-  %table.table-sm.table
-  %thead
-    %tr
-      %th Title
-      %th First name
-      %th Last name
-      %th Telephone
-      %th Mobile phone
-      %th Job title
-      %th DOB
-      %th Gender
-      %th Keywords
-      %th Notes
-      %th
-      %th
-      %th
-
-  %tbody
-    - @people.each do |person|
+  %table.table-sm.table.table-hover.table-striped
+    %thead.thead-dark
       %tr
-        %td= person.title
-        %td= person.first_name
-        %td= person.last_name
-        %td= person.telephone
-        %td= person.mobile_phone
-        %td= person.job_title
-        %td= person.date_of_birth
-        %td= person.gender
-        %td= person.keywords
-        %td= person.notes
-        %td= link_to 'Show', person
-        %td= link_to 'Edit', edit_person_path(person)
-        %td= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Title
+        %th First name
+        %th Last name
+        %th Telephone
+        %th Mobile phone
+        %th Job title
+        %th DOB
+        %th Gender
+        %th Keywords
+        %th Notes
+        %th
+        %th
+        %th
+
+    %tbody
+      - @people.each do |person|
+        %tr
+          %td= person.title
+          %td= person.first_name
+          %td= person.last_name
+          %td= person.telephone
+          %td= person.mobile_phone
+          %td= person.job_title
+          %td= person.date_of_birth
+          %td= person.gender
+          %td= person.keywords
+          %td= person.notes
+          %td= link_to 'Show', person
+          %td= link_to 'Edit', edit_person_path(person)
+          %td= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New person', new_person_path
+= link_to 'New person', new_person_path, class: "btn btn-outline-success my-2 my-sm-0"

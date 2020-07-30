@@ -1,15 +1,41 @@
 {
-  "name": "jobattachments",
+  "name": "@rails/webpacker",
+  "license": "MIT",
+  "version": "0.0.1",
   "private": true,
+  "description": "Use webpack to manage app-like JavaScript modules in Rails",
   "dependencies": {
+    "@babel/preset-react": "^7.8.3",
     "@fortawesome/fontawesome-free": "^5.14.0",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.1.1",
-    "bootstrap": "4.5",
-    "jquery": "^3.5.1",
-    "poper": "^0.1.1",
-    "popper.js": "^1.16.1"
+    "@yaireo/tagify": "yaireo/tagify",
+    "active_storage_drag_and_drop": "^0.4.1",
+    "bootstrap": "^4.4.1",
+    "bootstrap-datetimepicker": "0.0.7",
+    "chart.js": "^2.9.3",
+    "chartkick": "^3.2.0",
+    "cocoon": "github:nathanvda/cocoon#c24ba53",
+    "flow-webpack-plugin": "^1.2.0",
+    "jquery": "^1.12.4",
+    "jquery-ujs": "latest",
+    "json-loader": "^0.5.7",
+    "lodash": "^4.17.19",
+    "moment": "^2.27.0",
+    "nouislider": "^14.6.0",
+    "popper": "^1.0.1",
+    "popper.js": "^1.16.1",
+    "prop-types": "^15.7.2",
+    "tether": "^1.4.7",
+    "toastr": "^2.1.4",
+    "turbolinks": "^5.2.0",
+    "url-loader": "^4.1.0"
   },
   "devDependencies": {
+    "file-loader": "^6.0.0",
+    "webpack": "^4.44.0",
     "webpack-dev-server": "^3.11.0"
   }
 }

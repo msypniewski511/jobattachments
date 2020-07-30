@@ -1,0 +1,9 @@
+@import "bootstrap";
+@import "../packs/stylesheets/style/start";
+
+#moje-tlo {
+  background-image: "#{asset_pack_path('bg2.jpg')}";
+}
+#main-background {
+  background-image: "#{asset_pack_path('bg2.jpg')}";
+}

@@ -1,10 +1,12 @@
 class PeopleController < ApplicationController
+  wrap_parameters :person, include: [:keywords_ids]
   before_action :set_person, only: [:show, :edit, :update, :destroy]
+  # before_action :zmien_vars, only: [create]
 
   # GET /people
   # GET /people.json
   def index
-    @people = Person.find_all_ordered
+    @people = Person.all
   end
 
   # GET /people/1
@@ -14,8 +16,9 @@ class PeopleController < ApplicationController
 
   # GET /people/new
   def new
+    @page_title = 'Add a new person'
     @person = Person.new
-    @person.addresses.build
+    @person.address.build
   end
 
   # GET /people/1/edit
@@ -32,6 +35,7 @@ class PeopleController < ApplicationController
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
+        @page_title = 'Add a new person'
         format.html { render :new }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
@@ -46,6 +50,7 @@ class PeopleController < ApplicationController
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { render :show, status: :ok, location: @person }
       else
+        @page_title = 'Edit a new person'
         format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
@@ -71,9 +76,7 @@ class PeopleController < ApplicationController
     # Only allow a list of trusted parameters through.
     def person_params
       params.require(:person).permit(
-        :_slugs, :title, :first_name, :first_name, :telephone, :mobile_phone, :job_title, :date_of_birth, :gender, :keywords, :notes, 
-        address_attributes: [:city, street:, street1:, street2:, post_code:, :_slugs, :_destroy], 
-        companies_attributes: [] )
+        :_slugs, :title, :first_name, :last_name, :telephone, :mobile_phone, :job_title, :date_of_birth, :gender, :notes)
     end
 
     def get_gender
