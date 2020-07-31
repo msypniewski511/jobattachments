@@ -1,85 +1,277 @@
-%h1.display-4 Pricing
-%p.lead Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.
-.card-deck.mb-3.text-center
-  .card.mb-4.shadow-sm
-    .card-header
-      %h4.my-0.font-weight-normal Free
-    .card-body
-      %h1.card-title.pricing-card-title
-        $0
-        %small.text-muted / mo
-      %ul.list-unstyled.mt-3.mb-4
-        %li 10 users included
-        %li 2 GB of storage
-        %li Email support
-        %li Help center access
-      %button.btn.btn-lg.btn-block.btn-outline-primary{:type => "button"} Sign up for free
-  .card.mb-4.shadow-sm
-    .card-header
-      %h4.my-0.font-weight-normal Pro
-    .card-body
-      %h1.card-title.pricing-card-title
-        $15
-        %small.text-muted / mo
-      %ul.list-unstyled.mt-3.mb-4
-        %li 20 users included
-        %li 10 GB of storage
-        %li Priority email support
-        %li Help center access
-      %button.btn.btn-lg.btn-block.btn-primary{:type => "button"} Get started
-  .card.mb-4.shadow-sm
-    .card-header
-      %h4.my-0.font-weight-normal Enterprise
-    .card-body
-      %h1.card-title.pricing-card-title
-        $29
-        %small.text-muted / mo
-      %ul.list-unstyled.mt-3.mb-4
-        %li 30 users included
-        %li 15 GB of storage
-        %li Phone and email support
-        %li Help center access
-      %button.btn.btn-lg.btn-block.btn-primary{:type => "button"} Contact us
-%footer.pt-4.my-md-5.pt-md-5.border-top
-  .row
-    .col-12.col-md
-      -# %img.mb-2{:alt => "", :height => "24", :src => "/docs/4.5/assets/brand/bootstrap-solid.svg", :width => "24"}/
-      %small.d-block.mb-3.text-muted © 2017-2020
-    .col-6.col-md
-      %h5 Features
-      %ul.list-unstyled.text-small
-        %li
-          %a.text-muted{:href => "#"} Cool stuff
-        %li
-          %a.text-muted{:href => "#"} Random feature
-        %li
-          %a.text-muted{:href => "#"} Team feature
-        %li
-          %a.text-muted{:href => "#"} Stuff for developers
-        %li
-          %a.text-muted{:href => "#"} Another one
-        %li
-          %a.text-muted{:href => "#"} Last time
-    .col-6.col-md
-      %h5 Resources
-      %ul.list-unstyled.text-small
-        %li
-          %a.text-muted{:href => "#"} Resource
-        %li
-          %a.text-muted{:href => "#"} Resource name
-        %li
-          %a.text-muted{:href => "#"} Another resource
-        %li
-          %a.text-muted{:href => "#"} Final resource
-    .col-6.col-md
-      %h5 About
-      %ul.list-unstyled.text-small
-        %li
-          %a.text-muted{:href => "#"} Team
-        %li
-          %a.text-muted{:href => "#"} Locations
-        %li
-          %a.text-muted{:href => "#"} Privacy
-        %li
-          %a.text-muted{:href => "#"} Terms
 
+
+
+.content
+  .container-fluid
+    .row
+      .col-lg-3.col-md-6.col-sm-6
+        .card.card-stats
+          .card-header.card-header-warning.card-header-icon
+            .card-icon
+              %i.material-icons content_copy
+            %p.card-category Used Space
+            %h3.card-title
+              49/50
+              %small GB
+          .card-footer
+            .stats
+              %i.material-icons.text-danger warning
+              %a{:href => "javascript:;"} Get More Space...
+      .col-lg-3.col-md-6.col-sm-6
+        .card.card-stats
+          .card-header.card-header-success.card-header-icon
+            .card-icon
+              %i.material-icons store
+            %p.card-category Revenue
+            %h3.card-title $34,245
+          .card-footer
+            .stats
+              %i.material-icons date_range
+              Last 24 Hours
+      .col-lg-3.col-md-6.col-sm-6
+        .card.card-stats
+          .card-header.card-header-danger.card-header-icon
+            .card-icon
+              %i.material-icons info_outline
+            %p.card-category Fixed Issues
+            %h3.card-title 75
+          .card-footer
+            .stats
+              %i.material-icons local_offer
+              Tracked from Github
+      .col-lg-3.col-md-6.col-sm-6
+        .card.card-stats
+          .card-header.card-header-info.card-header-icon
+            .card-icon
+              %i.fa.fa-twitter
+            %p.card-category Followers
+            %h3.card-title +245
+          .card-footer
+            .stats
+              %i.material-icons update
+              Just Updated
+    .row
+      .col-md-4
+        .card.card-chart
+          .card-header.card-header-success
+            #dailySalesChart.ct-chart
+          .card-body
+            %h4.card-title Daily Sales
+            %p.card-category
+              %span.text-success
+                %i.fa.fa-long-arrow-up
+                55%
+              increase in today sales.
+          .card-footer
+            .stats
+              %i.material-icons access_time
+              updated 4 minutes ago
+      .col-md-4
+        .card.card-chart
+          .card-header.card-header-warning
+            #websiteViewsChart.ct-chart
+          .card-body
+            %h4.card-title Email Subscriptions
+            %p.card-category Last Campaign Performance
+          .card-footer
+            .stats
+              %i.material-icons access_time
+              campaign sent 2 days ago
+      .col-md-4
+        .card.card-chart
+          .card-header.card-header-danger
+            #completedTasksChart.ct-chart
+          .card-body
+            %h4.card-title Completed Tasks
+            %p.card-category Last Campaign Performance
+          .card-footer
+            .stats
+              %i.material-icons access_time
+              campaign sent 2 days ago
+    .row
+      .col-lg-6.col-md-12
+        .card
+          .card-header.card-header-tabs.card-header-primary
+            .nav-tabs-navigation
+              .nav-tabs-wrapper
+                %span.nav-tabs-title Tasks:
+                %ul.nav.nav-tabs{"data-tabs" => "tabs"}
+                  %li.nav-item
+                    %a.nav-link.active{"data-toggle" => "tab", :href => "#profile"}
+                      %i.material-icons bug_report
+                      Bugs
+                      .ripple-container
+                  %li.nav-item
+                    %a.nav-link{"data-toggle" => "tab", :href => "#messages"}
+                      %i.material-icons code
+                      Website
+                      .ripple-container
+                  %li.nav-item
+                    %a.nav-link{"data-toggle" => "tab", :href => "#settings"}
+                      %i.material-icons cloud
+                      Server
+                      .ripple-container
+          .card-body
+            .tab-content
+              #profile.tab-pane.active
+                %table.table#tabela1
+                  %tbody
+                    %tr
+                      %td
+                        .form-check
+                          %label.form-check-label
+                            %input.form-check-input{:checked => "checked", :type => "checkbox", :value => ""}/
+                            %span.form-check-sign
+                              %span.check
+                      %td Sign contract for "What are conference organizers afraid of?"
+                      %td.td-actions.text-right
+                        %button.btn.btn-primary.btn-link.btn-sm{:rel => "tooltip", :title => "Edit Task", :type => "button"}
+                          %i.material-icons edit
+                        %button.btn.btn-danger.btn-link.btn-sm{:rel => "tooltip", :title => "Remove", :type => "button"}
+                          %i.material-icons close
+                    %tr
+                      %td
+                        .form-check
+                          %label.form-check-label
+                            %input.form-check-input{:type => "checkbox", :value => ""}/
+                            %span.form-check-sign
+                              %span.check
+                      %td Lines From Great Russian Literature? Or E-mails From My Boss?
+                      %td.td-actions.text-right
+                        %button.btn.btn-primary.btn-link.btn-sm{:rel => "tooltip", :title => "Edit Task", :type => "button"}
+                          %i.material-icons edit
+                        %button.btn.btn-danger.btn-link.btn-sm{:rel => "tooltip", :title => "Remove", :type => "button"}
+                          %i.material-icons close
+                    %tr
+                      %td
+                        .form-check
+                          %label.form-check-label
+                            %input.form-check-input{:type => "checkbox", :value => ""}/
+                            %span.form-check-sign
+                              %span.check
+                      %td
+                        Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                      %td.td-actions.text-right
+                        %button.btn.btn-primary.btn-link.btn-sm{:rel => "tooltip", :title => "Edit Task", :type => "button"}
+                          %i.material-icons edit
+                        %button.btn.btn-danger.btn-link.btn-sm{:rel => "tooltip", :title => "Remove", :type => "button"}
+                          %i.material-icons close
+                    %tr
+                      %td
+                        .form-check
+                          %label.form-check-label
+                            %input.form-check-input{:checked => "checked", :type => "checkbox", :value => ""}/
+                            %span.form-check-sign
+                              %span.check
+                      %td Create 4 Invisible User Experiences you Never Knew About
+                      %td.td-actions.text-right
+                        %button.btn.btn-primary.btn-link.btn-sm{:rel => "tooltip", :title => "Edit Task", :type => "button"}
+                          %i.material-icons edit
+                        %button.btn.btn-danger.btn-link.btn-sm{:rel => "tooltip", :title => "Remove", :type => "button"}
+                          %i.material-icons close
+              #messages.tab-pane
+                %table.table
+                  %tbody
+                    %tr
+                      %td
+                        .form-check
+                          %label.form-check-label
+                            %input.form-check-input{:checked => "checked", :type => "checkbox", :value => ""}/
+                            %span.form-check-sign
+                              %span.check
+                      %td
+                        Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                      %td.td-actions.text-right
+                        %button.btn.btn-primary.btn-link.btn-sm{:rel => "tooltip", :title => "Edit Task", :type => "button"}
+                          %i.material-icons edit
+                        %button.btn.btn-danger.btn-link.btn-sm{:rel => "tooltip", :title => "Remove", :type => "button"}
+                          %i.material-icons close
+                    %tr
+                      %td
+                        .form-check
+                          %label.form-check-label
+                            %input.form-check-input{:type => "checkbox", :value => ""}/
+                            %span.form-check-sign
+                              %span.check
+                      %td Sign contract for "What are conference organizers afraid of?"
+                      %td.td-actions.text-right
+                        %button.btn.btn-primary.btn-link.btn-sm{:rel => "tooltip", :title => "Edit Task", :type => "button"}
+                          %i.material-icons edit
+                        %button.btn.btn-danger.btn-link.btn-sm{:rel => "tooltip", :title => "Remove", :type => "button"}
+                          %i.material-icons close
+              #settings.tab-pane
+                %table.table
+                  %tbody
+                    %tr
+                      %td
+                        .form-check
+                          %label.form-check-label
+                            %input.form-check-input{:type => "checkbox", :value => ""}/
+                            %span.form-check-sign
+                              %span.check
+                      %td Lines From Great Russian Literature? Or E-mails From My Boss?
+                      %td.td-actions.text-right
+                        %button.btn.btn-primary.btn-link.btn-sm{:rel => "tooltip", :title => "Edit Task", :type => "button"}
+                          %i.material-icons edit
+                        %button.btn.btn-danger.btn-link.btn-sm{:rel => "tooltip", :title => "Remove", :type => "button"}
+                          %i.material-icons close
+                    %tr
+                      %td
+                        .form-check
+                          %label.form-check-label
+                            %input.form-check-input{:checked => "checked", :type => "checkbox", :value => ""}/
+                            %span.form-check-sign
+                              %span.check
+                      %td
+                        Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                      %td.td-actions.text-right
+                        %button.btn.btn-primary.btn-link.btn-sm{:rel => "tooltip", :title => "Edit Task", :type => "button"}
+                          %i.material-icons edit
+                        %button.btn.btn-danger.btn-link.btn-sm{:rel => "tooltip", :title => "Remove", :type => "button"}
+                          %i.material-icons close
+                    %tr
+                      %td
+                        .form-check
+                          %label.form-check-label
+                            %input.form-check-input{:checked => "checked", :type => "checkbox", :value => ""}/
+                            %span.form-check-sign
+                              %span.check
+                      %td Sign contract for "What are conference organizers afraid of?"
+                      %td.td-actions.text-right
+                        %button.btn.btn-primary.btn-link.btn-sm{:rel => "tooltip", :title => "Edit Task", :type => "button"}
+                          %i.material-icons edit
+                        %button.btn.btn-danger.btn-link.btn-sm{:rel => "tooltip", :title => "Remove", :type => "button"}
+                          %i.material-icons close
+      .col-lg-6.col-md-12
+        .card
+          .card-header.card-header-warning
+            %h4.card-title Employees Stats
+            %p.card-category New employees on 15th September, 2016
+          .card-body.table-responsive
+            %table.table.table-hover
+              %thead.text-warning
+                %th ID
+                %th Name
+                %th Salary
+                %th Country
+              %tbody
+                %tr
+                  %td 1
+                  %td Dakota Rice
+                  %td $36,738
+                  %td Niger
+                %tr
+                  %td 2
+                  %td Minerva Hooper
+                  %td $23,789
+                  %td Curaçao
+                %tr
+                  %td 3
+                  %td Sage Rodriguez
+                  %td $56,142
+                  %td Netherlands
+                %tr
+                  %td 4
+                  %td Philip Chaney
+                  %td $38,735
+                  %td Korea, South

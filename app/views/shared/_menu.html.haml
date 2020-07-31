@@ -1,80 +1,47 @@
-%nav#sectionsNav.navbar.navbar-transparent.navbar-color-on-scroll.fixed-top.navbar-expand-lg{"color-on-scroll" => "100"}
-  .container
-    .navbar-translate
-      %a.navbar-brand{:href => "/"}
-        Material Kit
-        -# %i.fa.fa-twitter
-      %button.navbar-toggler{"aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.navbar-toggler-icon
-        %span.navbar-toggler-icon
-        %span.navbar-toggler-icon
-    .collapse.navbar-collapse
-      %ul.navbar-nav.ml-auto
-        %li.dropdown.nav-item
-          %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown", :href => "#"}
-            %i.material-icons menu_open
-            Components
-          .dropdown-menu.dropdown-with-icons
-            %a.dropdown-item{:href => "/companies"}
-              %i.material-icons corporate_fare
-              Enterprises
-            %a.dropdown-item{:href => "/addresses"}
-              %i.material-icons contact_mail
-              Addresses
-            %a.dropdown-item{:href => "/people"}
-              %i.material-icons group
-              People
-            %a.dropdown-item{:href => "pages/about", :target => "_blank"}
-              %i.material-icons unarchive
-              Abouout
-        -# %li.nav-item
-        -#   %a.nav-link{:href => "javascript:void(0)", :onclick => "scrollToDownload()"}
-        -#     %i.material-icons cloud_download
-        -#     Download
-        -# %li.nav-item
-        -#   %a.nav-link{:href => "/about", :target => "_blank"}
-        -#     %i.material-icons unarchive
-        -#     Upgrade to PRO
 
-        -# %li.nav-item
-        -#   %a.nav-link{"data-original-title" => "Follow us on Twitter", "data-placement" => "bottom", :href => "/companies", :rel => "tooltip", :target => "_blank", :title => "Enterprise"} 
-            
-        -#     %i.material-icons corporate_fare
-        -#     Enterprises
-        -# %li.nav-item
-        -#   %a.nav-link{"data-original-title" => "Follow us on Twitter", "data-placement" => "bottom", :href => "/addresses", :rel => "tooltip", :target => "_blank", :title => "Addresses"}
-            
-        -#     %i.material-icons contact_mail
-        -#     Addresses
-        -# %li.nav-item
-        -#   %a.nav-link{"data-original-title" => "Follow us on Twitter", "data-placement" => "bottom", :href => "/people", :rel => "tooltip", :target => "_blank", :title => "People"}
-            
-        -#     %i.material-icons group
-        -#     People
-        %li.nav-item
-          %a.btn.btn-rose.btn-raised.btn-round{"data-original-title" => "Follow us on Twitter", "data-placement" => "bottom", :href => "/people", :rel => "tooltip", :target => "_blank", :title => "People"}
-            Register
-            %i.material-icons account_box
-        %li.nav-item
-          %a.btn.btn-rose.btn-raised.btn-fab.btn-round{"data-toggle" => "dropdown", :href => "javascript:;"}
-            %i.material-icons email
-        %li.dropdown.nav-item
-          %a.profile-photo.dropdown-toggle.nav-link{"data-toggle" => "dropdown", :href => "javascript:;"}
-            .profile-photo-small
-              %img.rounded-circle.img-fluid{:alt => "Circle Image", :src => "#{asset_pack_path 'avatar.jpg'}"}/
-          .dropdown-menu.dropdown-menu-right
-            %h6.dropdown-header Dropdown header
-            %a.dropdown-item{:href => "javascript:;"} Me
-            %a.dropdown-item{:href => "javascript:;"} Settings and other stuff
-            %a.dropdown-item{:href => "javascript:;"} Sign out
-        
-        -# %li.nav-item
-        -#   %a.nav-link{"data-original-title" => "Follow us on Twitter", "data-placement" => "bottom", :href => "https://twitter.com/CreativeTim", :rel => "tooltip", :target => "_blank", :title => ""}
-        -#     %i.material-icons business
-        -# %li.nav-item
-        -#   %a.nav-link{"data-original-title" => "Like us on Facebook", "data-placement" => "bottom", :href => "https://www.facebook.com/CreativeTim", :rel => "tooltip", :target => "_blank", :title => ""}
-        -#     %i.material-icons facebook
-        -# %li.nav-item
-        -#   %a.nav-link{"data-original-title" => "Follow us on Instagram", "data-placement" => "bottom", :href => "https://www.instagram.com/CreativeTimOfficial", :rel => "tooltip", :target => "_blank", :title => ""}
-        -#     %i.material-icons business
+// 
+.sidebar{"data-background-color" => "white", "data-color" => "purple", "data-image" => "#{asset_pack_path 'sidebar-1.jpg'}"}
+  /Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+    
+  / Tip 2: you can also add an image using data-image tag
+  .logo
+    %a.simple-text.logo-normal{:href => "http://www.creative-tim.com"}
+      Creative Tim
+  .sidebar-wrapper
+    %ul.nav
+      %li.nav-item.active
+        %a.nav-link{:href => ""}
+          %i.material-icons dashboard
+          %p Dashboard
+      %li.nav-item
+        %a.nav-link{:href => "/people", class: "#{'actie' if 'PeopleController'==controller.class}"}
+          %i.material-icons person
+          %p User Profile
+      %li.nav-item
+        %a.nav-link{:href => ""}
+          %i.material-icons content_paste
+          %p Table List
+      %li.nav-item
+        %a.nav-link{:href => ""}
+          %i.material-icons library_books
+          %p Typography
+      %li.nav-item
+        %a.nav-link{:href => ""}
+          %i.material-icons bubble_chart
+          %p Icons
+      %li.nav-item
+        %a.nav-link{:href => "/addresses"}
+          %i.material-icons location_ons
+          %p Maps
+      %li.nav-item
+        %a.nav-link{:href => ""}
+          %i.material-icons notifications
+          %p Notifications
+      %li.nav-item
+        %a.nav-link{:href => ""}
+          %i.material-icons language
+          %p RTL Support
+      %li.nav-item.active-pro
+        %a.nav-link{:href => ""}
+          %i.material-icons unarchive
+          %p Upgrade to PRO

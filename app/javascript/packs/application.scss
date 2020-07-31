@@ -1,6 +1,9 @@
 // @import "bootstrap";
 @import "../stylesheets/material-kit.scss";
+@import "../stylesheets/material-dashboard.scss";
 @import '@fortawesome/fontawesome-free';
+// @import "_my-chartist-settings.scss";
+@import "chartist/dist/scss/chartist.scss";
 
 #moje-tlo {
   background-image: url("../images/bg2.jpg");

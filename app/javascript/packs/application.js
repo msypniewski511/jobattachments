@@ -48,10 +48,21 @@ window.noUiSlider = noUiSlider
 import 'nouislider/distribute/nouislider.css';
 import "../src/plugins/jquery.sharrre";
 
-
-
+// var $  = require( 'jquery' );
+var dt = require('datatables.net')();
+import "chartist"
+window.Chartist = require("chart.js");
 import "../packs/scripts/custom";
 import "../packs/assets/js/material-kit";
+import "../src/material-dashboard";
+
+
+// Create a new line chart object where as first parameter we pass in a selector
+// that is resolving to our chart container element. The Second parameter
+// is the actual data object.
+
+
+// new Chartist.Line('.ct-chart', data);
 
 // $(document).ready(function () { $('body').bootstrapMaterialDesign(); });
 // $(document).ready(function () {
@@ -82,6 +93,10 @@ $(document).ready(function () {
 
   // Sliders Init
   materialKit.initSliders();
+
+  $(document).ready(function () {
+    $('#tabela1').DataTable();
+  });
 });
 
 

@@ -1,0 +1,57 @@
+= render 'shared/head'
+
+%body.index-page.sidebar-collapse
+  .wrapper
+    = render 'shared/menu'
+    .main-panel.bg-light
+      / Navbar
+      %nav.navbar.navbar-expand-lg.navbar-transparent.navbar-absolute.fixed-top
+        .container-fluid
+          .navbar-wrapper
+            %a.navbar-brand{:href => "javascript:;"} Dashboard
+          %button.navbar-toggler{"aria-controls" => "navigation-index", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.navbar-toggler-icon.icon-bar
+            %span.navbar-toggler-icon.icon-bar
+            %span.navbar-toggler-icon.icon-bar
+          .collapse.navbar-collapse.justify-content-end
+            %form.navbar-form
+              .input-group.no-border
+                %input.form-control{:placeholder => "Search...", :type => "text", :value => ""}/
+                %button.btn.btn-white.btn-round.btn-just-icon{:type => "submit"}
+                  %i.material-icons search
+                  .ripple-container
+            %ul.navbar-nav
+              %li.nav-item
+                %a.nav-link{:href => "javascript:;"}
+                  %i.material-icons dashboard
+                  %p.d-lg-none.d-md-block
+                    Stats
+              %li.nav-item.dropdown
+                %a#navbarDropdownMenuLink.nav-link{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "http://example.com"}
+                  %i.material-icons notifications
+                  %span.notification 5
+                  %p.d-lg-none.d-md-block
+                    Some Actions
+                .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "navbarDropdownMenuLink"}
+                  %a.dropdown-item{:href => "#"} Mike John responded to your email
+                  %a.dropdown-item{:href => "#"} You have 5 new tasks
+                  %a.dropdown-item{:href => "#"} You're now friend with Andrew
+                  %a.dropdown-item{:href => "#"} Another Notification
+                  %a.dropdown-item{:href => "#"} Another One
+              %li.nav-item.dropdown
+                %a#navbarDropdownProfile.nav-link{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "javascript:;"}
+                  %i.material-icons person
+                  %p.d-lg-none.d-md-block
+                    Account
+                .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "navbarDropdownProfile"}
+                  %a.dropdown-item{:href => "#"} Profile
+                  %a.dropdown-item{:href => "#"} Settings
+                  .dropdown-divider
+                  %a.dropdown-item{:href => "#"} Log out
+      / End Navbar
+      
+      = yield
+      = controller.class
+  = render 'shared/footer'
+  = render 'shared/fixed_plugin'
