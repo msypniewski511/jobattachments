@@ -198,4 +198,4 @@ production:
       # of host:port pairs. (required)
       hosts:
         #- localhost:27017
-        uri: mongodb+srv://msypniewski511:Ms55015501@mongodbrailscluster0.cle8l.mongodb.net/autholy_development?retryWrites=true&w=majority
+        # uri: mongodb+srv://msypniewski511:Ms55015501@mongodbrailscluster0.cle8l.mongodb.net/autholy_development?retryWrites=true&w=majority
