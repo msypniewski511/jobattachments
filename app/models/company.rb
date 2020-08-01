@@ -8,7 +8,7 @@ class Company
   field :fax, type: String
   field :website, type: String
   field :address_id, type: String
-  field :created_at, type: String
+  # field :created_at, type: String
   slug :name, history: true
 
   # has_one :address_id, as: :location, autosave: true
