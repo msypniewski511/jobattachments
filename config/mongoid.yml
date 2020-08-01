@@ -188,7 +188,7 @@ production:
       # Mongoid can connect to a URI accepted by the driver:
       # uri: mongodb://user:password@mongodb.domain.com:27017/jobattachments_development
       # uri: mongodb://user:password@mongodb.domain.com:27017/jobattachments_development
-      uri: mongodb+srv://msypniewski511:Ms55015501@mongodbrailscluster0.cle8l.mongodb.net/autholy_development
+      uri: mongodb+srv://msypniewski511:Ms55015501@mongodbrailscluster0.cle8l.mongodb.net
 
       # Otherwise define the parameters separately.
       # This defines the name of the default database that Mongoid can connect to.
