@@ -187,11 +187,13 @@ production:
     default:
       # Mongoid can connect to a URI accepted by the driver:
       # uri: mongodb://user:password@mongodb.domain.com:27017/jobattachments_development
+      # uri: mongodb://user:password@mongodb.domain.com:27017/jobattachments_development
+      uri: mongodb+srv://msypniewski511:Ms55015501@mongodbrailscluster0.cle8l.mongodb.net/autholy_development
 
       # Otherwise define the parameters separately.
       # This defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: jobattachments_development
+      database: autholy_development
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
