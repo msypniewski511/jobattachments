@@ -7,6 +7,6 @@ class Skill
   field :skillCode, type: String
 
   # metal-kitchen-worktops", "id": 47, "order": "960", "crawlableInLocal": false, "count": 11 },"
-  # field :count, Type: Integer
+  field :count, type: Integer
   field :crawlableInLocal, Type: Boolean, defult: false
 end
