@@ -1,7 +1,13 @@
-%h1 Person#edit
-%p Find me in app/views/person/edit.html.haml
-%h1 New profile
+.content
+  .container-fluid
+    .row
+      .col-md-8
+        .card
+          .card-header.card-header-primary
+            %h4.card-title= @person.title && @person.first_name && @person.full_name || "Sign IN"
+            %p.card-category !!! TODO Edyt whn user exists
+          .card-body
 
-= render 'form'
+            = render 'form'
 
-// = link_to 'Back', people_path
+            // = link_to 'Back', people_path

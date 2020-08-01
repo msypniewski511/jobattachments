@@ -8,7 +8,7 @@
       %nav.navbar.navbar-expand-lg.navbar-transparent.navbar-absolute.fixed-top
         .container-fluid
           .navbar-wrapper
-            %a.navbar-brand{:href => "javascript:;"} Dashboard
+            %a.navbar-brand{:href => "/"} Dashboard
           %button.navbar-toggler{"aria-controls" => "navigation-index", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-toggle" => "collapse", :type => "button"}
             %span.sr-only Toggle navigation
             %span.navbar-toggler-icon.icon-bar
@@ -23,7 +23,7 @@
                   .ripple-container
             %ul.navbar-nav
               %li.nav-item
-                %a.nav-link{:href => "javascript:;"}
+                %a.nav-link{:href => "/"}
                   %i.material-icons dashboard
                   %p.d-lg-none.d-md-block
                     Stats
@@ -51,18 +51,7 @@
                   %a.dropdown-item{:href => "#"} Log out
       / End Navbar
 
-      - flash.each do |type, message|
-        - if type == 'alert'
-          .alert.alert-warning.alert-dismissible.fade.show{role: 'alert'}
-            = message
-            %button.close{type: 'button', 'data-dismiss': 'alert', 'aria-label': 'close'}
-              %span{'aria-hidden': true} &times;
-        - if type == 'notice'
-          .alert.alert-success.alert-dismissible.fade.show{role: 'alert'}
-              = message
-              %button.close{type: 'button', 'data-dismiss': 'alert', 'aria-label': 'close'}
-                %span{'aria-hidden': true} &times;
+      = render 'shared/notification'
       = yield
-      = controller.class
   = render 'shared/footer'
   = render 'shared/fixed_plugin'

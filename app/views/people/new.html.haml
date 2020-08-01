@@ -1,9 +1,12 @@
-.wrpper
-  .row.p-5
-    .col.bg-white
-      .dupa.w-50.m-auto
-        %h1 New profile
+.content
+  = content_for :submenu, ""
+  .container-fluid
+    .row
+      .col-md-8
+        .card
+          .card-header.card-header-primary
+            %h4.card-title= @person.title && @person.first_name && @person.full_name || "Sign IN"
+            %p.card-category !!! TODO Edyt whn user exists
+          .card-body
+            = render 'form'
 
-        = render 'form'
-
-        // = link_to 'Back', people_path
