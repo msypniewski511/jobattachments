@@ -196,6 +196,6 @@ production:
       database: autholy_development
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
-      hosts:
+      # hosts:
         #- localhost:27017
         # uri: mongodb+srv://msypniewski511:Ms55015501@mongodbrailscluster0.cle8l.mongodb.net/autholy_development?retryWrites=true&w=majority
