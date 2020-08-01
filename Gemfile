@@ -58,3 +58,6 @@ gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
 gem 'mongoid-slug'
 gem 'high_voltage', '~> 3.1'
 gem "inline_svg"
+gem 'simple_form'
+gem 'ipinfo-rails'
+gem 'gravatar_image_tag'

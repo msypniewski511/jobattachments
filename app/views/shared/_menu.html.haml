@@ -9,39 +9,36 @@
       Creative Tim
   .sidebar-wrapper
     %ul.nav
-      %li.nav-item.active
-        %a.nav-link{:href => ""}
+      %li{class: "#{controller.class == Admin::DashboardController ? 'nav-item active' : 'nav-item'}"}
+        %a.nav-link{:href => "/"}
           %i.material-icons dashboard
           %p Dashboard
-      %li.nav-item
-        %a.nav-link{:href => "/people", class: "#{'actie' if 'PeopleController'==controller.class}"}
-          %i.material-icons person
-          %p User Profile
-      %li.nav-item
-        %a.nav-link{:href => ""}
-          %i.material-icons content_paste
-          %p Table List
-      %li.nav-item
-        %a.nav-link{:href => ""}
+      %li{class: "#{controller.class == PeopleController ? 'nav-item active' : 'nav-item'}"}
+        %a.nav-link{:href => "/people"}
+          %i.material-icons engineering
+          %p Job seekers
+      %li{class: "#{ controller.class == AddressesController ? 'nav-item active' : 'nav-item'}"}
+        %a.nav-link{:href => "/addresses"}
+          %i.material-icons location_ons
+          %p Addresses
+      %li.nav-item{class: "#{ controller.class == CompaniesController ? 'nav-item active' : 'nav-item'}"}
+        %a.nav-link{:href => "/companies"}
           %i.material-icons library_books
-          %p Typography
-      %li.nav-item
-        %a.nav-link{:href => ""}
+          %p Companies
+      %li.nav-item                
+        %a.nav-link{:href => "/"}
           %i.material-icons bubble_chart
           %p Icons
       %li.nav-item
-        %a.nav-link{:href => "/addresses"}
-          %i.material-icons location_ons
-          %p Maps
-      %li.nav-item
-        %a.nav-link{:href => ""}
+        %a.nav-link{:href => "/"}
           %i.material-icons notifications
           %p Notifications
       %li.nav-item
-        %a.nav-link{:href => ""}
+        %a.nav-link{:href => "/"}
           %i.material-icons language
           %p RTL Support
       %li.nav-item.active-pro
-        %a.nav-link{:href => ""}
+        %a.nav-link{:href => "/"}
           %i.material-icons unarchive
           %p Upgrade to PRO
+
