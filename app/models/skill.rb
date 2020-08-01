@@ -8,5 +8,5 @@ class Skill
 
   # metal-kitchen-worktops", "id": 47, "order": "960", "crawlableInLocal": false, "count": 11 },"
   field :count, type: Integer
-  field :crawlableInLocal, Type: Boolean, defult: false
+  field :crawlableInLocal, type: Boolean, defult: false
 end
