@@ -33,12 +33,12 @@ module ApplicationHelper
   #   # Wrap the <label> tag in a <strong> tag.
   #   content_tag('strong', label_tag)
   # end
-  def actions_in_row(obj)
+  def actions_in_row(obj, path)
     array = []
     content_tag :div do
-      array << link_to(obj, class: "btn btn-info btn-link btn-sm"){ |f| content_tag(:i, 'preview', class: 'material-icons')}
-      array << link_to("people/#{obj._id}/edit", class: "btn btn-success btn-link btn-sm"){ |f| content_tag(:i, 'edit', class: 'material-icons')}
-      array << link_to(obj, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger btn-link btn-sm") { |f| content_tag(:i, 'close', class: 'material-icons')}
+      array << link_to("#{path}/#{(obj.id)}", class: "btn btn-info btn-link btn-sm"){ |f| content_tag(:i, 'preview', class: 'material-icons')}
+      array << link_to("#{path}/#{(obj.id)}/edit", class: "btn btn-success btn-link btn-sm"){ |f| content_tag(:i, 'edit', class: 'material-icons')}
+      array << link_to("#{path}/#{(obj.id)}", method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger btn-link btn-sm") { |f| content_tag(:i, 'close', class: 'material-icons')}
     end
     return array.join
   end

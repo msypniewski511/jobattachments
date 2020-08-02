@@ -237,6 +237,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
+  bson
   bson_ext
   byebug
   coffee-rails (~> 4.2)

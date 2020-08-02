@@ -8,7 +8,7 @@
             %p.card-category List of registered people
           .card-body
             .table-responsive
-              %table.table-sm.table.table-hover.table-striped
+              %table.table-sm.table.table-hover.table-striped.display#table_id
                 %thead.text-primary
                   %tr
                     %th City
@@ -16,8 +16,6 @@
                     %th Street1
                     %th Street2
                     %th Post code
-                    %th
-                    %th
                     %th
 
                 %tbody
@@ -31,7 +29,7 @@
                       -# %td= link_to 'Show', address
                       -# %td= link_to 'Edit', edit_address_path(address)
                       %td
-                        = actions_in_row(address).html_safe
+                        = actions_in_row(address, 'addresses').html_safe
               %br
 
               = link_to 'New Address', new_address_path

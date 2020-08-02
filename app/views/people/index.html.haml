@@ -11,6 +11,8 @@
               %table.table-sm.table.table-hover.table-striped
                 %thead.text-primary
                   %tr
+                    %th
+                    %th _slug
                     %th Title
                     %th First name
                     %th Last name
@@ -29,6 +31,9 @@
                 %tbody
                   - @people.each do |person|
                     %tr
+
+                      %td= person.id
+                      %td= person._slugs
                       %td= person.title
                       %td= person.first_name
                       %td= person.last_name
@@ -40,7 +45,7 @@
                       %td= person.keywords
                       %td= person.notes
                       %td.text-right.td-actions
-                        = actions_in_row(person).html_safe
+                        = actions_in_row(person, "people").html_safe
                         -#   = link_to person, class: "btn btn-info btn-link btn-sm" do |f|
                         -#     %i.material-icons person
                         -# %td.text-right.td-actions

@@ -43,7 +43,7 @@
             .form-group
               -# = f.label :date_of_birth
               - this_year = Time.now.year
-              = f.input :date_of_birth, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, discard_day: true, order: [:month, :year], class: "form-control"
+              = f.text_field :date_of_birth, as: :date, class: "form-control", data: { behavior: "flatpickr" }
           .col-md-6
             .form-group
               -# = f.label :gender
@@ -53,6 +53,7 @@
             .finput-group
               = f.label :notes
               = f.text_area :notes, class: "form-control", rows: 5
+              
         .row.pt-3
           .col-md-6
             .form-group

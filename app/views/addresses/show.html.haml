@@ -1,21 +1,29 @@
-%p#notice= notice
+.content
+  .container-fluid
+    .row
+      .col-lg-12.col-md-12
+        .card
+          .card-header.card-header-primary
+            %h4.card-title Listing addresses
+            %p.card-category List of registered people
+          .card-body
 
-%p
-  %b City:
-  = @address.city
-%p
-  %b Street:
-  = @address.street
-%p
-  %b Street1:
-  = @address.street1
-%p
-  %b Street2:
-  = @address.street2
-%p
-  %b Post code:
-  = @address.post_code
+            %p
+              %b City:
+              = @address.city
+            %p
+              %b Street:
+              = @address.street
+            %p
+              %b Street1:
+              = @address.street1
+            %p
+              %b Street2:
+              = @address.street2
+            %p
+              %b Post code:
+              = @address.post_code
 
-= link_to 'Edit', edit_address_path(@address)
-\|
-= link_to 'Back', addresses_path
+            = link_to 'Edit', edit_address_path(@address)
+            \|
+            = link_to 'Back', addresses_path

@@ -4,6 +4,7 @@
 @import '@fortawesome/fontawesome-free';
 // @import "_my-chartist-settings.scss";
 @import "chartist/dist/scss/chartist.scss";
+@import "../../../node_modules/flatpickr/dist/flatpickr.css";
 
 #moje-tlo {
   background-image: url("../images/bg2.jpg");
@@ -21,3 +22,256 @@
   padding-top: 10px;
   z-index: 1030;
 }
+//
+ // Colour customisation
+ //
+ // `!default` allows overriding variables that are defined before @import
+ //
+ 
+// Border between the header (and footer) and the table body
+$table-header-border: 1px solid #111111 !default;
+ 
+// Border of rows / cells
+$table-body-border: 1px solid #dddddd !default;
+ 
+// Row background colour (hover, striping etc are all based on this colour and
+// calculated automatically)
+$table-row-background: #ffffff !default;
+ 
+// Row colour, when selected (tr.selected)
+$table-row-selected: #b0bed9 !default;
+ 
+// Text colour of the interaction control elements (info, filter, paging etc)
+$table-control-color: #9c27b0 !default;
+ 
+// Highlight colour of the paging button for the current page
+$table-paging-button-active: #9c27b0 !default;
+ 
+// Hover colour of paging buttons on mouse over
+$table-paging-button-hover: #111111 !default;
+ 
+// Colour to use when shading
+$table-shade: black !default;
+
+ 
+@mixin gradient( $from, $to ) {
+  background-color: $from;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,     $from 0%, $to 100%); /* Chrome10+,Safari5.1+ */
+  background:    -moz-linear-gradient(top,     $from 0%, $to 100%); /* FF3.6+ */
+  background:     -ms-linear-gradient(top,     $from 0%, $to 100%); /* IE10+ */
+  background:      -o-linear-gradient(top,     $from 0%, $to 100%); /* Opera 11.10+ */
+  background:         linear-gradient(to bottom, $from 0%, $to 100%); /* W3C */
+}
+
+/*dataTables_length*/
+// Sorting
+thead {
+        .sorting,
+        .sorting_asc,
+        .sorting_desc,
+        .sorting_asc_disabled,
+        .sorting_desc_disabled {
+            cursor: pointer;
+            *cursor: hand;
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+
+        .sorting {
+            background-image: url("../images/sort_asc_disabled.png");
+        }
+        .sorting_asc {
+            background-image: url('../images/sort_asc.png');
+        }
+        .sorting_desc {
+            background-image: url('../images/sort_desc.png');
+        }
+        .sorting_asc_disabled {
+            background-image: url('../images/sort_asc_disabled.png');
+        }
+        .sorting_desc_disabled {
+            background-image: url('../images/sort_desc_disabled.png');
+        }
+    }
+ 
+/*
+* Control feature layout
+*/
+.dataTables_wrapper {
+   position: relative;
+   clear: both;
+   *zoom: 1;
+
+   // Page length options
+   .dataTables_length {
+       float: left;
+   }
+   .dataTables_length>label>select.form-control {
+      color: $table-control-color !important;
+   }
+   .form-check, label {
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #8b2b8b;
+    font-weight: 400;
+    select {
+      color: #8b2b8b;
+      background-color: white;
+    }
+}
+
+   // Filtering input
+   .dataTables_filter {
+       float: right;
+       text-align: right;
+
+       input {
+           margin-left: 0.5em;
+       }
+   }
+
+   // Table info
+   .dataTables_info {
+       clear: both;
+       float: left;
+       padding-top: 0.755em;
+   }
+
+   // Paging
+   .dataTables_paginate {
+       float: right;
+       text-align: right;
+       padding-top: 0.25em;
+
+       .paginate_button {
+           box-sizing: border-box;
+           display: inline-block;
+           min-width: 1.5em;
+           padding: 0.25em .75em;
+           margin-left: 2px;
+           text-align: center;
+           text-decoration: none !important;
+           cursor: pointer;
+           *cursor: hand;
+
+
+           color: $table-control-color;
+           border: 1px solid transparent;
+           border-radius: 34px;
+
+           &.current,
+           &.current:hover {
+            background-color: #9c27b0;
+            border-color: #9c27b0;
+            color: #fff;
+            box-shadow: 0 4px 5px 0 rgba(156,39,176,.14), 0 1px 10px 0 rgba(156,39,176,.12), 0 2px 4px -1px rgba(156,39,176,.2);
+        }
+
+           &.disabled,
+           &.disabled:hover,
+           &.disabled:active {
+               cursor: default;
+               color: #ffffff !important;
+               background: transparent;
+               box-shadow: none;
+           }
+
+           &:hover {
+               color: $table-control-color !important;
+               background-color: rgba(156,39,176,.14);
+           }
+
+           &:active {
+               background-color: #9c27b0;
+               border-color: #9c27b0;
+               color: #fff;
+               box-shadow: 0 4px 5px 0 rgba(156,39,176,.14), 0 1px 10px 0 rgba(156,39,176,.12), 0 2px 4px -1px rgba(156,39,176,.2);
+           }
+       }
+
+       .ellipsis {
+           padding: 0 1em;
+       }
+   }
+
+   // Processing
+   .dataTables_processing {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       width: 100%;
+       height: 40px;
+       margin-left: -50%;
+       margin-top: -25px;
+       padding-top: 20px;
+
+       text-align: center;
+       font-size: 1.2em;
+
+       background-color: white;
+       background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba($table-row-background, 0)), color-stop(25%,rgba($table-row-background, 0.9)), color-stop(75%,rgba($table-row-background, 0.9)), color-stop(100%,rgba(255,255,255,0)));
+       background: -webkit-linear-gradient(left,     rgba($table-row-background, 0) 0%, rgba($table-row-background, 0.9) 25%, rgba($table-row-background, 0.9) 75%, rgba($table-row-background, 0) 100%);
+       background:    -moz-linear-gradient(left,     rgba($table-row-background, 0) 0%, rgba($table-row-background, 0.9) 25%, rgba($table-row-background, 0.9) 75%, rgba($table-row-background, 0) 100%);
+       background:     -ms-linear-gradient(left,     rgba($table-row-background, 0) 0%, rgba($table-row-background, 0.9) 25%, rgba($table-row-background, 0.9) 75%, rgba($table-row-background, 0) 100%);
+       background:      -o-linear-gradient(left,     rgba($table-row-background, 0) 0%, rgba($table-row-background, 0.9) 25%, rgba($table-row-background, 0.9) 75%, rgba($table-row-background, 0) 100%);
+       background:         linear-gradient(to right, rgba($table-row-background, 0) 0%, rgba($table-row-background, 0.9) 25%, rgba($table-row-background, 0.9) 75%, rgba($table-row-background, 0) 100%);
+   }
+
+   .dataTables_length,
+   .dataTables_filter,
+   .dataTables_info,
+   .dataTables_processing,
+   .dataTables_paginate {
+       color: $table-control-color;
+   }
+
+   // Scrolling
+   .dataTables_scroll {
+       clear: both;
+
+       div.dataTables_scrollBody {
+           *margin-top: -1px;
+           -webkit-overflow-scrolling: touch;
+
+           > table > thead > tr, > table > tbody > tr {
+               > th, > td {
+                   // Setting v-align baseline can cause the headers to be visible
+                   vertical-align: middle;
+               }
+
+               > th > div.dataTables_sizing,
+               > td > div.dataTables_sizing {
+                   // Hide the element used to wrap the content in the header for
+                   // the body scrolling table
+                   height: 0;
+                   overflow: hidden;
+                   margin: 0 !important;
+                   padding: 0 !important;
+               }
+           }
+       }
+   }
+
+   &.no-footer {
+       .dataTables_scrollBody {
+           border-bottom: $table-header-border;
+       }
+
+       div.dataTables_scrollHead table.dataTable,
+       div.dataTables_scrollBody > table {
+           border-bottom: none;
+       }
+   }
+
+   // Self clear the wrapper
+   &:after {
+       visibility: hidden;
+       display: block;
+       content: "";
+       clear: both;
+       height: 0;
+   }
+   zoom: 1; // Poor old IE
+}
+

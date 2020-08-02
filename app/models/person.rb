@@ -1,9 +1,12 @@
 class Person < Employe
   include Mongoid::Document
+  # include Mongoid::Dynamic
+  include Mongoid::Fields
   include Mongoid::Timestamps
   include Mongoid::Slug
   include Mongoid::Attributes::Dynamic
   include ActiveModel::Validations
+  # attr_accessor :date_of_birth, :gender, :notes, :keywords
 
   field :title
   field :first_name 
@@ -16,11 +19,11 @@ class Person < Employe
   field :mobile_phone
   field :job_title
   # field :date_of_birth
-  attr_accessor :date_of_birth, :Date
-  attr_accessor :gender, :Integer
+  field :date_of_birth
+  field :gender
   
-  attr_accessor :keywords, :Text
-  attr_accessor :notes, :Text
+  field :keywords
+  field :notes
 
   # validates_associated :address
   validates_presence_of :title

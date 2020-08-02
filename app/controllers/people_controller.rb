@@ -70,13 +70,13 @@ class PeopleController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
-      @person = Person.find_by slug: params[:slug]
+      @person = Person.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def person_params
       params.require(:person).permit(
-        :_slugs, :title, :first_name, :last_name, :telephone, :mobile_phone, :job_title, :date_of_birth, :gender, :notes)
+        :_slugs, :title, :first_name, :last_name, :telephone, :mobile_phone, :job_title, :date_of_birth, :gender, :notes, :keywords)
     end
 
     def get_gender
