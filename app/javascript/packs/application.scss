@@ -13,3 +13,11 @@
   background-image: url("../images/bg2.jpg");
   transform: translate3d(0px, 0px, 0px);
 }
+.notifications {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 10px;
+  z-index: 1030;
+}

@@ -1,11 +1,12 @@
 - flash.each do |type, message|
-  - if type == 'alert'
-    .alert.alert-warning.alert-dismissible.fade.show{role: 'alert'}
-      = message
-      %button.close{type: 'button', 'data-dismiss': 'alert', 'aria-label': 'close'}
-        %span{'aria-hidden': true} &times;
-  - if type == 'notice'
-    .alert.alert-success.alert-dismissible.fade.show{role: 'alert'}
-      = message
-      %button.close{type: 'button', 'data-dismiss': 'alert', 'aria-label': 'close'}
-        %span{'aria-hidden': true} &times;
+  .notifications
+    - if type == 'alert'
+      .alert.alert-warning.alert-dismissible.fade.show{role: 'alert'}
+        = message
+        %button.close{type: 'button', 'data-dismiss': 'alert', 'aria-label': 'close'}
+          %span{'aria-hidden': true} &times;
+    - if type == 'notice'
+      .alert.alert-success.alert-dismissible.fade.show{role: 'alert'}
+        = message
+        %button.close{type: 'button', 'data-dismiss': 'alert', 'aria-label': 'close'}
+          %span{'aria-hidden': true} &times;

@@ -1,9 +1,13 @@
 = render 'shared/head'
 
 %body.index-page.sidebar-collapse
+  
   .wrapper
     = render 'shared/menu'
+    / Notifications section
+    = render 'shared/notification'
     .main-panel.bg-light
+      
       / Navbar
       %nav.navbar.navbar-expand-lg.navbar-transparent.navbar-absolute.fixed-top
         .container-fluid
@@ -51,7 +55,6 @@
                   %a.dropdown-item{:href => "#"} Log out
       / End Navbar
 
-      = render 'shared/notification'
       = yield
   = render 'shared/footer'
   = render 'shared/fixed_plugin'
