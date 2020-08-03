@@ -1,0 +1,38 @@
+.row
+  .col
+    .login-page.bg-whites
+      .row
+        .form-group.col.bmd-form-group
+          = person.title
+        .form-group.col.bmd-form-group
+      .row
+        .col-md-6
+          .form-group.bmd-form-group
+            = person.first_name
+        .col-md-6
+          .form-group.bmd-form-group
+            = person.last_name 
+      .row
+        .col-md-6
+          .form-group
+            = person.mobile_phone
+        .col-md-6
+          .form-group
+            = person.telephone
+      .row
+        .col-md-6
+          .form-group
+            = person.date_of_birth
+        .col-md-6
+          .form-group
+            -# = f.label :gender
+            = person.gender
+      .row
+        .col-md-12
+          .finput-group
+            = person.notes
+            
+      .row.pt-3
+        .col-md-6
+          .form-group
+            = person.keywords

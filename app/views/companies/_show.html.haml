@@ -1,0 +1,8 @@
+- if company
+  -# - company = Company.find(company.first)
+  = field_with_break (company.name).html_safe
+  = field_with_break (company.telephone).html_safe
+  = field_with_break (company.fax).html_safe
+  = field_with_break (company.website).html_safe
+- else
+  =d

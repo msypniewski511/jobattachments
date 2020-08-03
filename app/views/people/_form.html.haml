@@ -1,96 +1,136 @@
 
-.row
-  .col
-    .login-page.bg-whites
-      = simple_form_for @person do |f|
-        - if @person.errors.any?
-          #error_explanation
-            %h2= "#{pluralize(@person.errors.count, "error")} prohibited this person from being saved:"
-            %ul
-              - @person.errors.full_messages.each do |message|
-                %li= message
-        // = error_messages_on :person
-        .row
-          -# .form-group.col-md-6
-            -# = f.label :companies
-            -# = f.select :companies, @person.companies, label_method: :company_name, value_method: :id, include_blank: false, class: "form-control"
-          .form-group.col.bmd-form-group
-            -# = f.label :title
-            = f.input :title, class: "form-control"
-          .form-group.col.bmd-form-group
-            -# = f.label :first_name
-            = f.input :first_name, class: "form-control"
-        .row
-          .col-md-6
-            .form-group.bmd-form-group
-              = f.label :last_name
-              = f.text_field :last_name, class: "form-control"
-          .col-md-6
-            .form-group.bmd-form-group
-              = f.label :telephone
-              = f.telephone_field :telephone, class: "form-control"
-        .row
-          .col-md-6
-            .form-group
-              = f.label :mobile_phone
-              = f.telephone_field :mobile_phone, class: "form-control"
-          .col-md-6
-            .form-group
-              = f.label :job_title
-              = f.text_field :job_title, class: "form-control"
-        .row
-          .col-md-6
-            .form-group
-              -# = f.label :date_of_birth
-              - this_year = Time.now.year
-              = f.text_field :date_of_birth, as: :date, class: "form-control", data: { behavior: "flatpickr" }
-          .col-md-6
-            .form-group
-              -# = f.label :gender
-              = f.input :gender, as: :select, collection: [['0', 'female'], ['1', 'male']], label_method: :second, value_method: :first, class: "form-control selectpicker", 'data-style': "btn btn-link"
-        .row
-          .col-md-12
-            .finput-group
-              = f.label :notes
-              = f.text_area :notes, class: "form-control", rows: 5
-              
-        .row.pt-3
-          .col-md-6
-            .form-group
-              = f.label :keywords
-              = f.text_field :keywords, class: "form-control"
-
-          //   = f.text_field :keywords, multiple: true
-          // .form-group.col-md-6
-          //   %h2 Addresses:
-          //   %ul
-          //     = f.fields_for :addresses do |addresses_form|
-          //       %li
-          //         .field
-          //           = addresses_form.label :city
-          //           = addresses_form.text_field :city
-          //         .field
-          //           = addresses_form.label :street
-          //           = addresses_form.text_field :street
-          //         .field
-          //           = addresses_form.label :street1
-          //           = addresses_form.text_field :street1
-          //         .field
-          //           = addresses_form.label :street2
-          //           = addresses_form.text_field :street2
-          //         .field
-          //           = addresses_form.label :post_code
-          //           = addresses_form.text_field :post_code
 
 
-          //   = f.hidden_field :_slugs
-
-          //   .field
-          //   = f.label :companies, "Company:"
-          //   = f.text_field :companies
-          // = form_for
-        .row
-          .col
-            .actions
-              = f.submit 'Save', class: "btn btn-primary"
-              = link_to 'Cancel', :action => 'index'
+= simple_form_for @person do |f|
+  - if @person.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@person.errors.count, "error")} prohibited this person from being saved:"
+      %ul
+        - @person.errors.full_messages.each do |message|
+          %li= message
+  // = error_messages_on :person
+  .row
+    .col-6
+      .card
+        .card-header.card-header-primary
+          %h4.card-title= @person.title && @person.first_name && @person.full_name || "Sign IN"
+          %p.card-category !!! TODO Edyt whn user exists
+        .card-body
+          .row
+            .form-group.col-md-6
+              = f.label :companies
+              = f.select :companies, Company.all.map{|e| e.name}, label_method: :company_name, value_method: :name, include_blank: false, class: "form-control"
+            .form-group.col.bmd-form-group
+              -# = f.label :title
+              = f.input :title, class: "form-control"
+            .form-group.col.bmd-form-group
+              -# = f.label :first_name
+              = f.input :first_name, class: "form-control"
+          .row
+            .col-md-6
+              .form-group.bmd-form-group
+                = f.label :last_name
+                = f.text_field :last_name, class: "form-control"
+            .col-md-6
+              .form-group.bmd-form-group
+                = f.label :telephone
+                = f.telephone_field :telephone, class: "form-control"
+          .row
+            .col-md-6
+              .form-group
+                = f.label :mobile_phone
+                = f.telephone_field :mobile_phone, class: "form-control"
+            .col-md-6
+              .form-group
+                = f.label :job_title
+                = f.text_field :job_title, class: "form-control"
+          .row
+            .col-md-6
+              .form-group
+                -# = f.label :date_of_birth
+                - this_year = Time.now.year
+                = f.text_field :date_of_birth, as: :date, class: "form-control", data: { behavior: "flatpickr" }
+            .col-md-6
+              .form-group
+                -# = f.label :gender
+                = f.input :gender, as: :select, collection: [['0', 'female'], ['1', 'male']], label_method: :second, value_method: :first, class: "form-control selectpicker", 'data-style': "btn btn-link"
+          .row
+            .col-md-12
+              .finput-group
+                = f.label :notes
+                = f.text_area :notes, class: "form-control", rows: 5
+                
+          .row.pt-3
+            .col-md-6
+              .form-group
+                = f.label :keywords
+                = f.text_field :keywords, class: "form-control"
+    .col-6
+      .card
+        .card-header.card-header-primary
+          %h4.card-title= @person.title && @person.first_name && @person.full_name || "Sign IN"
+          %p.card-category Addresses and Copaniews
+        .card-body
+          .row.pt-3
+            .form-group.col-md-6
+              %h2 Addresses:
+              = f.fields_for :addresses do |addresses_form|
+                %li
+                .field
+                  = addresses_form.check_box :_destroy
+                .field
+                  = addresses_form.label :city
+                  = addresses_form.text_field :city, class: "form-control"
+                .field
+                  = addresses_form.label :street
+                  = addresses_form.text_field :street, class: "form-control"
+                .field
+                  = addresses_form.label :street1
+                  = addresses_form.text_field :street1, class: "form-control"
+                .field
+                  = addresses_form.label :street2
+                  = addresses_form.text_field :street2, class: "form-control"
+                .field
+                  = addresses_form.label :post_code
+                  = addresses_form.text_field :post_code, class: "form-control"
+            .form-group.col-md-6
+              %h2 Companies:
+              = f.fields_for :companies do |company_form|
+                .field
+                  = company_form.label :name
+                  = company_form.text_field :name, class: "form-control"
+                .field
+                  = company_form.label :telephone
+                  = company_form.text_field :telephone, class: "form-control"
+                .field
+                  = company_form.label :fax
+                  = company_form.text_field :fax, class: "form-control"
+                .field
+                  = company_form.label :website
+                  = company_form.text_field :website, class: "form-control"
+                %h2 Company address:
+                // - addresses = company_address
+                = company_form.fields_for :addresses do |com_addr|
+                  .form-group.bmd-form-group
+                    = com_addr.label :city
+                    = com_addr.text_field :city, class: "form-control"
+                  .form-group.bmd-form-group
+                    = com_addr.label :street
+                    = com_addr.text_field :street, class: "form-control"
+                  .form-group.bmd-form-group
+                    = com_addr.label :street1
+                    = com_addr.text_field :street1, class: "form-control"
+                  .form-group.bmd-form-group
+                    = com_addr.label :street2
+                    = com_addr.text_field :street2, class: "form-control"
+                  .form-group.bmd-form-group
+                    = com_addr.label :country
+                    = com_addr.text_field :country, class: "form-control"
+                  .form-group.bmd-form-group
+                    = com_addr.label :post_code
+                    = com_addr.text_field :post_code, class: "form-control"
+  .row
+    .col
+      .actions
+        = f.submit 'Save', class: "btn btn-primary"
+        = link_to 'Cancel', :action => 'index'

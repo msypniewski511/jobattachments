@@ -1,13 +1,5 @@
 .content
   .container-fluid
-    .row
-      .col-md-8
-        .card
-          .card-header.card-header-primary
-            %h4.card-title= @person.title && @person.first_name && @person.full_name || "Sign IN"
-            %p.card-category !!! TODO Edyt whn user exists
-          .card-body
-
-            = render 'form'
-
-            // = link_to 'Back', people_path
+    = render 'form'
+    
+    = link_to 'Back', people_path
