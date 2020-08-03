@@ -1,0 +1,9 @@
+- if address
+  = address.street
+  = field_with_break (address.street1).html_safe
+  = field_with_break (address.street2).html_safe
+  = field_with_break (address.city).html_safe
+  = field_with_break d(address.country).html_safe
+  = field_with_break (address.post_code).html_safe
+- else
+  =d

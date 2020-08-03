@@ -7,17 +7,45 @@
             %h4.card-title= @person.full_name
             %p.card-category !!! TODO Edyt whn user exists
           .card-body
-            = render 'form'
-            -# %form
-            -# %th Title
-            -# %th First name
-            -# %th Last name
-            -# %th Telephone
-            -# %th Mobile phone
-            -# %th Job title
-            -# %th DOB
-            -# %th Gender
-            -# %th Keywords
-            -# %th Notes
-            -# %th
-            -# %th
+            = render partial: 'show', locals: { person: @person }
+            = link_to 'Edit', edit_person_path(@person), class: "btn btn-info"
+      .col-md-4
+        .card.card-profile
+          .card-avatar
+            %a(href="#")
+              = gravatar_image_tag('msypniewski511@gmail.com'.gsub('spam', 'mdeering'), :alt => 'Michael Deering', :class => 'img', :gravatar => { :size => 150 })
+          .card-body
+            %strong= @person.job_title
+            %h5.text-muted= @person.companies.first.name
+            = @person.full_name
+            %p.text-muted I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+      .col-md-8
+        .card
+          .card-header.card-header-primary
+            %h4.card-title Companies
+            %p.card-category !!! TODO Edyt whn user exists
+          .card-body
+            - if @person.associations.include? :company
+              - company = @person.company
+              = company['name']
+              = company['telephone']
+              = company['fax']
+              = company['website']
+
+            - else
+              - companies = @person.companies
+              - if companies
+                - companies.each do |company|
+                  = render partial: 'companies/show', locals: {company: company}
+      .col-md-4
+        .card
+          .card-header.card-header-primary
+            %h4.card-title Addresses
+            %p.card-category !!! TODO Edyt whn user exists
+          .card-body
+            - address = @person.addresses
+            - if address
+              - address.each do |address|
+                = render partial: 'addresses/show', locals: {address: address}
+        
+      

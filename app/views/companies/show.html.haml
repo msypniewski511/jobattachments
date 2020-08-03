@@ -1,0 +1,29 @@
+.content
+  .container-fluid
+    .row
+      .col-lg-12.col-md-12
+        .card
+          .card-header.card-header-primary
+            %h4.card-title= "Details of #{@company.name}" 
+            %p.card-category List of registered people
+          .card-body
+
+            %p
+              %b Name:
+              = @company.name
+            %p
+              %b Telephone:
+              = @company.telephone
+            %p
+              %b Fax:
+              = @company.fax
+            %p
+              %b Website:
+              = link_to @company.website, @company.website
+            %p
+              %b Address:
+              = render partial: 'addresses/show', locals: { address: @company.addresses.first }
+
+            = link_to 'Edit', edit_company_path(@company)
+            \|
+            = link_to 'Back', companies_path

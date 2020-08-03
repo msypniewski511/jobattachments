@@ -22,6 +22,11 @@
   padding-top: 10px;
   z-index: 1030;
 }
+
+.fieldWithErrors {
+    border: 0.2em solid red;
+    display: table;
+  }
 //
  // Colour customisation
  //

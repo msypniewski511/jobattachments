@@ -24,9 +24,9 @@
                       %td= companies.name
                       %td= companies.telephone
                       %td= companies.fax
-                      %td= companies.website
+                      %td= link_to companies.website, companies.website
                       %td
-                        = actions_in_row(companies).html_safe
+                        = actions_in_row(companies, 'companies').html_safe
               %br
 
               = link_to 'New company', new_company_path, class: "btn btn-primary"

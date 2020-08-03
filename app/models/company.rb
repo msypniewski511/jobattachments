@@ -10,8 +10,11 @@ class Company
   field :address_id, type: String
   # field :created_at, type: String
   slug :name, history: true
+  validates_presence_of :name
 
   # has_one :address_id, as: :location, autosave: true
-  has_and_belongs_to_many :address
+  has_and_belongs_to_many :addresses
   has_and_belongs_to_many :people
+
+  accepts_nested_attributes_for :addresses, :people, allow_destroy: true, reject_if: :all_blank
 end

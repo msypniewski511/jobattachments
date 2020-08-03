@@ -27,10 +27,11 @@ class Person < Employe
 
   # validates_associated :address
   validates_presence_of :title
-  has_and_belongs_to_many :address, autosave: true, :dependent => :destroy
-  has_and_belongs_to_many :companies, autosave: true, :dependent => :destroy
+  has_and_belongs_to_many :addresses
+  has_and_belongs_to_many :companies
 
-  accepts_nested_attributes_for :address, :companies, allow_destroy: true
+  accepts_nested_attributes_for :companies, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :addresses, allow_destroy: true, reject_if: :all_blank
   # validates_associated :addresses
 
 

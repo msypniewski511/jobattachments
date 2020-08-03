@@ -1,0 +1,48 @@
+.row
+  .col
+    .login-page.bg-whites
+      = simple_form_for @company do |f|
+        - if @company.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@company.errors.count, "error")} prohibited this company from being saved:"
+            %ul
+              - @company.errors.full_messages.each do |message|
+                %li= message
+
+        .form-group.bmd-form-group
+          = f.label :name
+          = f.text_field :name, class: "form-control"
+        .form-group.bmd-form-group
+          = f.label :telephone
+          = f.text_field :telephone, class: "form-control"
+        .form-group.bmd-form-group
+          = f.label :fax
+          = f.text_field :fax, class: "form-control"
+        .form-group.bmd-form-group
+          = f.label :website
+          = f.text_field :website, class: "form-control"
+        -# .form-group.bmd-form-group
+        -#   = f.label :post_code
+        -#   = f.text_field :post_code, class: "form-control"
+        %h3 Address
+        = f.fields_for :addresses do |address_form|
+          .form-group.bmd-form-group
+            = address_form.label :city
+            = address_form.text_field :city, class: "form-control"
+          .form-group.bmd-form-group
+            = address_form.label :street
+            = address_form.text_field :street, class: "form-control"
+          .form-group.bmd-form-group
+            = address_form.label :street1
+            = address_form.text_field :street1, class: "form-control"
+          .form-group.bmd-form-group
+            = address_form.label :street2
+            = address_form.text_field :street2, class: "form-control"
+          .form-group.bmd-form-group
+            = address_form.label :country
+            = address_form.text_field :country, class: "form-control"
+          .form-group.bmd-form-group
+            = address_form.label :post_code
+            = address_form.text_field :post_code, class: "form-control"
+        .actions
+          = f.submit 'Save', class: "btn btn-primary"

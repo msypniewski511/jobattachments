@@ -42,4 +42,45 @@ module ApplicationHelper
     end
     return array.join
   end
+
+  # Display a default message for empty fields.
+  # 
+  # +field_value+ is the value to process.
+  def d(field_value=nil)
+    if field_value.blank?
+      return content_tag('em', 'not specified')
+    else
+      return field_value
+    end
+  end
+
+
+  # Display date in human-readable format, e.g. "8th January 1968".
+  #
+  # Returns +nil+ if +date_to_format+ is blank.
+  def human_date(date_to_format)
+    if date_to_format.blank?
+      out = nil
+    else
+      # Get the day part of the date with
+      # the "ordinal suffix" (th, rd, nd) appended
+      day = date_to_format.day.ordinalize
+
+      # strftime accepts a formatting string, which specifies
+      # which parts of the date to include in the output string
+      out = date_to_format.strftime("#{day} %B %Y")
+    end
+
+    out
+  end
+
+  # Display +field_value+ followed by a <br> element,
+  # but only if +field_value+ is set; otherwise return nil.
+  def field_with_break(field_value)
+    unless field_value.blank?
+      return field_value + tag('br')
+    else
+      return nil
+    end
+  end
 end

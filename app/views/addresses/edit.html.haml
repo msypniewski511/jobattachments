@@ -1,7 +1,17 @@
-%h1 Editing address
+.content
+  = content_for :submenu, ""
+  .container-fluid
+    .row
+      .col-md-8
+        .card
+          .card-header.card-header-primary
+            %h4.card-title Editing address
+            %p.card-category !!! TODO Edyt whn user exists
+          .card-body
 
-= render 'form'
 
-= link_to 'Show', @address
-\|
-= link_to 'Back', addresses_path
+            = render 'form'
+
+            = link_to 'Show', @address
+            \|
+            = link_to 'Back', addresses_path
