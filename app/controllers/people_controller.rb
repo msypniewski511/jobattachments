@@ -22,6 +22,7 @@ class PeopleController < ApplicationController
     @person = Person.new
     addresses = @person.addresses.build
     companies = @person.companies.build
+    
     # company_address = companies.addresses.build
   end
 
@@ -42,11 +43,14 @@ class PeopleController < ApplicationController
       if @person.save
         # @person.addresses.create
         # @person.companies.create
+        
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
         @addresses = @person.addresses
         @page_title = 'Add a new person'
+        addresses = @person.addresses.build
+        companies = @person.companies.build
         format.html { render :new }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
@@ -62,7 +66,7 @@ class PeopleController < ApplicationController
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { render :show, status: :ok, location: @person }
       else
-        @page_title = 'Edit a new person'
+        set_associations
         format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
@@ -95,5 +99,12 @@ class PeopleController < ApplicationController
 
     def get_gender
       [['male', 1], ['female', 1]]
+    end
+
+    def set_associations
+      @page_title = 'Edit a new person'
+      @page_title = 'Editing ' + @person.full_name
+      @addresses = @person.addresses.build || @person.addresses.new
+      @companies = @person.companies.build || @person.companies.new
     end
 end

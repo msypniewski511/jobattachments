@@ -9,6 +9,9 @@ class Address
   field :street2, type: String
   field :country, type: String
   field :post_code, type: String
+  field :longitude
+  field :latitude
+  field :udprn
 
   slug :city, history: true
   validates_presence_of :street

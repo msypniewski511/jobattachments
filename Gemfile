@@ -63,3 +63,5 @@ gem "inline_svg"
 gem 'simple_form'
 gem 'ipinfo-rails'
 gem 'gravatar_image_tag'
+gem 'excon'
+gem 'unirest'

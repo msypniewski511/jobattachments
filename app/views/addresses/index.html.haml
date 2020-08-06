@@ -3,6 +3,23 @@
     .row
       .col-lg-12.col-md-12
         .card
+          // = form_with(url: search_path, method: 'get') do
+          //   .form-group
+          //     = text_field :country, nil
+          //   = button_tag 'Search', class: 'btn btn-success btn-block'
+        .form-group.bmd-form-group
+          = form_with(url: search_path, method: 'get') do
+            .form-group
+              = label_tag :country, 'Search for a country'
+              = text_field_tag :country, nil, placeholder: 'Eg. Germany', class: 'form-control'
+            = button_tag 'Search', class: 'btn btn-success btn-block'
+        .card
+          .card-body
+            = render partial: 'search'
+
+            
+
+        .card
           .card-header.card-header-primary
             %h4.card-title Listing addresses
             %p.card-category List of registered people
@@ -35,3 +52,24 @@
               %br
 
               = link_to 'New Address', new_address_path
+%script
+  // $('#lookup_field').setupPostcodeLookup({
+  // api_key: 'ak_kdh96k99toM85adHd8xyIDxtS67la',
+  // output_fields: {
+  // line_1: '#first_line',  
+  // line_2: '#second_line',         
+  // line_3: '#third_line',
+  // post_town: '#post_town',
+  // postcode: '#postcode'
+  // },onSearchCompleted: function (data) {
+  // if (data.code === 2000) {
+  // // Success
+  // $("#successStatus").html("Success!\n"+ JSON.stringify(data,2,2));
+  // } else if (data.code === 4040) {
+  // // Postcode does not exist
+  // $("#successStatus").html("Postcode does not exist!\n"+ JSON.stringify(data,2,2));
+  // } else {
+  // $("#successStatus").html("Some error occurred\n"+ JSON.stringify(data,2,2));
+  // }
+  // }
+  // });

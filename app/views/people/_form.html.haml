@@ -14,57 +14,70 @@
       .card
         .card-header.card-header-primary
           %h4.card-title= @person.title && @person.first_name && @person.full_name || "Sign IN"
-          %p.card-category !!! TODO Edyt whn user exists
+          %p.card-category
         .card-body
-          .row
-            .form-group.col-md-6
-              = f.label :companies
-              = f.select :companies, Company.all.map{|e| e.name}, label_method: :company_name, value_method: :name, include_blank: false, class: "form-control"
-            .form-group.col.bmd-form-group
-              -# = f.label :title
-              = f.input :title, class: "form-control"
-            .form-group.col.bmd-form-group
-              -# = f.label :first_name
-              = f.input :first_name, class: "form-control"
-          .row
+          .row.col-12
+            // .bmd-form-group
+            //   = f.label :companies
+            //   = f.select :companies, Company.all.map{|e| e.name}, label_method: :company_name, value_method: :name, include_blank: false, class: "form-control"
+            // = f.use :
             .col-md-6
-              .form-group.bmd-form-group
-                = f.label :last_name
-                = f.text_field :last_name, class: "form-control"
+              .field.bmd-form-group
+                -# = f.label :title
+                = f.input :title, class: "form-control"
             .col-md-6
-              .form-group.bmd-form-group
-                = f.label :telephone
-                = f.telephone_field :telephone, class: "form-control"
-          .row
+              .field.bmd-form-group
+                // = f.label :job_title
+                = f.input :job_title, class: "form-control"
+
+          .row.col-12
             .col-md-6
-              .form-group
-                = f.label :mobile_phone
-                = f.telephone_field :mobile_phone, class: "form-control"
+              .bmd-form-group
+                -# = f.label :first_name
+                = f.input :first_name, class: "form-control"
+        
             .col-md-6
-              .form-group
-                = f.label :job_title
-                = f.text_field :job_title, class: "form-control"
-          .row
+              .bmd-form-group
+                = f.input :last_name, class: "form-control"
+          
+          .row.col-12
+
             .col-md-6
-              .form-group
-                -# = f.label :date_of_birth
-                - this_year = Time.now.year
-                = f.text_field :date_of_birth, as: :date, class: "form-control", data: { behavior: "flatpickr" }
+              .bmd-form-group
+                // = f.label :telephone
+                = f.input :telephone, as: :tel, html: {class: "form-control"}
+          
             .col-md-6
-              .form-group
+              .bmd-form-group
+                // = f.label :mobile_phone
+                = f.input :mobile_phone, as: :tel, html: {class: "form-control"}
+           
+            
+          .row.col-12
+
+            .col-md-6
+              .bmd-form-group
+                .field
+                  = f.label :date_of_birth
+                  // - this_year = Time.now.year
+                  = f.text_field :date_of_birth, class: "form-control flatpickr flatpickr-input active", data: { behavior: "flatpickr" }, label: "DOB", placeholder: "Select date"
+            .col-md-6
+              .bmd-form-group
+                .form-group
                 -# = f.label :gender
-                = f.input :gender, as: :select, collection: [['0', 'female'], ['1', 'male']], label_method: :second, value_method: :first, class: "form-control selectpicker", 'data-style': "btn btn-link"
+                // .input :choises, as: :check_boxes, collection: User::CHOISES
+                = f.input :gender, as: :radio_buttons, collection: [['0', 'female'], ['1', 'male']], label_method: :second, value_method: :first, include_blank: false
+                // = f.input :gender, as: :check_boxes, collection: [['0', 'female'], ['1', 'male']], label_method: :second, value_method: :second, class: "form-control selectpicker input", 'data-style': "btn btn-link"
           .row
             .col-md-12
-              .finput-group
+              .form-group
                 = f.label :notes
                 = f.text_area :notes, class: "form-control", rows: 5
                 
           .row.pt-3
-            .col-md-6
-              .form-group
-                = f.label :keywords
-                = f.text_field :keywords, class: "form-control"
+            
+            .field.bmd-form-group.col-md-12
+              = f.input :keywords, class: "form-control w-100"
     .col-6
       .card
         .card-header.card-header-primary
@@ -75,24 +88,33 @@
             .form-group.col-md-6
               %h2 Addresses:
               = f.fields_for :addresses do |addresses_form|
-                %li
+                // %input#txtPostcode(type="search" name="")/
+                // %button#btnPostcode
+                #lookup_field
+                =link_to 'Search my address', '', id: 'customButton', class: 'btn btn-primary'
+        
                 .field
                   = addresses_form.check_box :_destroy
                 .field
                   = addresses_form.label :city
-                  = addresses_form.text_field :city, class: "form-control"
+                  = addresses_form.text_field :city, class: "form-control", id:'post_town'
                 .field
                   = addresses_form.label :street
-                  = addresses_form.text_field :street, class: "form-control"
+                  = addresses_form.text_field :street, class: "form-control", id: 'first_line'
                 .field
                   = addresses_form.label :street1
-                  = addresses_form.text_field :street1, class: "form-control"
+                  = addresses_form.text_field :street1, class: "form-control", id: 'second_line'
                 .field
                   = addresses_form.label :street2
-                  = addresses_form.text_field :street2, class: "form-control"
+                  = addresses_form.text_field :street2, class: "form-control", id: 'third_line'
                 .field
                   = addresses_form.label :post_code
-                  = addresses_form.text_field :post_code, class: "form-control"
+                  = addresses_form.text_field :post_code, class: "form-control", id: 'postcode'
+
+                  = addresses_form.hidden_field :longitude, id: 'longitude'
+                  = addresses_form.hidden_field :udprn, id: 'udprn'
+                  = addresses_form.hidden_field :latitude, id: 'latitude'
+   
             .form-group.col-md-6
               %h2 Companies:
               = f.fields_for :companies do |company_form|
@@ -110,25 +132,32 @@
                   = company_form.text_field :website, class: "form-control"
                 %h2 Company address:
                 // - addresses = company_address
-                = company_form.fields_for :addresses do |com_addr|
-                  .form-group.bmd-form-group
+                = company_form.fields_for Address.new do |com_addr|
+                  %fieldset lookup_field_company
+                  #lookup_field_company
+                  =link_to 'Search my address', '/', id: 'customButton_company', class: 'btn btn-primary'
+          
+                  .field
+                    = com_addr.check_box :_destroy
+                  .field
                     = com_addr.label :city
-                    = com_addr.text_field :city, class: "form-control"
-                  .form-group.bmd-form-group
+                    = com_addr.text_field :city, class: "form-control", id:'post_town_company'
+                  .field
                     = com_addr.label :street
-                    = com_addr.text_field :street, class: "form-control"
-                  .form-group.bmd-form-group
+                    = com_addr.text_field :street, class: "form-control", id: 'first_line_company'
+                  .field
                     = com_addr.label :street1
-                    = com_addr.text_field :street1, class: "form-control"
-                  .form-group.bmd-form-group
+                    = com_addr.text_field :street1, class: "form-control", id: 'second_line_company'
+                  .field
                     = com_addr.label :street2
-                    = com_addr.text_field :street2, class: "form-control"
-                  .form-group.bmd-form-group
-                    = com_addr.label :country
-                    = com_addr.text_field :country, class: "form-control"
-                  .form-group.bmd-form-group
+                    = com_addr.text_field :street2, class: "form-control", id: 'third_line_company'
+                  .field
                     = com_addr.label :post_code
-                    = com_addr.text_field :post_code, class: "form-control"
+                    = com_addr.text_field :post_code, class: "form-control", id: 'postcode_company'
+                    
+                  = com_addr.hidden_field :longitude, id: 'longitude_company'
+                  = com_addr.hidden_field :udprn, id: 'udprn_company'
+                  = com_addr.hidden_field :latitude, id: 'latitude_company'      
   .row
     .col
       .actions

@@ -9,6 +9,10 @@
       Creative Tim
   .sidebar-wrapper
     %ul.nav
+      %li.nav-item                
+        %a.nav-link{:href => "/pages/jobs"}
+          %i.material-icons bubble_chart
+          %p Jobs Offerts
       %li{class: "#{controller.class == Admin::DashboardController ? 'nav-item active' : 'nav-item'}"}
         %a.nav-link{:href => "/"}
           %i.material-icons dashboard
@@ -25,10 +29,7 @@
         %a.nav-link{:href => "/companies"}
           %i.material-icons library_books
           %p Companies
-      %li.nav-item                
-        %a.nav-link{:href => "/"}
-          %i.material-icons bubble_chart
-          %p Icons
+      
       %li.nav-item
         %a.nav-link{:href => "/"}
           %i.material-icons notifications
