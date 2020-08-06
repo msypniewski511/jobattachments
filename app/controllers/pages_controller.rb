@@ -17,17 +17,7 @@ class PagesController < ApplicationController
       headers:{  }
     end
     @info = response.body
- 
-    puts "-------------------------"
-    puts response.code
-    puts response
-    # @response =  response
-    puts response
-    puts response.code # Status code
-    puts response.headers # Response headers
-    puts response.body # Parsed body
-    puts "Parsed body"
-    puts response.raw_body # Unparsed body
+
 end 
 
 def search
@@ -74,6 +64,7 @@ def index
 end
 
 private
+
   def request_api(url)
     puts "url: " + url
     response = Unirest.get(
@@ -92,6 +83,7 @@ private
     puts response.body
     # JSON.parse(response.body)
   end
+
   def find_job(description1 = "ruby", location1 = "new+york", full_time1 = true)
 
     params = {
