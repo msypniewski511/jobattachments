@@ -65,3 +65,4 @@ gem 'ipinfo-rails'
 gem 'gravatar_image_tag'
 gem 'excon'
 gem 'unirest'
+gem "figaro"
