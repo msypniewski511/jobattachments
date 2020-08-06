@@ -1191,6 +1191,23 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.30"
 
+"@ideal-postcodes/api-fixtures@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.npm.taobao.org/@ideal-postcodes/api-fixtures/download/@ideal-postcodes/api-fixtures-1.1.0.tgz#96e6521c9804de4d469a32be4955e985e12f225b"
+  integrity sha1-luZSHJgE3k1GmjK+SVXpheEvIls=
+
+"@ideal-postcodes/core-browser@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.npm.taobao.org/@ideal-postcodes/core-browser/download/@ideal-postcodes/core-browser-1.2.1.tgz#0010a49dddbcbf18afcdd1d742991afb3be91860"
+  integrity sha1-ABCknd28vxivzdHXQpka+zvpGGA=
+  dependencies:
+    "@ideal-postcodes/core-interface" "~1.5.0"
+
+"@ideal-postcodes/core-interface@~1.5.0":
+  version "1.5.0"
+  resolved "https://registry.npm.taobao.org/@ideal-postcodes/core-interface/download/@ideal-postcodes/core-interface-1.5.0.tgz#9692b7551f7695f233b5b2c9058fcf7bbbaea0e5"
+  integrity sha1-lpK3VR92lfIztbLJBY/Pe7uuoOU=
+
 "@npmcli/move-file@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/@npmcli/move-file/download/@npmcli/move-file-1.0.1.tgz#de103070dac0f48ce49cf6693c23af59c0f70464"
@@ -3801,6 +3818,13 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
+easy-autocomplete@^1.3.5:
+  version "1.3.5"
+  resolved "https://registry.npm.taobao.org/easy-autocomplete/download/easy-autocomplete-1.3.5.tgz#2a2d2df699f13ddc48661c9375b9437acf1a0a9c"
+  integrity sha1-Ki0t9pnxPdxIZhyTdblDes8aCpw=
+  dependencies:
+    jquery "*"
+
 ecc-jsbn@~0.1.1:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/ecc-jsbn/download/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"
@@ -5738,7 +5762,7 @@ jquery-ujs@latest:
   dependencies:
     jquery ">=1.8.0"
 
-jquery@>=1.12.0, jquery@>=1.7, jquery@>=1.8.0, jquery@>=3.5.0:
+jquery@*, jquery@>=1.12.0, jquery@>=1.7, jquery@>=1.8.0, jquery@>=3.5.0:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==

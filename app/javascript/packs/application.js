@@ -2,13 +2,13 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import("@rails/ujs");
-import Rails from "@rails/ujs"
-Rails.start()
+// import Rails from "@rails/ujs"
+// Rails.start()
 // require("@rails/webpacker")
 // require("turbolinks").start();
 // require("@rails/activestorage").start()
 // require("channels")
-var Turbolinks = require('turbolinks');
+// var Turbolinks = require('turbolinks');
 // Turbolinks.start()
 import * as bg_sort from 'datatables.net-dt/images/sort_both.png'
 // import sort_asc from 'datatables.net-dt/images/sort_asc.png'
@@ -130,6 +130,7 @@ $(document).ready(function () {
 
 import('@ideal-postcodes/api-fixtures');
 import('@ideal-postcodes/core-browser');
+
 var setupPostcodeLookup = require('../src/plugins/postcode')
 function szukaj1() {
 
@@ -191,10 +192,3 @@ function szukaj1() {
     }
   });
 }
-// }
-// // onSearchCompleted is invoked with a data2 object representing the JSON body of the request. You should check the code `data2.code` to observe the outcome of the request. 2000 means success. 4040 means postcode does not exist. Other codes will mean an error occurred. Use the following postcodes to test:
-
-// // ID11QD - Success
-// // ID1KFA - No Postcode
-// // ID1 CLIP - Your key is out of lookups
-//
