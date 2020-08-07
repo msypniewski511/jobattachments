@@ -1,0 +1,46 @@
+.page-header.header-filter.clear-filter.purple-filter
+  .container
+    -# logo
+    .row
+      .col-md-8.ml-auto.mr-auto
+        %h2.title.text-left Connecting great jobs to great candidates
+    .row
+      .col-md-8.ml-auto.mr-auto
+        .mt-5{:style => "width: 100%"}
+          = form_with(url: pages_jobs_path, method: 'get') do |f|
+            .form-row.my-search{style: "justify-content: center;align-items: baseline;"}
+              .form-group.bmd-form-group.col-md-4.py-2.pr-2
+                -# = f.label :key_search, 'Search for a key search '
+                = f.search_field :key_search, placeholder: 'What job title, kewords, or company', class: 'form-control text-white'
+              .form-group.col-md-4.py-2.pr-2
+                -# = f.label :location, 'Search for a location '
+                = f.search_field :location, placeholder: 'Where London, UK, Post code', class: 'form-control text-white'
+              -# .form-group.col-md-4.py-2.px-0
+              -#   = label :skills, 'Search for a skills '
+              -#   = search_field :skills, nil, placeholder: 'Eg. full stack', class: 'form-control'
+              -# .form-group.col-md-4.py-2.px-0
+              -#   = label :job_type, 'Search for a job type '
+              -#   = search_field :job_type, nil, placeholder: 'Eg. full', class: 'form-control'
+              .form-group.col-md-3.py-2.px-0
+                = f.button 'search', class: 'btn btn-primary btn-block btn-round' do
+                  %i.material-icons search
+                  Search job
+
+.main.main-raised
+  .no-child-div.pl-5.pr-5.margin-top-minus
+    .navbar.navbar-expand-lg.navbar-light.bg-primary
+      .container
+        %ul.categories-list
+          %li 1
+          %li 2
+
+  .container
+    .row
+      .col-lg-12.mt-5.mx-auto
+        
+  .container
+    .row
+      .col-lg-12.mt-5
+
+
+      
