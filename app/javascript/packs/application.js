@@ -45,6 +45,9 @@ var dt = require('datatables.net-dt');
 
 import "../src/material-dashboard";
 
+import "../src/material-kit"
+import "base"
+
 import "../demo/demo";
 
 // es modules are recommended, if available, especially for typescript

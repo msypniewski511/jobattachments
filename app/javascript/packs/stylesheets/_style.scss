@@ -25,9 +25,12 @@
   }
 }
 .purple-filter {
-  background: rgba(101,47,142,.64);
-  background: linear-gradient(45deg,rgba(101,47,142,.88),rgba(125,46,185,.45));
-  background: -webkit-linear-gradient(135deg,rgba(101,47,142,.88),rgba(125,46,185,.45));
+  // background: rgba(101,47,142,.64);
+  // background: linear-gradient(45deg,rgba(101,47,142,.88),rgba(125,46,185,.45));
+  // background: -webkit-linear-gradient(135deg,rgba(101,47,142,.88),rgba(125,46,185,.45));
+
+
+  background: -webkit-linear-gradient(90deg, rgba(161, 62, 236, 0.88) 0%, rgba(19, 46, 255, 0.45) 100%);
 }
 // -----------------------------
 .tim-row {

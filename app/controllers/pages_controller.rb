@@ -1,24 +1,28 @@
 class PagesController < ApplicationController
+  layout 'application'
   def jobs
 
-    description = params[:key_search]
-    location = params[:localization] 
-    # if params[:skills] !='' skills = params[:skills] 
-    # if params[:job_type] !='' full_time = params[:job_type] 
+    search = params[:key_search].presence || nil
+    location = params[:location].presence || nil
+    # location = params[:location].presence || nil
+    full_time = params[:job_type].presence || nil
 
-    if description != ''
-      location = 0
-      full_time = true
-      # key_search=ruby+on+rails&localization=&skills=&job_type=&button=
-      response = Unirest.get "https://jobs.github.com/positions.json?key_search=#{description}"
-      # response = find_job("node", location, full_time)
+    if search != nil || location != nil
+      parameters = {
+        search: search,
+        location: location
+      }
+      response = ApiCalls::JobsService.call(parameters)
     else
-      response = Unirest.get "https://jobs.github.com/positions.json?description=python&location=new+york",
-      headers:{  }
+      response = (Unirest.get "https://jobs.github.com/positions.json?").body
     end
-    @info = response.body
+    @info = response
 
 end 
+
+  def show
+    @info = (Unirest.get "https://jobs.github.com/positions/#{params[:id]}.json").body
+  end
 
 def search
   description = (params[:key_search]) if params[:key_search] !=''

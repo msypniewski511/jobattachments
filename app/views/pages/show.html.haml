@@ -1,0 +1,36 @@
+.container
+  .row
+    .col-lg-12.mt-5  
+      .card.text-left
+        - if @info['company_logo']
+          .card-header-image.pb-5{style:"overflow: hidden;"}
+            
+            %img{alt:"company_logo", style:"max-width:5rem;"}(src="#{@info['company_logo']}")/
+        .card-header.card-header-info
+          %ul.nav.nav-tabs
+            %li.nav-item
+              %a.nav-link.active(href="#0") Active
+            %li.nav-item
+              %a.nav-link(href="#0") link
+        .card-body
+          %h3 
+            Type
+            = @info['type']
+          %a{href: "#{@info['company_url']}"}= @info['company']
+          %h3 
+            Location:
+            = @info['location']
+          %h5.card-category.card-category-social
+            %i.material-icons work
+          %h4.card-title
+
+          .card-text
+            = (@info['description']).html_safe
+          %a.btn.btn-primary(href="#{@info['url']}") Web
+          .card-stats
+            
+            .author
+              = @info['how_to_apply'].html_safe
+            .stats.ml-auto
+              %i.material-icons today
+              =raw @info['created_at']

@@ -1,10 +1,18 @@
 // @import "bootstrap";
-// @import "../stylesheets/material-kit.scss";
-@import "../stylesheets/material-dashboard.scss";
+@import "../stylesheets/material-kit.scss";
+// @import "../stylesheets/material-dashboard.scss";
 @import '@fortawesome/fontawesome-free';
 // @import "_my-chartist-settings.scss";
 @import "chartist/dist/scss/chartist.scss";
 @import "../../../node_modules/flatpickr/dist/flatpickr.css";
+
+.index-page {
+    background-image: linear-gradient(rgba(248, 246, 248, 0.9), rgba(241, 241, 235, 0.5)), url('./assets/img/bg.jpg');
+    background-size: contain;
+
+    background-position: top;
+    background-repeat: no-repeat;
+}
 
 #moje-tlo {
   background-image: url("../images/bg2.jpg");
@@ -35,33 +43,33 @@
  //
  // `!default` allows overriding variables that are defined before @import
  //
- 
+
 // Border between the header (and footer) and the table body
 $table-header-border: 1px solid #111111 !default;
- 
+
 // Border of rows / cells
 $table-body-border: 1px solid #dddddd !default;
- 
+
 // Row background colour (hover, striping etc are all based on this colour and
 // calculated automatically)
 $table-row-background: #ffffff !default;
- 
+
 // Row colour, when selected (tr.selected)
 $table-row-selected: #b0bed9 !default;
- 
+
 // Text colour of the interaction control elements (info, filter, paging etc)
 $table-control-color: #9c27b0 !default;
- 
+
 // Highlight colour of the paging button for the current page
 $table-paging-button-active: #9c27b0 !default;
- 
+
 // Hover colour of paging buttons on mouse over
 $table-paging-button-hover: #111111 !default;
- 
+
 // Colour to use when shading
 $table-shade: black !default;
 
- 
+
 @mixin gradient( $from, $to ) {
   background-color: $from;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to)); /* Chrome,Safari4+ */
@@ -102,7 +110,7 @@ thead {
             background-image: url('../images/sort_desc_disabled.png');
         }
     }
- 
+
 /*
 * Control feature layout
 */

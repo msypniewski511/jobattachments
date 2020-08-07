@@ -24,7 +24,7 @@ $(document).ready(function () {
 
   // Init Material scripts for buttons ripples, inputs animations etc, more info on the next link https://github.com/FezVrasta/bootstrap-material-design#materialjs
   $('body').bootstrapMaterialDesign();
-
+  console.log('material-kit')
   window_width = $(window).width();
 
   $navbar = $('.navbar[color-on-scroll]');
@@ -32,11 +32,11 @@ $(document).ready(function () {
 
   $navbar_collapse = $('.navbar').find('.navbar-collapse');
 
-  //  Activate the Tooltips
-  $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
+  // //  Activate the Tooltips
+  // $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
 
-  // Activate Popovers
-  $('[data-toggle="popover"]').popover();
+  // // Activate Popovers
+  // $('[data-toggle="popover"]').popover();
 
   if ($('.navbar-color-on-scroll').length != 0) {
     $(window).on('scroll', materialKit.checkScrollForTransparentNavbar);
@@ -58,6 +58,7 @@ $(document).ready(function () {
 $(document).on('click', '.navbar-toggler', function () {
   $toggle = $(this);
 
+  console.log('material-kit -1')
   if (materialKit.misc.navbar_menu_visible == 1) {
     $('html').removeClass('nav-open');
     materialKit.misc.navbar_menu_visible = 0;
