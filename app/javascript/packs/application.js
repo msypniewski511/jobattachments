@@ -33,7 +33,8 @@ import("../packs/assets/js/plugins/bootstrap-datetimepicker");
 var noUiSlider = require("nouislider");
 global.noUiSlider = noUiSlider;
 window.noUiSlider = noUiSlider
-
+import "select2"
+import "select2/dist/css/select2.css"
 import 'nouislider/distribute/nouislider.css';
 import "../src/plugins/jquery.sharrre";
 
@@ -64,6 +65,7 @@ $(document).ready(function () {
   })
   dt
   $('#table_id').DataTable();
+  $('.js-example-basic-multiple').select2();
 });
 $(document).on('turbolinks:load', () => {
   console.log("sfsadfsadf")

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
   get 'pages/jobs'
   get '/jobs/search' => 'pages#search'
-  get '/pages/jobs/:id' => 'pages#show', as: :show_job
+  get 'pages/jobs/:categories' => 'pages#jobs'
+  get '/pages/show/:id' => 'pages#show', as: :show_job
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

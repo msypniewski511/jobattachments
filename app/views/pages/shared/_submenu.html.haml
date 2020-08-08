@@ -1,0 +1,29 @@
+.no-child-div.pl-md-5.pr-md-5.margin-top-minus
+  .navbar.navbar-expand-lg.sticky-tops.bg-primary
+    .container
+      .navbar-translate
+        %a.navbar-brand{href:'/'} Menu
+      .navbar{style:"background-color:#9c27b0 !important;"}
+      
+        %ul.categories-list.nav.nav-tabs.navbar-nav#submenu
+          %li.nav-item
+            %a.nav-link{href:'/pages/home'} Jobs by location
+          %li.nav-item
+            %a.nav-link{href:'/pages/home'} Jobs by sector
+          %li.nav-item
+            %a.nav-link{href:'/pages/home'} Jobs by company
+          %li.nav-item
+            %a.nav-link{href:'/pages/home'} Popular %searches
+          %li.nav-item
+            %a.nav-link{href:'/pages/home'} Entry level jobs
+          %li.nav-item
+            %a.nav-link{href:'/pages/home'} Remote jobs
+  .moje.ml-3
+    - if @categories.present?
+      %form(action="/pages/jobs" method="get")
+        %select.js-example-basic(name="category")
+          
+          - @categories.each do |category|
+            %option(value="#{category['tag']}")
+              = category['label']
+        -# %button(type="submit")

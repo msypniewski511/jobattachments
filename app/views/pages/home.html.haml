@@ -4,43 +4,56 @@
     .row
       .col-md-8.ml-auto.mr-auto
         %h2.title.text-left Connecting great jobs to great candidates
-    .row
-      .col-md-8.ml-auto.mr-auto
-        .mt-5{:style => "width: 100%"}
-          = form_with(url: pages_jobs_path, method: 'get') do |f|
-            .form-row.my-search{style: "justify-content: center;align-items: baseline;"}
-              .form-group.bmd-form-group.col-md-4.py-2.pr-2
-                -# = f.label :key_search, 'Search for a key search '
-                = f.search_field :key_search, placeholder: 'What job title, kewords, or company', class: 'form-control text-white'
-              .form-group.col-md-4.py-2.pr-2
-                -# = f.label :location, 'Search for a location '
-                = f.search_field :location, placeholder: 'Where London, UK, Post code', class: 'form-control text-white'
-              -# .form-group.col-md-4.py-2.px-0
-              -#   = label :skills, 'Search for a skills '
-              -#   = search_field :skills, nil, placeholder: 'Eg. full stack', class: 'form-control'
-              -# .form-group.col-md-4.py-2.px-0
-              -#   = label :job_type, 'Search for a job type '
-              -#   = search_field :job_type, nil, placeholder: 'Eg. full', class: 'form-control'
-              .form-group.col-md-3.py-2.px-0
-                = f.button 'search', class: 'btn btn-primary btn-block btn-round' do
-                  %i.material-icons search
-                  Search job
-
+    = render 'pages/shared/search'
 .main.main-raised
-  .no-child-div.pl-5.pr-5.margin-top-minus
-    .navbar.navbar-expand-lg.navbar-light.bg-primary
-      .container
-        %ul.categories-list
-          %li 1
-          %li 2
+  = render 'pages/shared/submenu'
+  .container
+    .col-12
+      .navigation-pils
+        %ul.nav.nav-pills.nav-pills-primary.nav-pils-icons{role:"tablist"}
+          %li.nav-item
+            
+            %a.nav-link.active{href:'#dashboard-1', role: "tab", "data-togggle": "tab"}
+              Dashboard
+              %i.material-icons
+                dashboard
+          %li.nav-item
+            %a.nav-link{href:'#dashboard-2', role: "tab", "data-togggle": "tab"}
+              Dashboard
+              %i.material-icons
+                schedule
+          %li.nav-item
+            %a.nav-link{href:'#dashboard-3', role: "tab", "data-togggle": "tab"}
+              Dashboard
+              %i.material-icons
+                dashboard
+        .tab-content.tab-space
+          .tab-pane.active#dashboard-1
+            %p Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+          .tab-pane#dashboard-2
+            %p Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+          .tab-pane#dashboard-3
+            %p Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
 
-  .container
-    .row
-      .col-lg-12.mt-5.mx-auto
-        
-  .container
-    .row
-      .col-lg-12.mt-5
+  = render 'pages/shared/features'
+  = render 'pages/shared/socials'
+.container.sharing-area.p-5
+  .row
+    .col-md-12.justify-content-center.text-center
+      %h3 Thank you for supporting us!
+      %a#twitter.btn.btn-raised.btn-twitter{:href => "https://twitter.com/CreativeTim", :rel => "nofollow"}
+        %i.fa.fa-twitter
+        Tweet
+      %a#facebook.btn.btn-raised.btn-facebook{:href => "https://www.facebook.com/CreativeTim", :rel => "nofollow"}
+        %i.fa.fa-facebook-square
+        Facebook
+      %a#instagram.btn.btn-raised.btn-instagram{:href => "https://www.instagram.com/CreativeTimOfficial", :rel => "nofollow"}
+        %i.fa.fa-instagram
+        Instagram
+      %a#github.btn.btn-raised.btn-github{:href => "https://github.com/creativetimofficial/material-kit", :rel => "nofollow", :target => "_blank"}
+        %i.fa.fa-github
+        Star
+
 
 
       

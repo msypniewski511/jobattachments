@@ -4,30 +4,50 @@ module ApiCalls
 
     def initialize parameters
       @parameters = parameters
+      @query = "&"
+      unless parameters == nil 
+        result = parameters.each do |k, v|
+          @query += "&" + k.to_s + "=" + v.to_s unless k == 'utf8' || k == 'button' || k == 'controller'
+        end
+      end
+      
+      # @query += ("&" + "what" + "=" + result['key_search']) if result['key_search']
     end
 
     def call
+      parameters = @query
+      # "http://api.adzuna.com/v1/api/jobs/de/search?callback=foo&what=sales"
       github_jobs_url_mrt = 'https://jobs.github.com/positions.json?markdown=true'
       github_jobs_url = 'https://jobs.github.com/positions.json?search=scrum'
-      url_asduna = 'http://api.adzuna.com/v1/api/jobs/gb/search/1?app_id={40406207}&app_key={58173b23fa741ea1da20c99d3796b1b7}&results_per_page=20&what=javascript%20developer&content-type=application/json'
-      parameters = {
-        search: @parameters[:search],
-        location: @parameters[:location]
-      }.to_query
-      puts "--------------------"
-      puts parameters
-      puts "-------------------"
-      github_jobs_url += parameters
-      response = Unirest.get(github_jobs_url,
-      headers: {
-        "Content-Type" => "application/json"
-      }
-    )
-
+      url_asduna = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=40406207&app_key=58173b23fa741ea1da20c99d3796b1b7&results_per_page=20" + parameters
+      response = Unirest.get(github_jobs_url, header:{'content-type':'application/json'})
+      puts response.body
       return response.body
     end
   end
+
+  class CategoriesService < ApplicationService
+    attr_reader :parameters
+
+    def initialize parameters
+      @parameters = parameters
+    end
+
+    def call
+      # "http://api.adzuna.com/v1/api/jobs/de/search?callback=foo&what=sales"
+      github_jobs_url_mrt = 'https://jobs.github.com/positions.json?markdown=true'
+      github_jobs_url = 'https://jobs.github.com/positions.json?search=scrum'
+      url_asduna = 'https://api.adzuna.com/v1/api/jobs/gb/categories?app_id=40406207&app_key=58173b23fa741ea1da20c99d3796b1b7&&&content-type=application/json'
+
+    
+      response = Unirest.get(url_asduna, header:{'content-type':'application/json'})
+      return response.body['results']
+    end
+  end
 end
+
+
+
 
 
 

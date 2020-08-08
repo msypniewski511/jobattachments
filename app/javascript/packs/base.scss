@@ -22,8 +22,21 @@ label {
   top: -2.5rem;
 }
 .page-header > .bmd-form-group .form-control, .bmd-form-group label, .bmd-form-group input::placeholder{
-  color: white;
+  // color: white;
 }
 input::placeholder {
-  color: white;
+  // color: white;
+}
+#submenu {
+& * {
+  margin-right: .2rem;
+}
+
+.nav-link {
+  background-color: #c258d4;
+
+    &:hover { background-color: #af78ee;}
+    
+  
+}
 }
