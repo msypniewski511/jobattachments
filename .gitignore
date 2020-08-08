@@ -30,3 +30,6 @@
 yarn-debug.log*
 .yarn-integrity
 Procfile
+
+# Ignore application configuration
+/config/application.yml

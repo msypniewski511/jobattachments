@@ -5,7 +5,7 @@ development:
     default:
       # Mongoid can connect to a URI accepted by the driver:
       # uri: mongodb://user:password@mongodb.domain.com:27017/jobattachments_development
-      # uri: mongodb+srv://msypniewski511:Ms55015501@mongodbrailscluster0.cle8l.mongodb.net:27017/autholy_development?retryWrites=true&w=majority
+      # uri: mongodb+srv://Figaro.env.mongoid_user:Figaro.env.mongoid_password@mongodbrailscluster0.cle8l.mongodb.net:27017/autholy_development?retryWrites=true&w=majority
       # Otherwise define the parameters separately.
       # This defines the name of the default database that Mongoid can connect to.
       # (required).
@@ -19,7 +19,7 @@ development:
         # - mongodbrailscluster1.cle8l.mongodb.net:27017
         # - mongodbrailscluster2.cle8l.mongodb.net:27017
         - localhost:27017
-        # uri: mongodb+srv://msypniewski511:Ms55015501@mongodbrailscluster0.cle8l.mongodb.net/autholy_development?retryWrites=true&w=majority
+        # uri: mongodb+srv://Figaro.env.mongoid_user:Figaro.env.mongoid_password@mongodbrailscluster0.cle8l.mongodb.net/autholy_development?retryWrites=true&w=majority
       options:
         server_selection_timeout: 5
         # Note that all options listed below are Ruby driver client options (the mongo gem).
@@ -42,7 +42,7 @@ development:
         # user: 'jobsearch'
 
         # The password of the user for authentication.
-        # password: 'Ms55015501'
+        # password: 'Figaro.env.mongoid_password'
 
         # The user's database roles.
         # roles:
@@ -192,7 +192,7 @@ production:
     default:
       # Mongoid can connect to a URI accepted by the driver:
       # uri: mongodb://user:password@mongodb.domain.com:27017/jobattachments_development
-      # uri: mongodb+srv://msypniewski511:Ms55015501@mongodbrailscluster0.cle8l.mongodb.net:27017/autholy_development?retryWrites=true&w=majority
+      # uri: mongodb+srv://Figaro.env.mongoid_user:Figaro.env.mongoid_password@mongodbrailscluster0.cle8l.mongodb.net:27017/autholy_development?retryWrites=true&w=majority
       # Otherwise define the parameters separately.
       # This defines the name of the default database that Mongoid can connect to.
       # (required).
@@ -206,7 +206,7 @@ production:
         - mongodbrailscluster1.cle8l.mongodb.net:27017
         - mongodbrailscluster2.cle8l.mongodb.net:27017
         #- localhost:27017
-        # uri: mongodb+srv://msypniewski511:Ms55015501@mongodbrailscluster0.cle8l.mongodb.net/autholy_development?retryWrites=true&w=majority
+        # uri: mongodb+srv://Figaro.env.mongoid_user:Figaro.env.mongoid_password@mongodbrailscluster0.cle8l.mongodb.net/autholy_development?retryWrites=true&w=majority
       options:
         server_selection_timeout: 5
         # Note that all options listed below are Ruby driver client options (the mongo gem).
@@ -226,10 +226,10 @@ production:
         #     - use: web
 
         # The name of the user for authentication.
-        user: 'jobsearch'
+        user: Figaro.env.mongoid_user
 
         # The password of the user for authentication.
-        password: 'Ms55015501'
+        password: Figaro.env.mongoid_password
 
         # The user's database roles.
         # roles:

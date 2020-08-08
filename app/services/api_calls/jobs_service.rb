@@ -19,7 +19,7 @@ module ApiCalls
       # "http://api.adzuna.com/v1/api/jobs/de/search?callback=foo&what=sales"
       github_jobs_url_mrt = 'https://jobs.github.com/positions.json?markdown=true'
       github_jobs_url = 'https://jobs.github.com/positions.json?search=scrum'
-      url_asduna = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=40406207&app_key=58173b23fa741ea1da20c99d3796b1b7&results_per_page=20" + parameters
+      url_asduna = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=Figaro.env.adzuna_app_id&app_key=adzuna_app_key&results_per_page=20" + parameters
       response = Unirest.get(github_jobs_url, header:{'content-type':'application/json'})
       puts response.body
       return response.body
@@ -37,7 +37,7 @@ module ApiCalls
       # "http://api.adzuna.com/v1/api/jobs/de/search?callback=foo&what=sales"
       github_jobs_url_mrt = 'https://jobs.github.com/positions.json?markdown=true'
       github_jobs_url = 'https://jobs.github.com/positions.json?search=scrum'
-      url_asduna = 'https://api.adzuna.com/v1/api/jobs/gb/categories?app_id=40406207&app_key=58173b23fa741ea1da20c99d3796b1b7&&&content-type=application/json'
+      url_asduna = 'https://api.adzuna.com/v1/api/jobs/gb/categories?app_id=Figaro.env.adzuna_app_id&app_key=adzuna_app_key&content-type=application/json'
 
     
       response = Unirest.get(url_asduna, header:{'content-type':'application/json'})
