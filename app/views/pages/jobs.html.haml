@@ -5,31 +5,12 @@
       .col-md-8.ml-auto.mr-auto
         %h2.title.text-left Connecting great jobs to great candidates
     = render 'pages/shared/search'
-    -# .row
-    -#   .col-md-8.ml-auto.mr-auto
-    -#     .mt-5{:style => "width: 100%"}
-    -#       = form_with(url: pages_jobs_path, method: 'get') do |f|
-    -#         .form-row.my-search{style: "justify-content: center;align-items: baseline;"}
-    -#           .form-group.bmd-form-group.col-md-4.py-2.pr-2
-    -#             -# = f.label :key_search, 'Search for a key search '
-    -#             = f.search_field :key_search, placeholder: 'What job title, kewords, or company', class: 'form-control text-white'
-    -#           .form-group.col-md-4.py-2.pr-2
-    -#             -# = f.label :location, 'Search for a location '
-    -#             = f.search_field :location, placeholder: 'Where London, UK, Post code', class: 'form-control text-white'
-    -#           -# .form-group.col-md-4.py-2.px-0
-    -#           -#   = label :skills, 'Search for a skills '
-    -#           -#   = search_field :skills, nil, placeholder: 'Eg. full stack', class: 'form-control'
-    -#           -# .form-group.col-md-4.py-2.px-0
-    -#           -#   = label :job_type, 'Search for a job type '
-    -#           -#   = search_field :job_type, nil, placeholder: 'Eg. full', class: 'form-control'
-    -#           .form-group.col-md-3.py-2.px-0
-    -#             = f.button 'search', class: 'btn btn-primary btn-block btn-round' do
-    -#               %i.material-icons search
-    -#               Search job
 
 .main.main-raised
   -# .no-child-div.pl-5.pr-5.margin-top-minus
-  = render 'pages/shared/submenu'
+  = render 'pages/shared/submenu', locals: { categories: @categories }
+  - if @categories
+    -# = "Kategorie" + @categories
 
   .container
     .row
@@ -41,51 +22,85 @@
 
 
         - if @info.present?
-          .card
-            .card-header.card-header-primary
-              %h4.card-title Search results
-              %p.card-category List of registered people
-            .card-body.px-3
-              .table.table-responsive
-                %table.table-sm.table.table-streapd.table-hover.display#table_id
-                  %thead.text-primary
-                    %tr
-                      %th
-                  %tbody
-                    - @info.each do |job|
+          - results = @info
+        
+
+          - unless results.nil?
+          
+            - results.each do |job|
+              -# .card
+              -#   .card-body
+              -#     %h3.title.card-category.text-primary
+              -#       %i.material-icons work
+              -#       = job['title']
+              -#     %h4.card-title
+              -#       %a(href="#{job['url']}")
+              -#         = job['company']['display_name']
+              -#     %h5= job['location']['display_name']
+              -#     %p= job['description'].truncate(500).html_safe
+
+              -#     .card-stats
+              -#       .author
+              -#         = job['created_at']
+              -#         = link_to job['title'], show_job_path(job['id'])
+              -#       .stats.ml-auto
+              -#         .material-icons
+              -#           %a{href: "", title: "Save job"}favorite
+              -#         .material-icons share
+
+
+            .card
+              .card-header.card-header-primary
+                %h4.card-title Search results
+                %p.card-category List of jobs
+              .card-body.px-3
+                .table.table-responsive
+                  %table.table-sm.table.table-streapd.table-hover.display#table_id
+                    %thead.text-primary
                       %tr
-                        %td.d-md-flex.search-list-in-table
-                          .col-md-9.px-0.mb-3
-                            %h3.mb-3.text-primary= job['title']
-                            .d-inline-block
-                              %span.material-icons location_on
-                              %span.align-top= job['location']
-                              %span.align-top
-                                |
-                            .d-inline-block
-                              %span.material-icons business
-                              %span.align-top= job['company']
-                              %span.align-top
-                                |
-                            .d-inline-block
-                              %span.material-icons access_time
-                              %span.align-top= job['type']
-                              %span.align-top
-                                |
-                            .mt-5= (job['description']).truncate(200).html_safe
-                          
-                            %img.img-fluid.d-s-none{style:"max-width:5rem;"}(src="#{job['company_logo']}" alt="")/
-                            %a(href="#" style="padding:1rem 1rem 1rem 0;")
-                              %span.mt-5.badge.badge-danger= job['created_at']
-                          .col-md-3.px-0
-                            .d-block
-                              = link_to 'Vie & apply', show_job_path(job['id']), class: 'btn btn-primary btn-block'
-                              %a(href="#{job['id']}").btn.btn-primary.btn-block 
-                            .d-block.w-100
-                              .d-inline-block{style:"width:49%;"}
-                                .btn.btn-primary.btn-sm.btn-block Save
-                              .d-inline-block{style:"width:49%;"}
-                                .btn.btn-primary.btn-sm.btn-block 1-click applay
+                        %th
+                    %tbody
+                      - results.each do |job|
+                        %tr
+                          %td.d-md-flex.search-list-in-table
+                            .col-md-9.px-0.mb-3
+                              %h3.title.mb-3.text-primary= job['title'].html_safe
+                              .d-inline-block.title
+                                %span{title: "latitude: #{job['latitude']}, longitude: #{job['longitude']}"}
+                                  %span.material-icons location_on
+                                  %span.align-top= (job['location']['display_name'])
+                                  %span.align-top
+                                    |
+                                    %br/
+                                %span.material-icons business
+                                %span.align-top= job['company']['display_name']
+                                %span.align-top
+                                  |
+                                  %br/
+                                %span.material-icons access_time
+                                %span.align-top= job['contract_type'] || "contract type not specified"
+                                %span.align-top
+                                  |
+                                  %br/
+                              .mt-5= (job['description']).html_safe
+                            
+                              %img.img-fluid.d-s-none{style:"max-width:5rem;"}(src="#{job['company_logo']}" alt="")/
+                              %a(href="#" style="padding:1rem 1rem 1rem 0;")
+                                %strong.mt-5.badge.badge-danger= job['created_at'] || DateTime.parse(job['created']).strftime("%d-%m-%Y")
+                            .col-md-3.px-0
+                              .d-block
+                                = link_to 'Vie & apply', job['redirect_url'], class: 'btn btn-primary btn-block'
+                                -# %a(href="#{job['id']}").btn.btn-primary.btn-block 
+                              .d-block.w-100
+                                .d-inline-block{style:"width:49%;"}
+                                  .btn.btn-primary.btn-sm.btn-block Save
+                                .d-inline-block{style:"width:49%;"}
+                                  .btn.btn-primary.btn-sm.btn-block 1-click applay
+
+
+
+
+
           -# - @info.each do |job|
 
           -# - if job['company_logo']
@@ -144,61 +159,33 @@
 -#                 .stats.ml-auto
 -#                   %i.material-icons today
 -#                   =raw job['created_at']
--#   -# %h1 Response
--#   -# - if params[:key_search]
--#   -#   %h6.text-bold
--#   -#     key search
--#   -#     = params[:key_search]
--#   -# - if params[:localization]
--#   -#   %h6.text-bold
--#   -#     Localization
--#   -#     = params[:localization]
--#   -# - if params[:skills]
--#   -#   %h6.text-bold
--#   -#     Skils
--#   -#     = params[:skills]
--#   -# - if params[:job_type]
--#   -#   %h6.text-bold
--#   -#     Jop Type
--#   -#     = params[:job_type]
--# -# = @categories
--# -# - results 
--# -# - @categories.each do |category|
--# -# = @categories.count
--# -#   .card
--# -#     .card-body
--# -#       %h5
--# -#         Tag: 
--# -#         = category['tag']
--# -#       %h5
--# -#         Label: 
--# -#         = category['label']
 
 
 
 
--#         -#= results = @info['results']
--#         -#   - unless results.nil?
+
+        = results = @info['results']
+          - unless results.nil?
           
--#         -#     - results.each do |job|
--#         -#       .card
--#         -#         .card-body
--#         -#           %h3.title.card-category.text-primary
--#         -#             %i.material-icons work
--#         -#             = job['title']
--#         -#           %h4.card-title
--#         -#             %a(href="#{job['url']}")
--#         -#               = job['company']['display_name']
--#         -#           %h5= job['location']['display_name']
--#         -#           %p= job['description'].truncate(500).html_safe
+            - results.each do |job|
+              .card
+                .card-body
+                  %h3.title.card-category.text-primary
+                    %i.material-icons work
+                    = job['title']
+                  %h4.card-title
+                    %a(href="#{job['url']}")
+                      = job['company']['display_name']
+                  %h5= job['location']['display_name']
+                  %p= job['description'].truncate(500).html_safe
 
--#         -#           .card-stats
--#         -#             .author
--#         -#               = job['created_at']
--#         -#               = link_to job['title'], show_job_path(job['id'])
--#         -#             .stats.ml-auto
--#         -#               .material-icons
--#         -#                 %a{href: "", title: "Save job"}favorite
--#         -#               .material-icons share
+                  .card-stats
+                    .author
+                      = job['created_at']
+                      = link_to job['title'], show_job_path(job['id'])
+                    .stats.ml-auto
+                      .material-icons
+                        %a{href: "", title: "Save job"}favorite
+                      .material-icons share
 -#           .card.text-left
         

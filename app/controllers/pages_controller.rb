@@ -2,28 +2,56 @@ class PagesController < ApplicationController
   layout 'application'
 
   def jobs
-    category = params[:categories].presence || nil
-    category = category.to_param if category
-    search = params[:key_search].presence || nil
-    location = params[:location].presence || nil
-    # location = params[:location].presence || nil
-    full_time = params[:job_type].presence || nil
+    query = []
+    query << "q=#{params[:q]}" if params[:q]
+    query << "what=#{params[:what]}" if params[:what]
+    query << "where=#{params[:location]}" if params[:location]
+    query << "category=#{params[:category]}" if params[:category]
+    max_days_old = (params[:max_days_old] && params[:max_days_old] != "") ? "max_days_old=#{params[:max_days_old]}" : "max_days_old=5"
+    query << max_days_old
+    
+    puts "------------------"
+    puts "------------------"
+    puts "------------------"
+    puts "------------------"
+    puts "------------------"
+    puts "------------------"
+    puts "------------------"
+    puts "------------------"
+    puts "------------------"
+    puts "Z kontolera: #{query}"
+    # byebug
+    # puts request.location || "localhost"
 
-    if search != nil || location != nil || category != nil
-      # params
-      params[:search] = search
-      params[:location]= location
-      params[:category]= category
+
+
+    # if params[:what] || params[:location] || params[:category]
       
-      response = ApiCalls::JobsService.call(params)
+      response = ApiCalls::JobsService.call(query)
+      # @categories = ApiCalls::CategoriesService.call(query)
+    # else
+      # response = ApiCalls::JobsService.call(nil)
+      # @categories = ApiCalls::CategoriesService.call(nil)
+# # 
+#       # response = (Unirest.get "https://jobs.github.com/positions.json?").body
+#     end
+    
+
+    if response && response.success?
+      # flash['success'] = "Search"
+      @info = response.payload
+      @categories = ApiCalls::CategoriesService.call(query)
     else
-      response = ApiCalls::JobsService.call(nil)
-# 
-      # response = (Unirest.get "https://jobs.github.com/positions.json?").body
+      # redirect_to pages_jobs_path, danger: "Subscription was created, but there was a problem with the vendor."
+      @info = nil
+      @categories = nil
     end
-    @info = response
-    @categories = ApiCalls::CategoriesService.call(params)
-  end 
+  end
+
+
+
+
+
 
   def show
     @info = (Unirest.get "https://jobs.github.com/positions/#{params[:id]}.json").body

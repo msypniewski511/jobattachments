@@ -1,9 +1,12 @@
 .row
   .col-md-12.ml-auto.mr-auto
+    %h1
+      = params[:category]
     .card.card-raised.card-form-horizontal
       .card-body.text-center{style:"padding:1rem;"}
-        = form_with(url: pages_jobs_path, method: 'get') do |f|
+        = form_with(url: pages_jobs_path(q: "programming"), method: 'get') do |f|
           .row.my-search{style: "justify-content: center;align-items: baseline;"}
+            = f.hidden_field :category, value: params[:category] if params[:category] && params[:category] != ""
             .form-group.bmd-form-group.m-0.col-md-4
               -# = f.label :key_search, 'Search for a key search '
               = f.search_field :what, placeholder: 'What job title, kewords, or company', class: 'form-control'
