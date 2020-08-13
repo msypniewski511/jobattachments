@@ -22,7 +22,7 @@ module AzdunaJobs
       url_asduna = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=#{adzuna_app_id}&app_key=#{adzuna_app_key}&results_per_page=200#{@parameters}"
       puts "Z all AzdunaJobs" + url_asduna
       response = Unirest.get(url_asduna, header:{'content-type':'application/json'})
-      response = response.body
+      response = response.body['results']
     rescue Unirest::Error => e
       OpenStruct.new({success?: false, error: e})
     else

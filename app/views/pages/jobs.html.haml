@@ -26,7 +26,7 @@
         
 
           - unless results.nil?
-          
+            
             - results.each do |job|
               -# .card
               -#   .card-body
@@ -68,12 +68,12 @@
                               .d-inline-block.title
                                 %span{title: "latitude: #{job['latitude']}, longitude: #{job['longitude']}"}
                                   %span.material-icons location_on
-                                  %span.align-top= (job['location']['display_name'])
+                                  %span.align-top= job_location job
                                   %span.align-top
                                     |
                                     %br/
                                 %span.material-icons business
-                                %span.align-top= job['company']['display_name']
+                                %span.align-top= company_name job
                                 %span.align-top
                                   |
                                   %br/
@@ -86,10 +86,10 @@
                             
                               %img.img-fluid.d-s-none{style:"max-width:5rem;"}(src="#{job['company_logo']}" alt="")/
                               %a(href="#" style="padding:1rem 1rem 1rem 0;")
-                                %strong.mt-5.badge.badge-danger= job['created_at'] || DateTime.parse(job['created']).strftime("%d-%m-%Y")
+                                %strong.mt-5.badge.badge-danger= created_at job['created_at'] || DateTime.parse(job['created']).strftime("%d-%m-%Y")
                             .col-md-3.px-0
                               .d-block
-                                = link_to 'Vie & apply', job['redirect_url'], class: 'btn btn-primary btn-block'
+                                = link_to_details job
                                 -# %a(href="#{job['id']}").btn.btn-primary.btn-block 
                               .d-block.w-100
                                 .d-inline-block{style:"width:49%;"}

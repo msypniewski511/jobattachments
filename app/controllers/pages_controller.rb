@@ -9,16 +9,6 @@ class PagesController < ApplicationController
     query << "category=#{params[:category]}" if params[:category]
     max_days_old = (params[:max_days_old] && params[:max_days_old] != "") ? "max_days_old=#{params[:max_days_old]}" : "max_days_old=5"
     query << max_days_old
-    
-    puts "------------------"
-    puts "------------------"
-    puts "------------------"
-    puts "------------------"
-    puts "------------------"
-    puts "------------------"
-    puts "------------------"
-    puts "------------------"
-    puts "------------------"
     puts "Z kontolera: #{query}"
     # byebug
     # puts request.location || "localhost"
@@ -39,7 +29,7 @@ class PagesController < ApplicationController
 
     if response && response.success?
       # flash['success'] = "Search"
-      @info = response.payload
+      @info = PagesDecorator.decorate(response.payload)
       @categories = ApiCalls::CategoriesService.call(query)
     else
       # redirect_to pages_jobs_path, danger: "Subscription was created, but there was a problem with the vendor."

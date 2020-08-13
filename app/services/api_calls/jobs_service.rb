@@ -1,6 +1,7 @@
 module ApiCalls
 
   class JobsService < ApplicationService
+    include Draper::Decoratable
     attr_reader :parameters
 
     def initialize parameters
@@ -11,8 +12,8 @@ module ApiCalls
     def call
       #11 azduna results
       puts "Z call JobServices przed"
-      # results = AzdunaJobs::ListJobs.new(@parameters).call
-      results = GithubJobs::ListJobs.new(@parameters).call
+      results = (AzdunaJobs::ListJobs.new(@parameters).call)
+      # results = GithubJobs::ListJobs.new(@parameters).call
       puts "Z call JobServices"
       puts results
 
