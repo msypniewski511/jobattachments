@@ -55,7 +55,7 @@ import "../demo/demo";
 import flatpickr from "flatpickr";
 import { initial } from 'lodash';
 // require("flatpickr/src/style/themes")
-
+import google_map from "../src/google_maps";
 $(document).ready(function () {
   flatpickr('[data-behavior="flatpickr"]', {
     altInput: true,
@@ -66,6 +66,26 @@ $(document).ready(function () {
   dt
   $('#table_id').DataTable();
   $('.js-example-basic-multiple').select2();
+
+
+  // Google maps
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: { id: 'map' } }, function () {
+    markers = handler.addMarkers([
+      {
+        "lat": 37.3333945,
+        "lng": -121.8806499,
+        "picture": {
+          "width": 32,
+          "height": 32
+        },
+        "infowindow": "SJSU"
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+  // Koniec
 });
 $(document).on('turbolinks:load', () => {
   console.log("sfsadfsadf")
