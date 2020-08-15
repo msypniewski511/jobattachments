@@ -77,25 +77,36 @@
                                   .btn.btn-primary.btn-sm.btn-block 1-click applay
                                   
 
-  .container.mb-5.pb-5
-    = jobs_for_map
-    = jobs_for_map0 = jobs_for_map[2]
-    = jobs_for_map1 = jobs_for_map[0]
-    %br/
-    = jobs_for_map1
-    %br/
-    = jobs_for_map[0]
-    %br/
-    = jobs_for_map[1]
-    %br/
-    = jobs_for_map[2]
+  .container.mb-5.pb-5{"data-controller":"hello"}
+    %h1{"data-target":"hello.output"}
+      = jobs_for_map
+      = jobs_for_map0 = jobs_for_map[2]
+      = jobs_for_map1 = jobs_for_map[0]
+      %br/
+      = jobs_for_map1
+      %br/
+      = jobs_for_map[0]
+      %br/
+      = jobs_for_map[1]
+      %br/
+      = jobs_for_map[2]
     
     -# .google_map{data: {address_fields: {position: {lng: 0, lat: 0}}} }
     -#   %p Mapa
-    .map-container
-      #map{style:'width: "100%"; height: 400px;'}
+    .map-area{"data-controller":"togglemap", 'data-togglemap-open':'togglemap open', 'data-togglemap-close':'Toggle close'}
+      %button.bg-black.rounded.px-3.py-3.text-white{"data-action":"click->togglemap#toggle","data-target":"togglemap.buttontext"} Toggle map
+      %button.btn-success.rounded.px-3.py-3.text-white{onclick:"getMeCurrentLocation"} Toggle map
+      .map-container{"data-target":"togglemap.toggleable"}
+        #map{style:'width: "100%"; height: 600px;'}
 
     :javascript
+      function getMeCurrentLocation(){
+      navigator.geolocation.getCurrentPosition(function(position){
+      alert('I am here, Latitude: ' + position.coords.latitude + ' ' +
+      '/ Longitude: ' + position.coords.longitude);
+      return position
+      });
+      }
       function createForJobs(jobs){
       result = jobs.split(', ');
       result[0].replace('[', '');
@@ -123,12 +134,25 @@
       }
       // Initialize and add the map
       function initMap() {
+      getMeCurrentLocation()
+      function getMeCurrentLocation(){
+        navigator.geolocation.getCurrentPosition(function(position){
+        alert('I am here, Latitude: ' + position.coords.latitude + ' ' +
+        '/ Longitude: ' + position.coords.longitude);
+        afterInitCurrentLocation(position)
+        });
+      }
+      }
+      function afterInitCurrentLocation(current_location) {
+        alert(current_location.coords.longitude)
+        //var current_position = getMeCurrentLocation();
+        
         var tab = createForJobsMap("#{jobs_for_map}")
         var job = createForJobs("#{jobs_for_map0}");
         var job1 = createForJobs("#{jobs_for_map1}");
     
         // The location of Uluru
-        var uluru = {lat: 51.499862, lng: -0.135007};
+        var uluru = {lat: current_location.coords.latitude, lng: current_location.coords.longitude};
         // The map, centered at Uluru
         var map = new google.maps.Map(
             document.getElementById('map'), {zoom: 12, center: uluru});
@@ -182,16 +206,15 @@
         for(let i = 0;  i < tab.length; i++){
 
         markers[i] = new google.maps.Marker({position: {lat: parseFloat(createForJobsTab(tab[i])[1]), lng: parseFloat(createForJobsTab(tab[i])[2])}, map: map});
-        console.log(createForJobsTab(tab[i])[3].replace('&quot;', ''))
         url = new URL(createForJobsTab(tab[i])[3].replace('&quot;', '').replace('&quot;', ''));
         contentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
-        `<h2 id="firstHeading" class="firstHeading">${createForJobsTab(tab[i])[0]}</h2>`+
+        `<h3 id="firstHeading" class="firstHeading text-primary">${createForJobsTab(tab[i])[0]}</h3>`+
         '<div id="bodyContent">'+
-        '<p><a href='+`${url}`+'>Dupa</a></p>'+
-        `<p>Attribution: Uluru, <a href=${createForJobsTab(tab[i])[3]}>${createForJobsTab(tab[i])[4]}</a> `+
-        '(last visited June 22, 2009).</p>'+
+        '<p><a href='+`${url}`+'>Go to adversiter</a></p>'+
+        `<p>Attribution: Uluru, <a href=${url}>${createForJobsTab(tab[i])[4]}</a> `+
+        '().</p>'+
         '</div>'+
         '</div>';
         infos[i] = createInfoWindow(contentString);
@@ -199,7 +222,7 @@
         infos[i].open(map, markers[i]);
         })
         }
-        
       }
 
-    %script{:defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyDwomzJUCvqK6THoyQuiCYGpO2dRUvCE5w&callback=initMap"}:cdata
+    -# %script{:defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyDwomzJUCvqK6THoyQuiCYGpO2dRUvCE5w&callback=initMap"}:cdata
+    = google_maps_api_script_tag

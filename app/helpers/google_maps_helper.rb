@@ -5,7 +5,7 @@ module GoogleMapsHelper
   end
 
   def google_maps_api_source
-    "https://maps.googleapis.com/maps/api/js?key=#{google_maps_api_key}"
+    "https://maps.googleapis.com/maps/api/js?key=#{google_maps_api_key}&callback=initMap"
   end
 
   def google_maps_api_key
