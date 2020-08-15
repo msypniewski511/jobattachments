@@ -19,36 +19,14 @@
   .container
     .row
       .col-lg-12.mt-5
-
+        - jobs_for_map = []
 
         - if @info.present?
           - results = @info
-        
 
           - unless results.nil?
             
-            - results.each do |job|
-              -# .card
-              -#   .card-body
-              -#     %h3.title.card-category.text-primary
-              -#       %i.material-icons work
-              -#       = job['title']
-              -#     %h4.card-title
-              -#       %a(href="#{job['url']}")
-              -#         = job['company']['display_name']
-              -#     %h5= job['location']['display_name']
-              -#     %p= job['description'].truncate(500).html_safe
-
-              -#     .card-stats
-              -#       .author
-              -#         = job['created_at']
-              -#         = link_to job['title'], show_job_path(job['id'])
-              -#       .stats.ml-auto
-              -#         .material-icons
-              -#           %a{href: "", title: "Save job"}favorite
-              -#         .material-icons share
-
-
+            
             .card
               .card-header.card-header-primary
                 %h4.card-title Search results
@@ -60,11 +38,12 @@
                       %tr
                         %th
                     %tbody
-                      - results.each do |job|
+                      - results.each do |job, i|
                         %tr
                           %td.d-md-flex.search-list-in-table
                             .col-md-9.px-0.mb-3
                               %h3.title.mb-3.text-primary= job['title'].html_safe
+                              - jobs_for_map << [job['title'], job['latitude'], job['longitude'], job['redirect_url'], company_name(job)]
                               .d-inline-block.title
                                 %span{title: "latitude: #{job['latitude']}, longitude: #{job['longitude']}"}
                                   %span.material-icons location_on
@@ -96,96 +75,131 @@
                                   .btn.btn-primary.btn-sm.btn-block Save
                                 .d-inline-block{style:"width:49%;"}
                                   .btn.btn-primary.btn-sm.btn-block 1-click applay
+                                  
+
+  .container.mb-5.pb-5
+    = jobs_for_map
+    = jobs_for_map0 = jobs_for_map[2]
+    = jobs_for_map1 = jobs_for_map[0]
+    %br/
+    = jobs_for_map1
+    %br/
+    = jobs_for_map[0]
+    %br/
+    = jobs_for_map[1]
+    %br/
+    = jobs_for_map[2]
+    
+    -# .google_map{data: {address_fields: {position: {lng: 0, lat: 0}}} }
+    -#   %p Mapa
+    .map-container
+      #map{style:'width: "100%"; height: 400px;'}
+
+    :javascript
+      function createForJobs(jobs){
+      result = jobs.split(', ');
+      result[0].replace('[', '');
+      return result
+      }
+      function createForJobsTab(jobs){
+      result = jobs.split(', ');
+      result[0].replace('[', '');
+      return result
+      }
+
+      function createForJobsMap(jobs){
+      jobs.replace('[', '')
+      result = jobs.split(']');
+      //result.replace('", ', '')
+
+      for (let i = 0; i < result.length; i++) {
+      result[i] = result[i].replace('[[','').replace(', [', '')
+      }
+      return result
+      }
+      function createInfoWindow(text){
+      var infowindow = new google.maps.InfoWindow({content: text});
+      return infowindow;
+      }
+      // Initialize and add the map
+      function initMap() {
+        var tab = createForJobsMap("#{jobs_for_map}")
+        var job = createForJobs("#{jobs_for_map0}");
+        var job1 = createForJobs("#{jobs_for_map1}");
+    
+        // The location of Uluru
+        var uluru = {lat: 51.499862, lng: -0.135007};
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 12, center: uluru});
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: uluru, map: map});
+        // var marker1 = new google.maps.Marker({position: {lat: 51.509882, lng: -0.135007}, map: map});
+        var marker3 = new google.maps.Marker({position: {lat: 51.451818, lng: -0.02806}, map: map});
 
 
 
+        var marker2 = new google.maps.Marker({position: {lat: parseFloat(job[1]), lng: parseFloat(job[2])}, map: map});
+        var info2 = createInfoWindow(`${job[0].replace('[', '').replace('"', '')}`);
+        google.maps.event.addListener(marker2, 'click', function(){
+        info2.open(map, marker2);
+        })
 
+        var marker4 = new google.maps.Marker({position: {lat: parseFloat(job1[1]), lng: parseFloat(job1[2])}, map: map});
+        var info2 = createInfoWindow(`${job1[0].replace('[', '').replace('"', '')}`);
+        google.maps.event.addListener(marker4, 'click', function(){
+        info2.open(map, marker4);
+        })
+        var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+        '<div id="bodyContent">'+
+        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        'sandstone rock formation in the southern part of the '+
+        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+        'south west of the nearest large town, Alice Springs; 450&#160;km '+
+        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+        'Aboriginal people of the area. It has many springs, waterholes, '+
+        'rock caves and ancient paintings. Uluru is listed as a World '+
+        'Heritage Site.</p>'+
+        '<p>Attribution: Uluru, <a href="https://google.com">'+
+        'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
 
-          -# - @info.each do |job|
+        var info = createInfoWindow(contentString);
+        google.maps.event.addListener(marker, 'click', function(){
+        info.open(map, marker);
+        })
 
-          -# - if job['company_logo']
-            .card-header-image.pb-5{style:"overflow: hidden;"}
--#           - @info.each do |job|
+        var markers = []
+        var infos = []
+        let url;
+        for(let i = 0;  i < tab.length; i++){
 
-
-
-
--#             .card
--#               .card-body
--#                 %h3.title.card-category.text-primary
--#                   %i.material-icons work
--#                   = job['title']
--#                 %h4.card-title
--#                   %a(href="#{job['url']}")
--#                     = job['company']
--#                 %h5= job['location']
--#                 %p= job['description'].truncate(500).html_safe
-
--#                 .card-stats
--#                   .author
--#                     = job['created_at']
--#                     = link_to job['title'], show_job_path(job['id'])
--#                   .stats.ml-auto
--#                     .material-icons
--#                       %a{href: "", title: "Save job"}favorite
--#                     .material-icons share
+        markers[i] = new google.maps.Marker({position: {lat: parseFloat(createForJobsTab(tab[i])[1]), lng: parseFloat(createForJobsTab(tab[i])[2])}, map: map});
+        console.log(createForJobsTab(tab[i])[3].replace('&quot;', ''))
+        url = new URL(createForJobsTab(tab[i])[3].replace('&quot;', '').replace('&quot;', ''));
+        contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        `<h2 id="firstHeading" class="firstHeading">${createForJobsTab(tab[i])[0]}</h2>`+
+        '<div id="bodyContent">'+
+        '<p><a href='+`${url}`+'>Dupa</a></p>'+
+        `<p>Attribution: Uluru, <a href=${createForJobsTab(tab[i])[3]}>${createForJobsTab(tab[i])[4]}</a> `+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+        infos[i] = createInfoWindow(contentString);
+        google.maps.event.addListener(markers[i], 'click', function(){
+        infos[i].open(map, markers[i]);
+        })
+        }
         
+      }
 
--#                 -# %img{alt:"company_logo", style:"max-width:5rem;"}(src="#{job['company_logo']}")/
--#             .card-header.card-header-info
--#               %ul.nav.nav-tabs
--#                 %li.nav-item
--#                   %a.nav-link.active(href="#0") Active
--#                 %li.nav-item
--#                   %a.nav-link(href="#0") link
--#             .card-body
--#               %h3
--#                 Type
--#                 = job['type']
--#               %a{href: "#{job['company_url']}"}= job['company']
--#               %h3
--#                 Location:
--#                 = job['location']
--#               %h5.card-category.card-category-social
--#                 %i.material-icons work
--#               %h4.card-title
-
--#               .card-text
--#                 = (job['description'].truncate(500)).html_safe
--#               %a.btn.btn-primary(href="#{job['url']}") Web
--#               .card-stats
-
--#                 .author
--#                 .stats.ml-auto
--#                   %i.material-icons today
--#                   =raw job['created_at']
-
-
-
-
-
-        = results = @info['results']
-          - unless results.nil?
-          
-            - results.each do |job|
-              .card
-                .card-body
-                  %h3.title.card-category.text-primary
-                    %i.material-icons work
-                    = job['title']
-                  %h4.card-title
-                    %a(href="#{job['url']}")
-                      = job['company']['display_name']
-                  %h5= job['location']['display_name']
-                  %p= job['description'].truncate(500).html_safe
-
-                  .card-stats
-                    .author
-                      = job['created_at']
-                      = link_to job['title'], show_job_path(job['id'])
-                    .stats.ml-auto
-                      .material-icons
-                        %a{href: "", title: "Save job"}favorite
-                      .material-icons share
--#           .card.text-left
-        
+    %script{:defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyDwomzJUCvqK6THoyQuiCYGpO2dRUvCE5w&callback=initMap"}:cdata
