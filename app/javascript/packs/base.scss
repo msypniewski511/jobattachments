@@ -3,7 +3,9 @@
   position: relative;
   z-index: 3;
 }
-
+body{
+  position: relative;
+}
 .form-check,
 label {
   font-size: 14px;
@@ -43,3 +45,128 @@ input::placeholder {
 .hidden {
   display: none;
 }
+
+.mapa  {
+    position: fixed;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    // width: 33%;
+    // float: right;
+    // right: 5rem;
+  z-index: 3000;
+}
+#map {
+  // position: relative;
+  z-index: 2;
+  width: 100%;
+  height: (65vh)!important;
+  margin-top: 70px;
+  padding-bottom: 1rem;
+}
+
+
+#table_id {
+  // width: 60%;
+}
+.nav-pills .nav-item .nav-link {
+  line-height: 24px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  min-width: 100px;
+  text-align: center;
+  color: #555;
+  transition: all .3s;
+  border-radius: 30px;
+  padding: 10px 15px;
+  margin: 1rem 0 1rem 0;
+}
+.nav-pills .nav-item .nav-link.active {
+  
+  color: #fff;
+  background-color: #9c27b0;
+  box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
+}
+
+.sticky{  position: -webkit-sticky; /* Safari */
+position: sticky;
+top: 0;}
+
+.user-menu {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+
+  .tab-space {
+    padding: 0 0 0px 0;
+  }
+
+  #map {
+    margin-top: 1rem !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .mapa {
+    top: 9rem;
+  }
+  .user-menu {
+    width: auto;
+    padding-bottom: 0 !important;
+    -webkit-transform: translate3d(0, -5rem, 0);
+    -moz-transform: translate3d(0, -5rem, 0);
+    -o-transform: translate3d(0, -5rem, 0);
+    -ms-transform: translate3d(0, -5rem, 0);
+    transform: translate3d(0, -5rem, 0);
+
+    & .tab-space {
+      padding: 20px 0 10px 0;
+      display: contents;
+    }
+    .map-container {
+      padding-bottom: 10px;
+    }
+    #map {
+      margin-top: 0!important;
+    }
+    
+    ul.nav {
+      flex-wrap: nowrap;
+      padding: 0;
+    }
+  }
+  .nav-pills .nav-item .nav-link {
+    /* line-height: 24px; */
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    /* min-width: 100px; */
+    text-align: center;
+    color: #555;
+    transition: all .3s;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  // #toggle-submenu {
+  //   margin-left: 5px;
+  //   margin-left: 0;
+  //   margin-right: 50px;
+  //   font-size: 10px;
+  //   padding: 0px 0px;
+  //   & i {
+  //     padding:0;
+  //   }
+  //   &.nav-link.active, &.nav-link, &.nav-link i {
+  //     // width: 20px;
+      
+  //     background-color: transparent;
+  //     color: red;
+  //     box-shadow: none;
+  //   }
+  // }
+  
+}
+ 

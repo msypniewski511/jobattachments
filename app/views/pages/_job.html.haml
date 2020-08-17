@@ -1,0 +1,49 @@
+.card
+  .card-header.card-header-primary
+    %h4.card-title Search results
+    %p.card-category List of jobs
+  .card-body.px-3
+    .table.table-responsive
+      %table.table-sm.table.table-streapd.table-hover.display#table_id
+        %thead.text-primary
+          %tr
+            %th
+        %tbody
+          - results.each do |job, i|
+            %tr
+              %td.d-md-flex.search-list-in-table
+                .col-md-8.px-0.mb-3
+                  %h3.title.mb-3.text-primary= job['title']
+                  - jobs_for_map << [job['title'], job['latitude'], job['longitude'], job['redirect_url'], company_name(job)]
+                  .d-inline-block.title
+                    %span{title: "latitude: #{job['latitude']}, longitude: #{job['longitude']}"}
+                      %span.material-icons location_on
+                      %span.align-top= job_location job
+                      %span.align-top
+                        |
+                        %br/
+                    %span.material-icons business
+                    %span.align-top= company_name job
+                    %span.align-top
+                      |
+                      %br/
+                    %span.material-icons access_time
+                    %span.align-top= job['contract_type'] || "contract type not specified"
+                    %span.align-top
+                      |
+                      %br/
+                  .mt-5= (job['description'] || job.description || "BRAK").html_safe
+                
+                  %img.img-fluid.d-s-none{style:"max-width:5rem;"}(src="#{job['company_logo']}" alt="")/
+                  -# = job.created
+                  %b(href="#" style="padding:1rem 1rem 1rem 0;")
+                    %strong.mt-5.badge.badge-danger= created_at job.created || job['created_at'] || DateTime.parse(job['created']).strftime("%d-%m-%Y")
+                .col-md-3.px-0
+                  .d-block
+                    = link_to_details job
+                    -# %a(href="#{job['id']}").btn.btn-primary.btn-block 
+                  .d-block.w-100
+                    .d-inline-block{style:"width:49%;"}
+                      .btn.btn-primary.btn-sm.btn-block Save
+                    .d-inline-block{style:"width:49%;"}
+                      .btn.btn-primary.btn-sm.btn-block 1-click applay

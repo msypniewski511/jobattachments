@@ -10,9 +10,19 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["output"]
+  static targets = [""]
 
   connect() {
-    this.outputTarget.textContent = 'Hello, Stimulus!'
+    console.log('places')
+  }
+
+  initMap(e) {
+    e.preventDefault();
+    console.log(google)
+  }
+  search(e) {
+    e.preventDefault();
+    alert(e)
+    this.initMap(e)
   }
 }

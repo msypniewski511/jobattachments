@@ -13,6 +13,8 @@ module ApiCalls
       #11 azduna results
       puts "Z call JobServices przed"
       results = (AzdunaJobs::ListJobs.new(@parameters).call)
+      
+      # r.save
       # results = GithubJobs::ListJobs.new(@parameters).call
       puts "Z call JobServices"
       puts results
@@ -28,6 +30,28 @@ module ApiCalls
       # response = Unirest.get(url_asduna, header:{'content-type':'application/json'})
       
       response = results.payload
+
+    #   r = JobSearchResult.new()
+    #   r.id = response.id
+      
+    #  r.description = response.description
+    #  r.created = response.created
+    #  r.title = response.title
+    # #  r.salary_min = response.salary_min
+    #  r.longitude = response.longitude
+    #  r.latitude = response.latitude
+    #  r.location = response.location
+      
+    #  r.salary_is_predicted = response.salary_is_predicted
+    
+      
+    #  r.contract_time = response.contract_time
+    #  r.redirect_url = response.redirect_url
+    #  r.category = response.category['tag']
+    #  r.contract_type = response.contract_type
+    #  r.company = response.company
+    #  r.salary_max = response.salary_max
+    #   puts r
     rescue StandardError => e
       OpenStruct.new({success?: false, error: e})
     else

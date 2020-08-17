@@ -26,10 +26,21 @@ class PagesController < ApplicationController
 #       # response = (Unirest.get "https://jobs.github.com/positions.json?").body
 #     end
     
+    # @zapis = JobSearchResult.new()
+    # response.payload.each do |v|
+    #   # @zapis = JobSearchResult.new(v)
+    #   puts "=========================="
+    #   puts "PRZED"
+    #   puts v
+    #   puts "PO"
+    # end
 
-    if response && response.success?
+    if true
+    # if response && response.success?
       # flash['success'] = "Search"
-      @info = PagesDecorator.decorate(response.payload)
+      # @info = PagesDecorator.decorate(response.payload)
+      @info = JobSearchResult.all
+      puts @info
       @categories = ApiCalls::CategoriesService.call(query)
     else
       # redirect_to pages_jobs_path, danger: "Subscription was created, but there was a problem with the vendor."

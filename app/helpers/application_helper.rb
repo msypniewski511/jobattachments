@@ -1,5 +1,14 @@
 module ApplicationHelper
     # ... other helpers ...
+  def posted_days_ago date=DateTime.now
+    date_time_now = DateTime.now
+    difference = (date_time_now - DateTime.parse(date)).to_i
+    if difference == 0
+      "Recently"
+    else
+      "Posted #{difference} day#{'s' unless difference == 1} ago."
+    end
+  end
 
   # Format a label element for a form field.
   # 

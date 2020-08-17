@@ -55,7 +55,14 @@ import "../demo/demo";
 import flatpickr from "flatpickr";
 import { initial } from 'lodash';
 // require("flatpickr/src/style/themes")
-import google_map from "../src/google_maps";
+import '../src/google_maps';
+import stickElement from '../../../node_modules/stick-element'
+
+
+import '../src/plugins/jquery.sharrre';
+
+
+
 $(document).ready(function () {
   flatpickr('[data-behavior="flatpickr"]', {
     altInput: true,
@@ -86,6 +93,7 @@ $(document).ready(function () {
   //   handler.fitMapToBounds();
   // });
   // Koniec
+
 });
 $(document).on('turbolinks:load', () => {
   console.log("sfsadfsadf")
@@ -145,7 +153,10 @@ $(document).ready(function () {
 
   // mrOccupancy;
   // timedFetch()
-
+  $('#toggle-submenu').on('click', function (e) {
+    console.log(e);
+    $('.tab-content').toggleClass('hidden')
+  })
   szukaj1();
 })
 
@@ -218,3 +229,56 @@ function szukaj1() {
   });
 }
 import "controllers"
+function getMeCurrentLocation() {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    return position
+  });
+}
+function createForJobs(jobs) {
+  result = jobs.split(', ');
+  result[0].replace('[', '');
+  return result
+}
+function createForJobsTab(jobs) {
+  result = jobs.split(', ');
+  result[0].replace('[', '');
+  return result
+}
+
+function createForJobsMap(jobs) {
+  jobs.replace('[', '')
+  result = jobs.split(']');
+  //result.replace('", ', '')
+
+  for (let i = 0; i < result.length; i++) {
+    result[i] = result[i].replace('[[', '').replace(', [', '')
+  }
+  return result
+}
+function createInfoWindow(text) {
+  var infowindow = new google.maps.InfoWindow({ content: text });
+  return infowindow;
+}
+// Initialize and add the map
+// function initMap() {
+//   getMeCurrentLocation()
+//   function getMeCurrentLocation() {
+//     navigator.geolocation.getCurrentPosition(function (position) {
+//       afterInitCurrentLocation(position)
+//     });
+//   }
+// }
+window.initMap = function (...args) {
+  const event = document.createEvent('Events');
+  event.initEvent('google-maps-callback', true, true);
+  event.args = args;
+  window.dispatchEvent(event);
+  // alert('Mapa');
+  // getMeCurrentLocation()
+  // function getMeCurrentLocation() {
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+  //     alert('ddd')
+  //     afterInitCurrentLocation(position)
+  //   });
+  // }
+}
