@@ -7,9 +7,10 @@ export default class extends Controller {
     this.toggleableTarget.classList.toggle('hidden');
 
     if (this.toggleableTarget.classList.contains('hidden')) {
-      this.buttontextTarget.textContent = this.data.get('open')
-    } else {
-      this.buttontextTarget.textContent = this.data.get('close')
+      //   this.buttontextTarget.classList.add('active');
+      // } else {
+      //   this.buttontextTarget.classList.remove('active');
+      // }
     }
   }
 }

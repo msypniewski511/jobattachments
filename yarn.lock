@@ -8221,6 +8221,11 @@ querystringify@^2.1.1:
   resolved "https://registry.npm.taobao.org/querystringify/download/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha1-YOWl/WSn+L+k0qsu1v30yFutFU4=
 
+rails-ujs@^5.2.4-2:
+  version "5.2.4-2"
+  resolved "https://registry.npm.taobao.org/rails-ujs/download/rails-ujs-5.2.4-2.tgz#c810719fc2e62ae04b9f4ca630d064dc9c336d23"
+  integrity sha1-yBBxn8LmKuBLn0ymMNBk3JwzbSM=
+
 random-bytes@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/random-bytes/download/random-bytes-1.0.0.tgz#4f68a1dc0ae58bd3fb95848c30324db75d64360b"
@@ -9327,6 +9332,11 @@ stealthy-require@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/stealthy-require/download/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
+
+stick-element@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/stick-element/download/stick-element-1.0.0.tgz#44570df64d5d635e6b469b0784dc52326e66d4d2"
+  integrity sha1-RFcN9k1dY15rRpsHhNxSMm5m1NI=
 
 stimulus@^1.1.1:
   version "1.1.1"
