@@ -196,16 +196,17 @@ production:
       # Otherwise define the parameters separately.
       # This defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: autholy_development
+      # database: autholy_development
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - mongodbrailscluster0-shard-00-00.cle8l.mongodb.net:27017
-        - mongodbrailscluster0-shard-00-02.cle8l.mongodb.net:27017
-        - mongodbrailscluster0-shard-00-01.cle8l.mongodb.net:27017
-        - mongodbrailscluster1.cle8l.mongodb.net:27017
-        - mongodbrailscluster2.cle8l.mongodb.net:27017
+        # - mongodbrailscluster0-shard-00-00.cle8l.mongodb.net:27017
+        # - mongodbrailscluster0-shard-00-02.cle8l.mongodb.net:27017
+        # - mongodbrailscluster0-shard-00-01.cle8l.mongodb.net:27017
+        # - mongodbrailscluster1.cle8l.mongodb.net:27017
+        # - mongodbrailscluster2.cle8l.mongodb.net:27017
         #- localhost:27017
+        uri: mongodb+srv://Figaro.env.mongoid_user:Figaro.env.mongoid_password@mongodbrailscluster0.cle8l.mongodb.net:27017/autholy_development?retryWrites=true&w=majority
         # uri: mongodb+srv://Figaro.env.mongoid_user:Figaro.env.mongoid_password@mongodbrailscluster0.cle8l.mongodb.net/autholy_development?retryWrites=true&w=majority
       options:
         server_selection_timeout: 5
@@ -239,11 +240,11 @@ production:
         # :mongodb_cr, :mongodb_x509, and :plain. Note that all authentication
         # mechanisms require username and password, with the exception of :mongodb_x509.
         # Default on mongoDB 3.0 is :scram, default on 2.4 and 2.6 is :plain.
-        auth_mech: :scram
+        # auth_mech: :scram
 
         # The database or source to authenticate the user against.
         # (default: the database specified above or admin)
-        auth_source: admin
+        # auth_source: admin
 
         # Force a the driver cluster to behave in a certain manner instead of auto-
         # discovering. Can be one of: :direct, :replica_set, :sharded. Set to :direct

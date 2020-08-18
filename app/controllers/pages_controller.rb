@@ -35,11 +35,11 @@ class PagesController < ApplicationController
     #   puts "PO"
     # end
 
-    if true
-    # if response && response.success?
+    # if true
+    if response && response.success?
       # flash['success'] = "Search"
-      # @info = PagesDecorator.decorate(response.payload)
-      @info = JobSearchResult.all
+      @info = PagesDecorator.decorate(response.payload)
+      # @info = JobSearchResult.all
       puts @info
       @categories = ApiCalls::CategoriesService.call(query)
     else

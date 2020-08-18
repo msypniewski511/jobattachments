@@ -2,17 +2,8 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import("@rails/ujs");
-// import Rails from "@rails/ujs"
-// Rails.start()
-// require("@rails/webpacker")
-// require("turbolinks").start();
-// require("@rails/activestorage").start()
-// require("channels")
-// var Turbolinks = require('turbolinks');
-// Turbolinks.start()
+
 import * as bg_sort from 'datatables.net-dt/images/sort_both.png'
-// import sort_asc from 'datatables.net-dt/images/sort_asc.png'
-// import sort_desc from 'datatables.net-dt/images'
 
 require.context("../packs/assets/img", true);
 require.context('../images', true);
@@ -71,7 +62,10 @@ $(document).ready(function () {
     defaultDate: new Date(1960, 0, 10)
   })
   dt
-  $('#table_id').DataTable();
+  // $('#table_id').DataTable();
+  $('#jobs_list_id').DataTable();
+
+  // console.log(table)
   $('.js-example-basic-multiple').select2();
 
 
@@ -153,10 +147,11 @@ $(document).ready(function () {
 
   // mrOccupancy;
   // timedFetch()
-  $('#toggle-submenu').on('click', function (e) {
-    console.log(e);
+  $('.toggle-submenu').on('click', function (e) {
+    // console.log(e);
     $('.tab-content').toggleClass('hidden')
   })
+
   szukaj1();
 })
 
@@ -229,6 +224,7 @@ function szukaj1() {
   });
 }
 import "controllers"
+import { data } from 'jquery';
 function getMeCurrentLocation() {
   navigator.geolocation.getCurrentPosition(function (position) {
     return position

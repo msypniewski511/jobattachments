@@ -1,71 +1,76 @@
-.page-header.header-filter.clear-filter.purple-filter
+%nav#seNav.navbar.navbar-transparent.fixed-top.navbar-expand-lg{"color-on-scroll" => "100"}
+  .cont.w-100
+
+    %ul#nudne.box-shadow.nav.nav-pills.nav-pills-icons.nav-pills-info{role:"tablist", "data-controller":"togglemap", 'data-togglemap-open':'togglemap open', 'data-togglemap-close':'Toggle close'}
+      %li.nav-item{title:'Search'}
+        %a.nav-link.toggle-submenu.active.show(href="#map1" role="tab" data-toggle="tab" aria-selected="true")
+          %i.material-icons search
+          Search
+      %li.nav-item{title:'Search Options'}
+        %a.nav-link.toggle-submenu(href="#map2" role="tab" data-toggle="tab" aria-selected="false")
+          %i.material-icons rule
+          Options
+      %li.nav-item{title:'Search on map'}
+        %a.nav-link.toggle-submenu{href: "#mapka", role: "tab", 'data-toggle': "tab", 'aria-selected': "false"}
+          %i.material-icons map
+          Map
+
+      %li.nav-item{title:'Expand less menu', }
+        %a.nav-link.toggle-submenu.show#toggle-submenu(href="#tt" role="tab" data-toggle="tab" aria-selected="true")
+          .div
+            %i.material-icons unfold_less
+            %span Menu
+    
+    .tab-content.card-container.hidden
+      #map1.tab-pane.active
+        = render 'pages/shared/search'
+    
+      #map2.tab-pane
+        -# %nav.navbar.navbar-primary.navbar-color-on-scroll.navbar-expand-lg.navbar-transparent
+        = render 'pages/shared/submenu', locals: { categories: @categories }
+    
+      #mapka.tab-pane
+        .px-3{"data-target":"togglemap.toggleable"}
+          -# - jobs_for_map
+          -# - jobs_for_map0 = jobs_for_map[2]
+          -# - jobs_for_map1 = jobs_for_map[0]
+          .map-container.pb-2
+            #map
+      -# %button.btn-secondary.rounded.text-white{"data-action":"click->togglemap#toggle","data-target":"togglemap.buttontext"} Toggle map
+      -# %button.btn-success.rounded.px-3.py-3.text-white{onclick:"getMeCurrentLocation"} Toggle map
+
+.page-header.header-filter.clear-filter.blue-filter
   .container
     -# logo
     .row
       .col-md-8.ml-auto.mr-auto
         %h2.title.text-left Connecting great jobs to great candidates
-    
+
 
 .main.main-raised
-  -# .no-child-div.pl-5.pr-5.margin-top-minus
-
-        
-  .container
+  .container-fluid
     .row
-      .col-lg-12
-        - jobs_for_map = []
+      -# .section.section-basic
+      - jobs_for_map = []
 
-        - if @info.present?
-          - results = @info
+      - if @info.present?
+        - results = @info
 
-          - unless results.nil?
-            .col-12
+        - unless results.nil?
+          .col-4
+            .section.section-examples
+              .container-fluid.text-center
+                .row
+                  .col-md-6
+                    %a{:href => "examples/landing-page.html", :target => "_blank"}
+                      %img.img-raised.rounded.img-fluid{:alt => "Rounded Image", :src => "#{asset_pack_path('landing.jpg')}"}/
+                  .col-md-6
+                    %a{:href => "examples/profile-page.html", :target => "_blank"}
+                    = image_tag "#{asset_pack_path('profile.jpg')}", class: "img-raised rounded img-fluid", :alt => "Rounded Image"
+                    %button.btn.btn-link.btn-primary.btn-lg View Profile Page
+          .col-8
+            .section.section-examples
               = render partial: 'pages/job', locals: { results: results, jobs_for_map: jobs_for_map } 
-  
-    .row
-      = render 'pages/shared/search'
-    .row
-      .col-lg-12
-        .card.mapa.p-s-3.user-menu
-          %ul.nav.nav-pills.nav-pills-icons{role:"tablist", "data-controller":"togglemap", 'data-togglemap-open':'togglemap open', 'data-togglemap-close':'Toggle close'}
-            %li.nav-item{title:'Search'}
-              %a.nav-link.active.show(href="#map1" role="tab" data-toggle="tab" aria-selected="true")
-                %i.material-icons search
-                Search
-            %li.nav-item{title:'Search Options'}
-              %a.nav-link(href="#map2" role="tab" data-toggle="tab" aria-selected="false")
-                %i.material-icons rule
-                Options
-            %li.nav-item{title:'Search on map'}
-              %a.nav-link{href: "#mapka", role: "tab", 'data-toggle': "tab", 'aria-selected': "false"}
-                %i.material-icons map
-                Map
-
-            %li.nav-item{title:'Expand less menu', }
-              %a.nav-link.show#toggle-submenu(href="#tt" role="tab" data-toggle="tab" aria-selected="true")
-                .div
-                  %i.material-icons unfold_less
-                  %span Menu
-          -# ---------------------
-          .tab-content.tab-space.col-md-12.ml-auto.mr-auto
-          
-            #map1.tab-pane.active
-              = render 'pages/shared/search'
-          
-            #map2.tab-pane
-              -# %nav.navbar.navbar-primary.navbar-color-on-scroll.navbar-expand-lg.navbar-transparent
-              = render 'pages/shared/submenu', locals: { categories: @categories }
-          
-            #mapka.tab-pane
-              .px-3{"data-target":"togglemap.toggleable"}
-                - jobs_for_map
-                - jobs_for_map0 = jobs_for_map[2]
-                - jobs_for_map1 = jobs_for_map[0]
-                .map-container.pb-2
-                  #map
-            -# %button.btn-secondary.rounded.text-white{"data-action":"click->togglemap#toggle","data-target":"togglemap.buttontext"} Toggle map
-            -# %button.btn-success.rounded.px-3.py-3.text-white{onclick:"getMeCurrentLocation"} Toggle map
-          
 
     :javascript
       function getMeCurrentLocation(){
@@ -111,8 +116,6 @@
         //var current_position = getMeCurrentLocation();
         
         var tab = createForJobsMap("#{jobs_for_map}")
-        //-# var job = createForJobs("#{jobs_for_map0}");
-        //-# var job1 = createForJobs("#{jobs_for_map1}");
     
         // The location of Uluru
         var uluru = {lat: current_location.coords.latitude, lng: current_location.coords.longitude};
@@ -164,7 +167,7 @@
         url = new URL(createForJobsTab(tab[i])[3].replace('&quot;', '').replace('&quot;', ''));
         }
         catch(err) {
-        console.error(err.message);
+        //console.error(err.message);
         }
         
         contentString = '<div id="content">'+
@@ -186,3 +189,7 @@
 
     -# %script{:defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyDwomzJUCvqK6THoyQuiCYGpO2dRUvCE5w&callback=initMap"}:cdata
     = google_maps_api_script_tag
+
+
+
+

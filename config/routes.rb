@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/search' => 'addresses#search'
   resources :people
   resources :companies
-  root to: 'admin/dashboard#index'
+  
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
   end
@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   get 'pages/jobs/:categories' => 'pages#jobs'
   get '/pages/show/:id' => 'pages#show', as: :show_job
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  root to: 'pages#jobs'
 end

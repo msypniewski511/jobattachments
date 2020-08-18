@@ -1,29 +1,27 @@
-.col-md-12.ml-auto.mr-auto
-  .navbar.navbar-expand-lg.bg-primary
-    .container
-      .navbar-translate
-        %a.navbar-brand{href:'/pages/jobs'} Menu
-      .navbar{style:"background-color:#9c27b0 !important;"}
-      
-        %ul.categories-list.nav.nav-tabs.navbar-nav#submenu
-          %li.nav-item
-            %a.nav-link{href:'/pages/home'} Jobs by location
-          %li.nav-item
-            %a.nav-link{href:'/pages/jobs?utf8=✓&category=true'} Jobs by sector
-          %li.nav-item
-            %a.nav-link{href:'/pages/home'} Jobs by company
-          %li.nav-item
-            %a.nav-link{href:'/pages/home'} Popular searches
-          %li.nav-item
-            %a.nav-link{href:'/pages/home'} Entry level jobs
-          %li.nav-item
-            %a.nav-link{href:'/pages/home'} Remote jobs
-  .moje.ml-3
-    - if @categories.present?
-      %form(action="/pages/jobs" method="get")
-        %select.js-example-basic(name="category")
-          
-          - @categories.each do |category|
-            %option(value="#{category['tag']}")
-              = category['label']
-        %button(type="submit") Search
+.col-md-12.bg-white
+  .card.bmd-card-raised.card-form-horizontal.mt-0.mb-1
+  
+    .card-body.text-info
+    
+      %ul.categories-list.nav.nav-tabs#submenu-1
+        %li.nav-item
+          %a.nav-link{href:'/pages/home'} Jobs by location
+        %li.nav-item
+          %a.nav-link{href:'/pages/jobs?utf8=✓&category=true'} Jobs by sector
+        %li.nav-item
+          %a.nav-link{href:'/pages/home'} Jobs by company
+        %li.nav-item
+          %a.nav-link{href:'/pages/home'} Popular searches
+        %li.nav-item
+          %a.nav-link{href:'/pages/home'} Entry level jobs
+        %li.nav-item
+          %a.nav-link{href:'/pages/home'} Remote jobs
+    .card-body
+      - if @categories.present?
+        %form(action="/pages/jobs" method="get")
+          %select.js-example-basic(name="category")
+            
+            - @categories.each do |category|
+              %option(value="#{category['tag']}")
+                = category['label']
+          %button.btn(type="submit") Search

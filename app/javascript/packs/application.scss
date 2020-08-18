@@ -7,11 +7,20 @@
 @import "../../../node_modules/flatpickr/dist/flatpickr.css";
 
 .index-page {
-    background-image: linear-gradient(rgba(248, 246, 248, 0.9), rgba(241, 241, 235, 0.5)), url('./assets/img/bg.jpg');
+    background-image: linear-gradient(rgba(0, 188, 212, .7), rgba(7, 29, 153, 0.1)), url('./assets/img/city-profile.jpg');
     background-size: contain;
 
     background-position: top;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
+}
+
+.navbar.fixed-top {
+    border-radius: 5px;
+    margin: 2rem;
+    padding: 0;
+}
+.clear-filter::before {
+    
 }
 
 #moje-tlo {
@@ -32,9 +41,6 @@
   top: 0;
   left: 0;
   width: 100%;
-
-
-
   padding-top: 10px;
   z-index: 1030;
 }
@@ -43,8 +49,14 @@
     border: 0.2em solid red;
     display: table;
   }
+
+
+
+
+
+
 //
- // Colour customisation
+ // Colour customisation TABLES
  //
  // `!default` allows overriding variables that are defined before @import
  //
@@ -123,10 +135,12 @@ thead {
    position: relative;
    clear: both;
    *zoom: 1;
+   padding: 0 1rem 1rem 1rem;
 
    // Page length options
    .dataTables_length {
        float: left;
+       margin-left: 1rem;
    }
    .dataTables_length>label>select.form-control {
       color: $table-control-color !important;
@@ -437,16 +451,24 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     padding: 0;
 }
 
-body {
-		background: #fff;
-		font: 14px/21px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-		color: #444;
-		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
-		-webkit-text-size-adjust: 100%;
- }
+// body {
+// 		background: #fff;
+// 		font: 14px/21px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+// 		color: #444;
+// 		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+// 		-webkit-text-size-adjust: 100%;
+//  }
 
  .flatpickr {
 
     background-color: white !important;
     color: #9c27b0;
  }
+
+
+@media screen and (max-width: 575.98px) {
+
+    navbar.navbar-transparent {
+    margin: 0;
+    }
+}

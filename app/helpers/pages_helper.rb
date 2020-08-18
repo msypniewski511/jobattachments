@@ -8,7 +8,7 @@ module PagesHelper
   end
 
   def job_location job
-    if job.company.nil? 
+    if job.is_a? Hash || job.company.nil? 
       return "brak"
     else
       job.location['display_name'] || job['location']['display_name'] || job['location']
@@ -17,11 +17,12 @@ module PagesHelper
 
 
   def company_name job
-    if job.company.nil? 
+    if job['company'].nil? 
       return "brak"
-    else
-      job.company['display_name'] || job['company']['display_name'] || job['company']
+    elsif job.is_a? Hash
+       return job['company']['display_name'] || job['company']
     end
+    job.company['display_name']
   end
 
   def link_to_details job

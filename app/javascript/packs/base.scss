@@ -3,8 +3,8 @@
   position: relative;
   z-index: 3;
 }
-body{
-  position: relative;
+.box-shadow {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 .form-check,
 label {
@@ -14,8 +14,17 @@ label {
   font-weight: 400;
 }
 
+.card-container {
+  // display: none;
+  margin-top: 2rem;
+  padding: 1rem 0;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
 .main-raised {
-  // margin: -60px 30px 0px;
+  margin: -60px 30px 0px;
   border-radius: 6px;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
@@ -29,15 +38,15 @@ label {
 input::placeholder {
   // color: white;
 }
-#submenu {
+#submenu-1 {
 & * {
   margin-right: .2rem;
 }
 
 .nav-link {
-  background-color: #c258d4;
+  background-color: #00bcd4;
 
-    &:hover { background-color: #af78ee;}
+    &:hover { background-color: #08058f;}
     
   
 }
@@ -47,30 +56,40 @@ input::placeholder {
 }
 
 .mapa  {
-    position: fixed;
-    width: 90%;
+    
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    top: 5rem;
+    // top: 5rem;
     left: 0;
     right: 0;
     // width: 33%;
     // float: right;
     // right: 5rem;
   z-index: 3000;
+  // box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+
 }
 #map {
   // position: relative;
   z-index: 2;
   width: 100%;
   height: (65vh)!important;
-  margin-top: 70px;
+  margin-top: 0 !important;
   padding-bottom: 1rem;
 }
 
 
 #table_id {
   // width: 60%;
+
+  .table-sm th, .table-sm td {
+    padding: 0.3rem;
+  }
+}
+#nudne{
+  width: fit-content;
+  background: white;
 }
 .nav-pills .nav-item .nav-link {
   line-height: 24px;
@@ -82,7 +101,7 @@ input::placeholder {
   color: #555;
   transition: all .3s;
   border-radius: 30px;
-  padding: 10px 15px;
+  padding: 5px 15px;
   margin: 1rem 0 1rem 0;
 }
 .nav-pills .nav-item .nav-link.active {
@@ -92,26 +111,28 @@ input::placeholder {
   box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
 }
 
-.sticky{  position: -webkit-sticky; /* Safari */
-position: sticky;
-top: 0;}
 
 .user-menu {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
-
+  background-color: white;
   .tab-space {
-    padding: 0 0 0px 0;
+    padding: 0 0 10px 0;
   }
 
   #map {
-    margin-top: 1rem !important;
+    margin-top: 0rem !important;
+  }
+  .card.bmd-card-raised.card-form-horizontal {
+    // display: none;
+    margin-bottom: 0;
+    margin-top: 0;
   }
 }
 
 @media (max-width: 575px) {
   .mapa {
-    top: 9rem;
+    // top: 1rem !important;
   }
   .user-menu {
     width: auto;
@@ -123,8 +144,8 @@ top: 0;}
     transform: translate3d(0, -5rem, 0);
 
     & .tab-space {
-      padding: 20px 0 10px 0;
-      display: contents;
+      
+      // display: contents;
     }
     .map-container {
       padding-bottom: 10px;
@@ -169,4 +190,3 @@ top: 0;}
   // }
   
 }
- 
