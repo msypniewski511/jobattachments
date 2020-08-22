@@ -11,13 +11,13 @@ module ApiCalls
 
     def call
       #11 azduna results
-      puts "Z call JobServices przed"
+      # puts "Z call JobServices przed"
       results = (AzdunaJobs::ListJobs.new(@parameters).call)
       
       # r.save
       # results = GithubJobs::ListJobs.new(@parameters).call
-      puts "Z call JobServices"
-      puts results
+      # puts "Z call JobServices"
+      # puts results
 
 
       # parameters = @query
@@ -55,7 +55,7 @@ module ApiCalls
     rescue StandardError => e
       OpenStruct.new({success?: false, error: e})
     else
-      puts response
+      # puts response
       OpenStruct.new({success?: true, payload: response})
       # 
       # return response
