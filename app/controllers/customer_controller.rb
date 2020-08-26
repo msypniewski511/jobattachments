@@ -123,7 +123,7 @@ class CustomerController < ApplicationController
 
   def get_localization arg
     if Rails.env.development?
-      return Figaro.env.moja_localizacja
+      return [51.5290021, -0.2072794]
     else
       return request.location
     end
