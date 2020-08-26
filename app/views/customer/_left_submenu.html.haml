@@ -1,0 +1,31 @@
+- unless results.nil?
+  .container-fluid.text-center
+    -# Next step
+    .customer_menu
+      
+      %h4.title Search kewords:
+      %p.category.text-black= @info.size.to_s + ' jobs'
+      %button#resize_sidebar.btn.btn-primary resize
+    
+      #accordion
+        .card
+          .header#headingOne
+            .mb-0
+              %button.btn.btn-link{'data-toggle':"collapse", 'data-target': "#collapseOne", 'aria-expanded':"true", 'aria-controls': "collapseOne"}
+                Collapsible Group Item #1
+          #collapseOne.collapse{'aria-labelledby':"headingOne", 'data-parent':"#accordion"}
+            .body
+              -# = render partial: 'pages/job_simple', locals: { results: results, jobs_for_map: jobs_for_map }
+        
+        .card
+          .header#headingThree
+            .mb-0
+              %button.btn.btn-link{'data-toggle':"collapse", 'data-target': "#headingTwo", 'aria-expanded':"true", 'aria-controls': "collapseOne"}
+                Search kewords:
+          #headingTwo.collapse{'aria-labelledby':"headingTwo", 'data-parent':"#accordion"}
+            .body
+              
+              %blockquote.blockquote
+            
+              - @query.each do |q| 
+                %p.text-primary= q

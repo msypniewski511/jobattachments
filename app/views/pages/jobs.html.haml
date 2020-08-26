@@ -49,26 +49,58 @@
 
 .main.main-raised
   .container-fluid
+    %h1 Job Board search results
+    = link_to "Back to search", "/", :target => '_top'
+    &nbsp;
+    = link_to "Display jobs on a map", "/", :target => '_top'
     .row
       -# .section.section-basic
       - jobs_for_map = []
 
       - if @info.present?
         - results = @info
-
+        #t{'data-url': @markery[1]}
+        #tt{'data-url': @markery}
         - unless results.nil?
-          .col-4
+          .col-md-4
             .section.section-examples
               .container-fluid.text-center
+                -# Next step
+                .customer_menu
+                  .card.card-nav-tabs.text-left
+                    .card-header.card-header-info
+                      %h4.card-title Search kewords:
+                      %p.card-category.text-black= @info.size.to_s + ' jobs'
+                    
+                    .card-body.px-3
+                      %ul
+                        %li
+                          %h4.text-info Search kewords:
+                          %blockquote.blockquote
+                            
+                            - @query.each do |q| 
+                              %p.text-primary= q
+                        %li
+                          %h4.text-info= "Categories: #{@categories.size} categories"
+         
+                          %blockquote.blockquote
+                            
+                            - @categories.each do |c|
+                              %p= c['label']
+                  
+                .row
+                  .col
+                    .map-cont.pb-2
+                      #map_rails{style:'height:100%'}
                 .row
                   .col-md-6
                     %a{:href => "examples/landing-page.html", :target => "_blank"}
                       %img.img-raised.rounded.img-fluid{:alt => "Rounded Image", :src => "#{asset_pack_path('landing.jpg')}"}/
                   .col-md-6
                     %a{:href => "examples/profile-page.html", :target => "_blank"}
-                    = image_tag "#{asset_pack_path('profile.jpg')}", class: "img-raised rounded img-fluid", :alt => "Rounded Image"
-                    %button.btn.btn-link.btn-primary.btn-lg View Profile Page
-          .col-8
+                      = image_tag "#{asset_pack_path('profile.jpg')}", class: "img-raised rounded img-fluid", :alt => "Rounded Image"
+                      %button.btn.btn-link.btn-primary.btn-lg View Profile Page
+          .col-md-8
             .section.section-examples
               = render partial: 'pages/job', locals: { results: results, jobs_for_map: jobs_for_map } 
 
@@ -111,35 +143,35 @@
         afterInitCurrentLocation(position)
         });
       }
+
       }
       function afterInitCurrentLocation(current_location) {
         //var current_position = getMeCurrentLocation();
         
         var tab = createForJobsMap("#{jobs_for_map}")
-    
+        var neww = $('#tt').data()
+        // var neww = $("<%= escape_javascript(render @info) %>")
+
+        
+
+        console.log(neww)
         // The location of Uluru
         var uluru = {lat: current_location.coords.latitude, lng: current_location.coords.longitude};
         // The map, centered at Uluru
+        var map2 = new google.maps.Map(
+            document.getElementById('map_rails'), {zoom: 12, center: { lat: -34.397, lng: 150.644 }});
+
         var map = new google.maps.Map(
             document.getElementById('map'), {zoom: 12, center: uluru});
+        var marker2 = new google.maps.Marker({position: uluru, map: map2});
+        var info2 = createInfoWindow('d');
+        google.maps.event.addListener(marker2, 'click', function(){
+        info.open(map2, marker2);
+        })
+
         // The marker, positioned at Uluru
         var marker = new google.maps.Marker({position: uluru, map: map});
-        // var marker1 = new google.maps.Marker({position: {lat: 51.509882, lng: -0.135007}, map: map});
-        //-# var marker3 = new google.maps.Marker({position: {lat: 51.451818, lng: -0.02806}, map: map});
 
-
-
-        //-# var marker2 = new google.maps.Marker({position: {lat: parseFloat(job[1]), lng: parseFloat(job[2])}, map: map});
-        //-# var info2 = createInfoWindow(`${job[0].replace('[', '').replace('"', '')}`);
-        //-# google.maps.event.addListener(marker2, 'click', function(){
-        //-# info2.open(map, marker2);
-        //-# })
-
-        //-# var marker4 = new google.maps.Marker({position: {lat: parseFloat(job1[1]), lng: parseFloat(job1[2])}, map: map});
-        //var info2 = createInfoWindow(`${job1[0].replace('[', '').replace('"', '')}`);
-        //google.maps.event.addListener(marker4, 'click', function(){
-        //info2.open(map, marker4);
-        //})
         var contentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+

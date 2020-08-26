@@ -46,6 +46,8 @@ import "../demo/demo";
 import flatpickr from "flatpickr";
 import { initial } from 'lodash';
 // require("flatpickr/src/style/themes")
+
+
 import '../src/google_maps';
 import stickElement from '../../../node_modules/stick-element'
 
@@ -55,6 +57,7 @@ import '../src/plugins/jquery.sharrre';
 
 
 $(document).ready(function () {
+  const dupa = 'dupa'
   flatpickr('[data-behavior="flatpickr"]', {
     altInput: true,
     altFormat: "F j, Y",
@@ -70,6 +73,9 @@ $(document).ready(function () {
 
 
   // Google maps
+
+  let tmp = googleMap();
+  console.log(tmp)
   // handler = Gmaps.build('Google');
   // handler.buildMap({ provider: {}, internal: { id: 'map' } }, function () {
   //   markers = handler.addMarkers([
@@ -121,6 +127,12 @@ const { postcodes } = require("@ideal-postcodes/api-fixtures");
 // Example for postcodes->success
 
 $(document).ready(function () {
+  // var resize_sidebar = document.getElementById('resize_sidebar');
+  // resize_sidebar.addEventListener('click', (e) => {
+
+  //   e.preventDefault();
+  //   document.getElementById('sidebar_customer').classList.toggle('expanded')
+  // })
   // console.log(postcodes.success);
 
   // fetch('url: "https://api.postcodes.io",
@@ -154,10 +166,6 @@ $(document).ready(function () {
 
   szukaj1();
 })
-
-
-
-
 
 import('@ideal-postcodes/api-fixtures');
 import('@ideal-postcodes/core-browser');
@@ -223,38 +231,12 @@ function szukaj1() {
     }
   });
 }
+
 import "controllers"
 import { data } from 'jquery';
-function getMeCurrentLocation() {
-  navigator.geolocation.getCurrentPosition(function (position) {
-    return position
-  });
-}
-function createForJobs(jobs) {
-  result = jobs.split(', ');
-  result[0].replace('[', '');
-  return result
-}
-function createForJobsTab(jobs) {
-  result = jobs.split(', ');
-  result[0].replace('[', '');
-  return result
-}
+import googleMap from '../src/google_maps';
+import { map_markers, on_map_divs } from '../src/google_maps';
 
-function createForJobsMap(jobs) {
-  jobs.replace('[', '')
-  result = jobs.split(']');
-  //result.replace('", ', '')
-
-  for (let i = 0; i < result.length; i++) {
-    result[i] = result[i].replace('[[', '').replace(', [', '')
-  }
-  return result
-}
-function createInfoWindow(text) {
-  var infowindow = new google.maps.InfoWindow({ content: text });
-  return infowindow;
-}
 // Initialize and add the map
 // function initMap() {
 //   getMeCurrentLocation()
@@ -264,11 +246,14 @@ function createInfoWindow(text) {
 //     });
 //   }
 // }
+const k = map_markers
+console.log(k)
 window.initMap = function (...args) {
   const event = document.createEvent('Events');
   event.initEvent('google-maps-callback', true, true);
   event.args = args;
   window.dispatchEvent(event);
+
   // alert('Mapa');
   // getMeCurrentLocation()
   // function getMeCurrentLocation() {

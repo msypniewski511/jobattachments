@@ -2,22 +2,23 @@ module ApiCalls
 
   class JobsService < ApplicationService
     include Draper::Decoratable
-    attr_reader :parameters
+    attr_reader :parameters, :page
 
-    def initialize parameters
+    def initialize parameters, page=1
+      @options = page
       @parameters = parameters
       "W initialize JOBSERVICE"
     end
 
     def call
       #11 azduna results
-      puts "Z call JobServices przed"
-      results = (AzdunaJobs::ListJobs.new(@parameters).call)
+      # puts "Z call JobServices przed"
+      results = (AzdunaJobs::ListJobs.new(@parameters, @options).call)
       
       # r.save
       # results = GithubJobs::ListJobs.new(@parameters).call
-      puts "Z call JobServices"
-      puts results
+      # puts "Z call JobServices"
+      # puts results
 
 
       # parameters = @query
@@ -55,7 +56,7 @@ module ApiCalls
     rescue StandardError => e
       OpenStruct.new({success?: false, error: e})
     else
-      puts response
+      # puts response
       OpenStruct.new({success?: true, payload: response})
       # 
       # return response
@@ -71,28 +72,6 @@ module ApiCalls
       Figaro.env.adzuna_app_key
     end
   end
-
-
-
-  class CategoriesService < ApplicationService
-    attr_reader :parameters
-
-    def initialize parameters
-      @parameters = parameters
-    end
-
-    def call
-      # "http://api.adzuna.com/v1/api/jobs/de/search?callback=foo&what=sales"
-      github_jobs_url_mrt = 'https://jobs.github.com/positions.json?markdown=true'
-      github_jobs_url = 'https://jobs.github.com/positions.json?search=scrum'
-      url_asduna = "https://api.adzuna.com/v1/api/jobs/gb/categories?app_id=#{Figaro.env.adzuna_app_id}&app_key=#{Figaro.env.adzuna_app_key}&content-type=application/json"
-
-    
-      response = Unirest.get(url_asduna, header:{'content-type':'application/json'})
-      return response.body['results']
-    end
-  end
-
 
 end
 

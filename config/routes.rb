@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  get 'customer/map'
   # get 'companies/index'
   resources :addresses do
     member do

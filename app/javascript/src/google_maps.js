@@ -1,68 +1,139 @@
 
-export default function afterInitCurrentLocation(current_location) {
-  //var current_position = getMeCurrentLocation();
+let map;
+let infos = [];
+export let on_map_divs = [], map_markers = [];
 
-  var tab = createForJobsMap("#{jobs_for_map}")
-  //-# var job = createForJobs("#{jobs_for_map0}");
-  //-# var job1 = createForJobs("#{jobs_for_map1}");
-
-  // The location of Uluru
-  var uluru = { lat: current_location.coords.latitude, lng: current_location.coords.longitude };
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-    document.getElementById('map'), { zoom: 12, center: uluru });
-  // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({ position: uluru, map: map });
-  // var marker1 = new google.maps.Marker({position: {lat: 51.509882, lng: -0.135007}, map: map});
-  //-# var marker3 = new google.maps.Marker({position: {lat: 51.451818, lng: -0.02806}, map: map});
+function createInfoWindow(text) {
+  var infowindow = new google.maps.InfoWindow({ content: text });
+  return infowindow;
+}
+export default function googleMap() {
 
 
+  let current_location = $('#current_location').data('url');
+  let markers = $('#markers').data('api');
+  let activ_on_int_marker;
+  let int_markers = []
 
-  //-# var marker2 = new google.maps.Marker({position: {lat: parseFloat(job[1]), lng: parseFloat(job[2])}, map: map});
-  //-# var info2 = createInfoWindow(`${job[0].replace('[', '').replace('"', '')}`);
-  //-# google.maps.event.addListener(marker2, 'click', function(){
-  //-# info2.open(map, marker2);
-  //-# })
+  let uluru = { lat: current_location[0], lng: current_location[1] } || { lat: 51.5290021, lng: -0.2072794 }
 
-  //-# var marker4 = new google.maps.Marker({position: {lat: parseFloat(job1[1]), lng: parseFloat(job1[2])}, map: map});
+  let map_style = {
+    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+    position: google.maps.ControlPosition.BOTTOM_CENTER
+  }
 
-  var contentString = '<div id="content">' +
-    '<div id="siteNotice">' +
-    '</div>' +
-    '<h1 id="firstHeading" class="firstHeading">DOM</h1>' +
-    '<div id="bodyContent">' +
-    '<p></p>' +
-    '<p>Attribution: Uluru, <a href="https://google.com" target="_blank">' +
-    'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' +
-    '(last visited June 22, 2009).</p>' +
-    '</div>' +
-    '</div>';
-
-  var info = createInfoWindow(contentString);
-  google.maps.event.addListener(marker, 'click', function () {
-    info.open(map, marker);
+  map = new google.maps.Map(
+    document.getElementById('map'), {
+    zoom: 10,
+    center: uluru,
+    disableDefaultUI: true,
+    zoomControl: true,
+    zoomControlOptions: map_style,
+    scaleControl: true,
+    scaleControlOptions: map_style,
+    streetViewControl: true,
+    rotateControl: true,
+    fullscreenControl: true,
+    fullscreenControlOptions: map_style,
   });
 
-  var markers = []
-  var infos = []
-  let url;
-  for (let i = 0; i < tab.length; i++) {
+  let marker;
 
-    markers[i] = new google.maps.Marker({ position: { lat: parseFloat(createForJobsTab(tab[i])[1]), lng: parseFloat(createForJobsTab(tab[i])[2]) }, map: map });
-    url = new URL(createForJobsTab(tab[i])[3].replace('&quot;', '').replace('&quot;', ''));
-    contentString = '<div id="content">' +
-      '<div id="siteNotice">' +
-      '</div>' +
-      `<h3 id="firstHeading" class="firstHeading text-primary">${createForJobsTab(tab[i])[0]}</h3>` +
-      '<div id="bodyContent">' +
-      '<p><a href=' + `${url}` + '>Go to adversiter</a></p>' +
-      `<p>Attribution: Uluru, <a href=${url}>${createForJobsTab(tab[i])[4]}</a> ` +
-      '().</p>' +
-      '</div>' +
-      '</div>';
-    infos[i] = createInfoWindow(contentString);
-    google.maps.event.addListener(markers[i], 'click', function () {
-      infos[i].open(map, markers[i]);
+  for (let i = 0; i < markers.length; i++) {
+
+    marker = JSON.parse(markers[i])
+    let mark_iterator = marker.id;
+    (i == 0) ? activ_on_int_marker = mark_iterator : true
+
+    on_map_divs[mark_iterator] = document.getElementById(mark_iterator)
+    i === 0 ? on_map_divs[mark_iterator].classList.add('active') : funa()
+
+    var activeChapterName = activ_on_int_marker;
+
+    on_map_divs[mark_iterator].addEventListener('click', () => {
+
+    })
+    map_markers[mark_iterator] = new google.maps.Marker({
+      id: `marker-${mark_iterator}`,
+      position: { lat: parseFloat(marker.lat), lng: parseFloat(marker.lng) },
+      map: map
     });
+
+
+
+    infos[mark_iterator] = createInfoWindow(marker.info);
+    if (i === 0) setActiveChapter(mark_iterator, false);
+    // google.maps.event.addListener(map_markers[mark_iterator], 'click', function () {
+    //   infos[mark_iterator].open(map, map_markers[mark_iterator]);
+
+    // })
+    google.maps.event.addListener(map_markers[mark_iterator], 'mouseover', () => {
+      infos[mark_iterator].open(map, map_markers[mark_iterator]);
+      highlight(mark_iterator)
+    })
+    google.maps.event.addListener(map_markers[mark_iterator], 'mousout', () => {
+      infos[mark_iterator].close(map, map_markers[mark_iterator]);
+      highlight(mark_iterator)
+    })
+  }
+
+
+
+
+
+
+  const highlight = (mark_iterator) => {
+    // on_map_divs[mark_iterator].classList.toggle('inactive'); // OK
+  }
+
+  // On every scroll event, check which element is on screen
+  window.document.getElementById('moje-info-sidebar').onscroll = function () {
+    var chapterNames = Object.keys(map_markers);
+    // console.log(chapterNames)
+    for (var i = 0; i < chapterNames.length; i++) {
+      var chapterName = chapterNames[i];
+      console.log(chapterName)
+      if (isElementOnScreen(chapterName)) {
+        setActiveChapter(chapterName);
+        break;
+      }
+    }
+  };
+
+
+
+  function setActiveChapter(chapterName, mapInit = true) {
+    if (chapterName === activeChapterName && mapInit) {
+      // alert('juz jest');
+      return;
+    }
+
+    // map.flyTo(chapters[chapterName]);
+    // map.setCenter(getPosition());
+    map.setCenter(map_markers[chapterName]);
+    infos[chapterName].open(map, map_markers[chapterName]);
+    infos[activeChapterName].close(map, map_markers[activeChapterName]);
+    // console.log(map_markers[chapterName])
+    document.getElementById(chapterName).classList.add('active');
+    document.getElementById(activeChapterName).classList.remove('active');
+
+    activeChapterName = chapterName;
+  }
+
+  function isElementOnScreen(id) {
+    var element = document.getElementById(id);
+    var bounds = element.getBoundingClientRect();
+    var realbot = document.getElementById('moje-info-sidebar').getBoundingClientRect();
+    // console.log(element)
+    // console.log(window)
+    // console.log(window.innerHeight)
+    // console.log(realbot)
+
+    // console.log(bounds.top)
+    // console.log(bounds.bottom)
+
+    return bounds.top < (window.innerHeight - 700) && bounds.bottom > 765;
   }
 }
+
+const funa = () => { }
