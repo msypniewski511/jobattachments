@@ -1,0 +1,323 @@
+.customer_container
+  %main#customer_content
+    %section.top-manu
+      %search_form
+        .col-md-12
+          .card.bmd-raised.form-horizontal.mt-0.mb-1
+            .card-body.align-items-center.text-center{style:"padding:1rem;"}
+              = form_with(url: pages_jobs_path(q: "programming"), method: 'get', data: { controller: 'places', action: 'google-maps-callback@window->places#initMap'  }) do |f|
+                .row.my-search{style: "justify-content: center;align-items: baseline;"}
+                  = f.hidden_field :category, value: params[:category] if params[:category] && params[:category] != ""
+                  .form-group.bmd-form-group.m-0.col-md-4
+                    -# = f.label :key_search, 'Search for a key search '
+                    = f.search_field :what, placeholder: 'What job title, kewords, or company', class: 'form-control'
+                  .form-group.bmd-form-group.m-0.col-md-4
+                    -# = f.label :location, 'Search for a location '
+                    = f.search_field :location, placeholder: 'Where London, UK, Post code', class: 'form-control'
+                  -# .form-group.col-md-4.py-2.px-0
+                  -#   = label :skills, 'Search for a skills '
+                  -#   = search_field :skills, nil, placeholder: 'Eg. full stack', class: 'form-control'
+                  -# .form-group.col-md-4.py-2.px-0
+                  -#   = label :job_type, 'Search for a job type '
+                  -#   = search_field :job_type, nil, placeholder: 'Eg. full', class: 'form-control'
+                  .form-group.col-md-4
+                    = f.button 'search', class: 'btn btn-info btn-block', 'data-action': 'click->places#search' do
+                      %i.material-icons search
+                      Search job
+    %section.content
+      -# %aside#sidebar_customer.aside-container-fluid
+        
+      - jobs_for_map = []
+        
+
+      - if @info.present?
+        - results = @info
+        #current_location{'data-url': @current_localization}
+        #markers{'data-api': @markers}
+       
+
+                
+          -# - unless results.nil?
+          -#   .container-fluid.text-center
+          -#     -# Next step
+          -#     .customer_menu
+                
+          -#       %h4.title Search kewords:
+          -#       %p.category.text-black= @info.size.to_s + ' jobs'
+          -#       %button#resize_sidebar.btn.btn-primary resize
+              
+          -#       #accordion
+          -#         .card
+          -#           .header#headingOne
+          -#             .mb-0
+          -#               %button.btn.btn-link{'data-toggle':"collapse", 'data-target': "#collapseOne", 'aria-expanded':"true", 'aria-controls': "collapseOne"}
+          -#                 Collapsible Group Item #1
+          -#           #collapseOne.collapse{'aria-labelledby':"headingOne", 'data-parent':"#accordion"}
+          -#             .body
+          -#               = render partial: 'pages/job_simple', locals: { results: results, jobs_for_map: jobs_for_map }
+                  
+          -#         .card
+          -#           .header#headingThree
+          -#             .mb-0
+          -#               %button.btn.btn-link{'data-toggle':"collapse", 'data-target': "#headingTwo", 'aria-expanded':"true", 'aria-controls': "collapseOne"}
+          -#                 Search kewords:
+          -#           #headingTwo.collapse{'aria-labelledby':"headingTwo", 'data-parent':"#accordion"}
+          -#             .body
+                        
+          -#               %blockquote.blockquote
+                      
+          -#               - @query.each do |q| 
+          -#                 %p.text-primary= q
+
+          -#         .card
+          -#           .header#headingThree
+          -#             .mb-0
+          -#               %button.btn.btn-link{'data-toggle':"collapse", 'data-target': "#headingThree", 'aria-expanded':"true", 'aria-controls': "collapseOne"}
+          -#                 Search kewords:
+          -#           #headingThree.collapse{'aria-labelledby':"headingThree", 'data-parent':"#accordion"}
+          -#             .body
+                      
+          -#               %h4.text-info= "Categories: #{@categories.size} categories"
+      
+          -#               %blockquote.blockquote
+                          
+          -#                 - @categories.each do |c|
+          -#                   %p= c['label']
+            
+      %main.p-1
+        #map{style:'height:100%'}
+        -# %div.temporary#mapt{style:"height:100%;width:100%"}
+        #left.sidebar.flex-center.left.collapsed
+          .sidebar-content.rounded-rect.flex-center
+            = render partial: 'left_submenu', locals: {results: results}
+          .sidebar-toggle.rounded-rect.left.bx-shadow-sm{onclick:"toggleSidebar('left')"} &rarr;
+              
+        #right.sidebar.flex-center.right.collapsed
+          .sidebar-content.rounded-rect.flex-center
+
+            %section#moje-info-sidebar
+              - results.each do |job, i|
+                .particular{id:"#{job['id']}"}
+                  %h1= strip_tags job['title']
+                  %br/
+                  %span{title: "latitude: #{job['latitude']}, longitude: #{job['longitude']}"}
+                    %span.material-icons location_on
+                    %span.align-top= job_location job
+                    %span.align-top
+                      |
+                      %br/
+                  %span.material-icons business
+                  %span.align-top= company_name job
+                  %span.align-top
+                    |
+                    %br/
+                  %span.material-icons access_time
+                  %span.align-top= job['contract_type'] || "contract type not specified"
+                  %span.align-top
+                    |
+                    %br/
+                  .mt-5= sanitize((job['description'] || job.description || "BRAK").to_s)
+
+                  %img.img-fluid.d-s-none{style:"max-width:5rem;"}(src="#{job['company_logo']}" alt="")/
+                  -# = job.created
+                  //-------------
+                  //-------------
+                  //-------------
+                  //%b(href="#" style="padding:1rem 1rem 1rem 0;")
+                  // %strong.mt-5.badge.badge-danger= created_at  job['created_at'] || DateTime.parse(job['created']).strftime("%d-%m-%Y")
+                  %b(href="#" style="padding:1rem 1rem 1rem 0;")
+                    %strong.mt-5.badge.badge-danger
+                      =  DateTime.parse(job['created']).strftime("%d-%m-%Y")
+                  .col-md-4
+                    %td
+                  
+                    -# = link_to_details job
+                    -# .btn.btn-info.btn-sm.btn-block Save
+                    -# .btn.btn-info.btn-sm.btn-block 1-click applay
+                  
+                  = link_to_details job
+                  .btn.btn-info.btn-sm.btn-block Save
+                  .btn.btn-info.btn-sm.btn-block 1-click applay
+
+          .sidebar-toggle.rounded-rect.right.bx-shadow-sm{onclick:"toggleSidebar('right')"}
+            &larr;
+        
+
+    %section.toolbar
+  = my_helper
+  :javascript
+    let map = document.getElementById('map')
+    function toggleSidebar(id) {
+    var elem = document.getElementById(id);
+    var classes = elem.className.split(' ');
+    var collapsed = classes.indexOf('collapsed') !== -1;
+    
+    var padding = {};
+    
+    if (collapsed) {
+    // Remove the 'collapsed' class from the class list of the element, this sets it back to the expanded state.
+    classes.splice(classes.indexOf('collapsed'), 1);
+    if (id == 'right') map.classList.add('map-collapsed');
+    padding[id] = 300; // In px, matches the width of the sidebars set in .sidebar CSS class
+    //map.easeTo({
+    //padding: padding,
+    //duration: 1000 // In ms, CSS transition duration property for the sidebar matches this value
+    //});
+    } else {
+    padding[id] = 0;
+    // Add the 'collapsed' class to the class list of the element
+    classes.push('collapsed');
+    if (id == 'right') map.classList.remove('map-collapsed');
+    }
+    
+    // Update the class list on the element
+    elem.className = classes.join(' ');
+    }
+    
+
+-#     let map;
+-#     let markers = []
+-#     let infos = []
+-#     function getMeCurrentLocation(){
+-#     navigator.geolocation.getCurrentPosition(function(position){
+-#     return position
+-#     });
+-#     }
+-#     function createForJobs(jobs){
+-#     result = jobs.split(', ');
+-#     result[0].replace('[', '');
+-#     return result
+-#     }
+-#     function createForJobsTab(jobs){
+-#     result = jobs.split(', ');
+-#     result[0].replace('[', '');
+-#     return result
+-#     }
+
+-#     function createForJobsMap(jobs){
+-#     jobs.replace('[', '')
+-#     result = jobs.split(']');
+-#     //result.replace('", ', '')
+
+-#     for (let i = 0; i < result.length; i++) {
+-#     result[i] = result[i].replace('[[','').replace(', [', '')
+-#     }
+-#     return result
+-#     }
+-#     function createInfoWindow(text){
+-#     var infowindow = new google.maps.InfoWindow({content: text});
+-#     return infowindow;
+-#     }
+-#     // Initialize and add the map
+-#     function initMap() {
+-#     getMeCurrentLocation()
+-#     function getMeCurrentLocation(){
+-#       navigator.geolocation.getCurrentPosition(function(position){
+-#       afterInitCurrentLocation(position)
+-#       });
+-#     }
+
+-#     }
+-#     function afterInitCurrentLocation(current_location) {
+-#       //var current_position = getMeCurrentLocation();
+      
+-#       var tab = createForJobsMap("#{jobs_for_map}")
+-#       var neww = $('#tt').data()
+-#       // var neww = $("<%= escape_javascript(render @info) %>")
+
+      
+
+-#       console.log(neww)
+-#       // The location of Uluru
+-#       var uluru = {lat: current_location.coords.latitude, lng: current_location.coords.longitude};
+-#       // The map, centered at Uluru
+-#       var map2 = new google.maps.Map(
+-#           document.getElementById('map_rails'), {zoom: 12, center: { lat: -34.397, lng: 150.644 }});
+
+-#       map = new google.maps.Map(
+-#           document.getElementById('map'), {zoom: 12, center: uluru});
+-#       var marker2 = new google.maps.Marker({position: uluru, map: map2});
+-#       var info2 = createInfoWindow('d');
+-#       google.maps.event.addListener(marker2, 'click', function(){
+-#       info.open(map2, marker2);
+-#       })
+
+-#       // The marker, positioned at Uluru
+-#       var marker = new google.maps.Marker({position: uluru, map: map});
+
+-#       var contentString = '<div id="content">'+
+-#       '<div id="siteNotice">'+
+-#       '</div>'+
+-#       '<h1 id="firstHeading" class="firstHeading">DOM</h1>'+
+-#       '<div id="bodyContent">'+
+-#       '<p></p>'+
+-#       '<p>Attribution: Uluru, <a href="https://google.com" target="_blank">'+
+-#       'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+-#       '(last visited June 22, 2009).</p>'+
+-#       '</div>'+
+-#       '</div>';
+
+-#       info = createInfoWindow(contentString);
+-#       google.maps.event.addListener(marker, 'click', function(){
+-#       info.open(map, marker);
+-#       })
+
+-#       //# ta moja smieszna 
+
+-#       let url;
+-#       let mark_iterator;
+-#       for(let i = 0;  i < tab.length; i++){
+
+-#       if (parseInt(createForJobsTab(tab[i])[1]) == NaN) {
+-#       console.log(createForJobsTab(tab[i])[1])
+-#       console.log(createForJobsTab(tab[i])[2])
+-#       console.lo('kkkkkkkkkkkkkkkkkkkkkkk')
+-#       continue;
+-#       }
+
+
+-#       try {
+-#       mark_iterator = mark_iterator == parseInt((createForJobsTab(tab[i])[5]).replace('&quot;', '').replace('&quot;', '')) ? i : parseInt((createForJobsTab(tab[i])[5]).replace('&quot;', '').replace('&quot;', ''));
+-#       // mark_iterator = parseInt((createForJobsTab(tab[i])[5]).replace('&quot;', '').replace('&quot;', ''));
+-#       }
+-#       catch(err) {
+-#       //console.error(err.message);
+-#       }
+      
+-#       // console.log(mark_iterator)
+-#       markers[mark_iterator] = new google.maps.Marker({
+-#         id: `marker-${mark_iterator}`,
+-#         position: {lat: parseFloat(createForJobsTab(tab[i])[1]), lng: parseFloat(createForJobsTab(tab[i])[2])}, 
+-#         map: map
+-#         });
+-#       try {
+-#       url = new URL(createForJobsTab(tab[i])[3].replace('&quot;', '').replace('&quot;', ''));
+-#       }
+-#       catch(err) {
+-#       //console.error(err.message);
+-#       }
+      
+-#     contentString = '<div id="content">'+
+-#     '<div id="siteNotice">'+
+-#     '</div>'+
+-#     `<h3>${mark_iterator}</h3>`+
+-#     `<h3 id="firstHeading" class="firstHeading text-primary">${createForJobsTab(tab[i])[0]}</h3>`+
+-#     '<div id="bodyContent">'+
+-#     '<p><a href='+`${url}`+'>Go to adversiter</a></p>'+
+-#     `<p>Attribution: Uluru, <a href=${url}>${createForJobsTab(tab[i])[4]}</a> `+
+-#     '().</p>'+
+-#     '</div>'+
+-#     '</div>';
+-#     console.log(contentString)
+-#     infos[mark_iterator] = createInfoWindow(contentString);
+-#     google.maps.event.addListener(markers[mark_iterator], 'click', function(){
+-#     infos[mark_iterator].open(map, markers[mark_iterator]);
+-#     })
+-#       }
+-#     }
+
+-#   -# %script{:defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyDwomzJUCvqK6THoyQuiCYGpO2dRUvCE5w&callback=initMap"}:cdata
+= google_maps_api_script_tag
+
+
+-# = console

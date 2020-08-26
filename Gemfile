@@ -67,3 +67,5 @@ gem 'excon'
 gem 'unirest'
 gem "figaro"
 gem 'draper'
+
+gem 'geocoder'

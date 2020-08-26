@@ -92,4 +92,8 @@ module ApplicationHelper
       return nil
     end
   end
+
+  def my_helper
+    # alert("Hello from a helper")
+    end
 end

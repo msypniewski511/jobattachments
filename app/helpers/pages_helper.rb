@@ -8,11 +8,12 @@ module PagesHelper
   end
 
   def job_location job
-    if job.is_a? Hash || job.company.nil? 
-      return "brak"
-    else
-      job.location['display_name'] || job['location']['display_name'] || job['location']
-    end
+    # if job.is_a? Hash && job.nil? || job['company'].nil?
+    #   # job['location']['display_name']
+    #   return "brak"
+    # else
+    job['location']['display_name'] || job['location'] || job.location['display_name'] 
+    # end
   end
 
 

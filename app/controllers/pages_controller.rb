@@ -62,7 +62,7 @@ class PagesController < ApplicationController
     # p info
     create_map info
     if response && response.success?
-      flash['success'] = "Search"
+      # flash['success'] = "Search"
       @query
       @info = (response.payload)
       # @info = JobSearchResult.all

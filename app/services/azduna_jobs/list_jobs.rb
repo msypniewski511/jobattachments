@@ -1,8 +1,8 @@
 module AzdunaJobs
   class ListJobs < ApplicationService
-    attr_reader :parameters
+    attr_reader :parameters, :page
 
-    def initialize parameters
+    def initialize parameters, page=1
       # puts "--------------"
       # puts "--------------"
       # puts "--------------"
@@ -10,6 +10,8 @@ module AzdunaJobs
       # puts "--------------"
       # puts "--------------"
       # puts "--------------"
+      # p parameters
+      # parameters['page'] ? @page = page : nil
       parameters = parameters.join("&") if (parameters & parameters != '')
       @parameters = parameters ? ("&" + parameters) : nil
       # puts "Ta Initializer JobService #{@parameters}"
@@ -19,7 +21,7 @@ module AzdunaJobs
     def call
       # puts "call AZDUNJOBS" + @parameters
       parameters = @query
-      url_asduna = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=#{adzuna_app_id}&app_key=#{adzuna_app_key}&results_per_page=10#{@parameters}"
+      url_asduna = "https://api.adzuna.com/v1/api/jobs/gb/search/2?app_id=#{adzuna_app_id}&app_key=#{adzuna_app_key}&results_per_page=10#{@parameters}"
       # puts "Z all AzdunaJobs" + url_asduna
       response = Unirest.get(url_asduna, header:{'content-type':'application/json'})
       response = response.body['results']
