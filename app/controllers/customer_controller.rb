@@ -10,6 +10,7 @@ class CustomerController < ApplicationController
     info
     @markers
     respond_to do |format|
+      
       format.html {}
       format.json { }
     end
