@@ -15,7 +15,7 @@ export default function googleMap() {
   let activ_on_int_marker;
   let int_markers = []
 
-  let uluru = { lat: current_location[0], lng: current_location[1] } || { lat: 51.5290021, lng: -0.2072794 }
+  let uluru = { lat: current_location[0], lng: current_location[1] } || { lat: 51.5290021, lng: -0.0000000 }
 
   let map_style = {
     style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
@@ -92,7 +92,7 @@ export default function googleMap() {
     // console.log(chapterNames)
     for (var i = 0; i < chapterNames.length; i++) {
       var chapterName = chapterNames[i];
-      console.log(chapterName)
+      // console.log(chapterName)
       if (isElementOnScreen(chapterName)) {
         setActiveChapter(chapterName);
         break;
@@ -110,7 +110,9 @@ export default function googleMap() {
 
     // map.flyTo(chapters[chapterName]);
     // map.setCenter(getPosition());
-    map.setCenter(map_markers[chapterName]);
+    console.log(map_markers[chapterName].position)
+    map_markers[chapterName].anchorPoint && map.setCenter(map_markers[chapterName].position);
+
     infos[chapterName].open(map, map_markers[chapterName]);
     infos[activeChapterName].close(map, map_markers[activeChapterName]);
     // console.log(map_markers[chapterName])

@@ -67,5 +67,6 @@ gem 'excon'
 gem 'unirest'
 gem "figaro"
 gem 'draper'
+gem 'careerjet-api-client', :require => "careerjet/api_client"
 
 gem 'geocoder'

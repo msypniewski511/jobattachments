@@ -10,6 +10,7 @@ class CustomerController < ApplicationController
     info
     @markers
     respond_to do |format|
+      
       format.html {}
       format.json { }
     end
@@ -24,11 +25,12 @@ class CustomerController < ApplicationController
     max_days_old = (params[:max_days_old] && params[:max_days_old] != "") ? "max_days_old=#{params[:max_days_old]}" : "max_days_old=5"
     query << max_days_old
     puts "Z kontolera: #{query}"
+    # pp request
     # byebug
     # puts request.location || "localhost"
     @query = query
     page = 1
-      p query
+      # p query
       # @info = JobSearchResult.all
       response = ApiCalls::JobsService.call(query, page)
      
@@ -94,7 +96,7 @@ class CustomerController < ApplicationController
       count = 0
       @markers = []
       info.each do |job|
-        pp job
+        # pp job
         # job['latitude'] == nil || job['longitude'] == nil && continue
         
         str = "<div style='width: 350px'>" +
@@ -123,7 +125,7 @@ class CustomerController < ApplicationController
 
   def get_localization arg
     if Rails.env.development?
-      return Figaro.env.moja_localizacja
+      return [51.5290021, -0.2072794]
     else
       return request.location
     end
