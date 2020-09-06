@@ -58,7 +58,7 @@ module AzdunaJobs
       url_asduna = "https://api.adzuna.com/v1/api/jobs/gb/categories?app_id=#{Figaro.env.adzuna_app_id}&app_key=#{Figaro.env.adzuna_app_key}&results_per_page=10&content-type=application/json"
 
       response = Unirest.get(url_asduna, header:{'content-type':'application/json'})
-      puts response.body['results']
+      # puts response.body['results']
       return response.body['results']
     end
     private
