@@ -65,100 +65,25 @@ $(document).ready(function () {
     defaultDate: new Date(1960, 0, 10)
   })
   dt
-  // $('#table_id').DataTable();
   $('#jobs_list_id').DataTable();
 
-  // console.log(table)
   $('.js-example-basic-multiple').select2();
 
 
   // Google maps
 
   let tmp = googleMap();
-  console.log(tmp)
-  // handler = Gmaps.build('Google');
-  // handler.buildMap({ provider: {}, internal: { id: 'map' } }, function () {
-  //   markers = handler.addMarkers([
-  //     {
-  //       "lat": 37.3333945,
-  //       "lng": -121.8806499,
-  //       "picture": {
-  //         "width": 32,
-  //         "height": 32
-  //       },
-  //       "infowindow": "SJSU"
-  //     }
-  //   ]);
-  //   handler.bounds.extendWith(markers);
-  //   handler.fitMapToBounds();
-  // });
-  // Koniec
-
 });
 $(document).on('turbolinks:load', () => {
   console.log("sfsadfsadf")
-})
-
-// document.addEventListener('document:load', () => {
-//   // data-behavior="flatpickr"
-//   flatpickr('[data-behavior="flatpickr"]', {
-//     altInput: true,
-//     altFormat: "F j, Y",
-//     dateFormat: "Y-m-d",
-//   })
-// })
-
-// function scrollToDownload() {
-//   if ($('.section-download').length != 0) {
-//     $("html, body").animate({
-//       scrollTop: $('.section-download').offset().top
-//     }, 1000);
-//   }
-// }
-// $(document).on('page:fetch', function () {
-//   $(".loading-indicator").show();
-// });
-// $(document).on('page:change', function () {
-//   $(".loading-indicator").hide();
-// });
+});
 
 const { postcodes } = require("@ideal-postcodes/api-fixtures");
 
 // Example for postcodes->success
 
 $(document).ready(function () {
-  // var resize_sidebar = document.getElementById('resize_sidebar');
-  // resize_sidebar.addEventListener('click', (e) => {
 
-  //   e.preventDefault();
-  //   document.getElementById('sidebar_customer').classList.toggle('expanded')
-  // })
-  // console.log(postcodes.success);
-
-  // fetch('url: "https://api.postcodes.io",
-  // //   query: {
-  // //   api_key: ak_kdh96k99toM85adHd8xyIDxtS67la
-  // // },
-  // //   headers: {}')
-
-  // const { Client } = require("@ideal-postcodes/core-browser");
-  // const client = new Client({ api_key: "ak_kdh96k99toM85adHd8xyIDxtS67la" });
-  // // var getJSON = require("async-get-json");
-
-  // const udprn = 5770157;
-  // let address
-  // client.lookupUdprn({ udprn }).then(res => address = res).catch(e => console.log(e));;
-  // console.log(address);
-
-  // const umprn = 12345;
-  // let mrOccupancy
-  // client.lookupUmprn({ umprn }).then(res => mrOccupancy = res).catch(e => console.log(e));
-
-
-  // console.log(mrOccupancy);
-
-  // mrOccupancy;
-  // timedFetch()
   $('.toggle-submenu').on('click', function (e) {
     // console.log(e);
     $('.tab-content').toggleClass('hidden')
@@ -237,29 +162,10 @@ import { data } from 'jquery';
 import googleMap from '../src/google_maps';
 import { map_markers, on_map_divs } from '../src/google_maps';
 
-// Initialize and add the map
-// function initMap() {
-//   getMeCurrentLocation()
-//   function getMeCurrentLocation() {
-//     navigator.geolocation.getCurrentPosition(function (position) {
-//       afterInitCurrentLocation(position)
-//     });
-//   }
-// }
-const k = map_markers
-console.log(k)
+
 window.initMap = function (...args) {
   const event = document.createEvent('Events');
   event.initEvent('google-maps-callback', true, true);
   event.args = args;
   window.dispatchEvent(event);
-
-  // alert('Mapa');
-  // getMeCurrentLocation()
-  // function getMeCurrentLocation() {
-  //   navigator.geolocation.getCurrentPosition(function (position) {
-  //     alert('ddd')
-  //     afterInitCurrentLocation(position)
-  //   });
-  // }
 }
