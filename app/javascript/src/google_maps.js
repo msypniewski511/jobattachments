@@ -10,12 +10,11 @@ function createInfoWindow(text) {
 export default function googleMap() {
 
 
-  let current_location = $('#current_location').data('url');
+  let current_location = $('#current_location').data('url') || (current_location[0] = 51.5290021, current_location[1] = 0.0000000);
   let markers = $('#markers').data('api');
   let activ_on_int_marker;
-  let int_markers = []
 
-  let uluru = { lat: current_location[0], lng: current_location[1] } || { lat: 51.5290021, lng: -0.0000000 }
+  let uluru = { lat: current_location[0], lng: current_location[1] }
 
   let map_style = {
     style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
