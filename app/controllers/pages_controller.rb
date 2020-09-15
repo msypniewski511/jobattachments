@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   layout 'application'
 
@@ -7,24 +9,23 @@ class PagesController < ApplicationController
     query << "what=#{params[:what]}" if params[:what]
     query << "where=#{params[:location]}" if params[:location]
     query << "category=#{params[:category]}" if params[:category]
-    max_days_old = (params[:max_days_old] && params[:max_days_old] != "") ? "max_days_old=#{params[:max_days_old]}" : "max_days_old=5"
+    max_days_old = params[:max_days_old] && params[:max_days_old] != '' ? "max_days_old=#{params[:max_days_old]}" : 'max_days_old=5'
     query << max_days_old
     puts "Z kontolera: #{query}"
     # byebug
     # puts request.location || "localhost"
     @query = query
 
-
     # if params[:what] || params[:location] || params[:category]
-      
-      response = ApiCalls::JobsService.call(query)
-      # @categories = ApiCalls::CategoriesService.call(query)
+
+    response = ApiCalls::JobsService.call(query)
+    # @categories = ApiCalls::CategoriesService.call(query)
     # else
-      # response = ApiCalls::JobsService.call(nil)
-      # @categories = ApiCalls::CategoriesService.call(nil)
-# # 
-#       # response = (Unirest.get "https://jobs.github.com/positions.json?").body
-#     end
+    # response = ApiCalls::JobsService.call(nil)
+    # @categories = ApiCalls::CategoriesService.call(nil)
+    # #
+    #       # response = (Unirest.get "https://jobs.github.com/positions.json?").body
+    #     end
     # tmp = {}
     # jobs = []
     # # @zapis = JobSearchResult.new()
@@ -57,18 +58,23 @@ class PagesController < ApplicationController
     # p jobs
     # @map_info = jobs
 
-    
     info = response.payload
     # p info
     create_map info
-    if response && response.success?
+    if response&.success?
       # flash['success'] = "Search"
       @query
-      @info = (response.payload)
+      @info = info
       # @info = JobSearchResult.all
       # puts @info
       @categories = ApiCalls::CategoriesService.call(query)
       session[:jobs] = @map_info
+      respond_to do |format|
+        format.html {}
+        format.json do
+          render json: @info
+        end
+      end
     else
       # redirect_to pages_jobs_path, danger: "Subscription was created, but there was a problem with the vendor."
       @info = nil
@@ -76,40 +82,31 @@ class PagesController < ApplicationController
     end
   end
 
-
-
-
-
-
   def show
     @info = (Unirest.get "https://jobs.github.com/positions/#{params[:id]}.json").body
     # @info = Unirest.get('https://jobs.github.com/positions/a34e33ec-d7b3-4b7f-a3c2-1bf6d91b576a.json').body
   end
 
-
-
   def create_map info
-      # @map = GMap.n(ew("map_div")
-      # @map.control_init(:large_map => true, :map_type => true)
+    # @map = GMap.n(ew("map_div")
+    # @map.control_init(:large_map => true, :map_type => true)
 
-      # create markers one for each location found
-      markers = {}
-      count = 1
-      @markery = {}
-      info.each do |job|
-        
-        str = "<div style='width: 350px'>" +
-        "<label>#{job['title']} (#{job['company']['display_name']})</label> <br/>" + 
-        "#{job['title']}</div>"
-        # puts str
-        @markery[count] = ([job['latitude'], job['longitude'], title: job['title'],  info_window: str])
-        count = count + 1
-        
-      end
-      puts @markery
-      @markery.to_json
-      # @map.overlay_global_init(GMarkerGroup.new(true, markers),"job_markers")
-      # zoom to the source
-      # @map.center_zoom_init([@jobs.first['latitude'], @jobs.first['longitude']], 12)
+    # create markers one for each location found
+    markers = {}
+    count = 1
+    @markery = {}
+    info.each do |job|
+      str = "<div style='width: 350px'>" \
+            "<label>#{job['title']} (#{job['company']['display_name']})</label> <br/>" \
+            "#{job['title']}</div>"
+      # puts str
+      @markery[count] = [job['latitude'], job['longitude'], title: job['title'], info_window: str]
+      count += 1
+    end
+    puts @markery
+    @markery.to_json
+    # @map.overlay_global_init(GMarkerGroup.new(true, markers),"job_markers")
+    # zoom to the source
+    # @map.center_zoom_init([@jobs.first['latitude'], @jobs.first['longitude']], 12)
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/helpers/google_maps_helper.rb
 module GoogleMapsHelper
   def google_maps_api_script_tag

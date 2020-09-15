@@ -1,6 +1,5 @@
-def request_api(url)
+# frozen_string_literal: true
 
-end
-def find_country(name)
+def request_api(url); end
 
-end
+def find_country(name); end

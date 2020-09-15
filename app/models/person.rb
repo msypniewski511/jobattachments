@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Person < Employe
   include Mongoid::Document
   # include Mongoid::Dynamic
@@ -9,7 +11,7 @@ class Person < Employe
   # attr_accessor :date_of_birth, :gender, :notes, :keywords
 
   field :title
-  field :first_name 
+  field :first_name
   field :last_name
   validates :title, presence: true
   validates :first_name, presence: true
@@ -21,7 +23,7 @@ class Person < Employe
   # field :date_of_birth
   field :date_of_birth
   field :gender
-  
+
   field :keywords
   field :notes
 
@@ -34,8 +36,6 @@ class Person < Employe
   accepts_nested_attributes_for :addresses, allow_destroy: true, reject_if: :all_blank
   # validates_associated :addresses
 
-
-
   def full_name
     out = (title.blank? ? '' : title + ' ')
     out + first_name + ' ' + last_name
@@ -44,10 +44,8 @@ class Person < Employe
   slug :telephone, history: true
 
   def self.find_all_ordered
-    find :all, :order => 'last_name, first_name'
+    find :all, order: 'last_name, first_name'
   end
 
   # before_save :downcase_email
-  private
-
 end

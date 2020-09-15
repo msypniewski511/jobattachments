@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApiCalls
   class CategoriesService < ApplicationService
     attr_reader :parameters
@@ -12,9 +14,8 @@ module ApiCalls
       github_jobs_url = 'https://jobs.github.com/positions.json?search=scrum'
       url_asduna = "https://api.adzuna.com/v1/api/jobs/gb/categories?app_id=#{Figaro.env.adzuna_app_id}&app_key=#{Figaro.env.adzuna_app_key}&content-type=application/json"
 
-    
-      response = Unirest.get(url_asduna, header:{'content-type':'application/json'})
-      return response.body['results']
+      response = Unirest.get(url_asduna, header: { 'content-type': 'application/json' })
+      response.body['results']
     end
   end
 end

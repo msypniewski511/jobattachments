@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Address
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -16,7 +18,7 @@ class Address
   slug :city, history: true
   validates_presence_of :street
   # POSTCODE_REGEX = /^[A-Z][A-Z]?[0-9][A-Z0-9]? ?[0-9][ABDEFGHJLNPQRSTUWXYZ]{2}$/i
-  # validates_format_of :post_code, :with => POSTCODE_REGEX, 
+  # validates_format_of :post_code, :with => POSTCODE_REGEX,
   # :message => "Please enter a valid post code"
 
   # has_many :pr_addresses
