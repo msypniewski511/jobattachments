@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JobSearchResult
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -12,7 +14,7 @@ class JobSearchResult
   field :location, type: Hash
 
   field :salary_is_predicted, type: Mongoid::Boolean
-  
+
   field :contract_time
   field :redirect_url
   field :category, type: Hash

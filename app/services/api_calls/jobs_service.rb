@@ -1,5 +1,6 @@
-module ApiCalls
+# frozen_string_literal: true
 
+module ApiCalls
   class JobsService < ApplicationService
     include Draper::Decoratable
     attr_reader :parameters, :page
@@ -7,19 +8,18 @@ module ApiCalls
     def initialize parameters, page=1
       @options = page
       @parameters = parameters
-      "W initialize JOBSERVICE"
+      'W initialize JOBSERVICE'
     end
 
     def call
-      #11 azduna results
+      # 11 azduna results
       # puts "Z call JobServices przed"
-      results = (AzdunaJobs::ListJobs.new(@parameters, @options).call)
-      
+      results = AzdunaJobs::ListJobs.new(@parameters, @options).call
+
       # r.save
       # results = GithubJobs::ListJobs.new(@parameters).call
       # puts "Z call JobServices"
       # puts results
-
 
       # parameters = @query
       # # "http://api.adzuna.com/v1/api/jobs/de/search?callback=foo&what=sales"
@@ -29,12 +29,12 @@ module ApiCalls
       # puts url_asduna
       # korwa = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=40406207&app_key=58173b23fa741ea1da20c99d3796b1b7&results_per_page=20&what=ruby"
       # response = Unirest.get(url_asduna, header:{'content-type':'application/json'})
-      
+
       response = results.payload
 
     #   r = JobSearchResult.new()
     #   r.id = response.id
-      
+
     #  r.description = response.description
     #  r.created = response.created
     #  r.title = response.title
@@ -42,10 +42,9 @@ module ApiCalls
     #  r.longitude = response.longitude
     #  r.latitude = response.latitude
     #  r.location = response.location
-      
+
     #  r.salary_is_predicted = response.salary_is_predicted
-    
-      
+
     #  r.contract_time = response.contract_time
     #  r.redirect_url = response.redirect_url
     #  r.category = response.category['tag']
@@ -54,11 +53,11 @@ module ApiCalls
     #  r.salary_max = response.salary_max
     #   puts r
     rescue StandardError => e
-      OpenStruct.new({success?: false, error: e})
+      OpenStruct.new({ success?: false, error: e })
     else
       # puts response
-      OpenStruct.new({success?: true, payload: response})
-      # 
+      OpenStruct.new({ success?: true, payload: response })
+      #
       # return response
     end
 
@@ -72,13 +71,7 @@ module ApiCalls
       Figaro.env.adzuna_app_key
     end
   end
-
 end
-
-
-
-
-
 
 # GET /positions.json
 # Search for jobs by term, location, full time vs part time, or any combination of the three. All parameters are optional.

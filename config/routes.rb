@@ -1,6 +1,6 @@
-Rails.application.routes.draw do
-  
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   get 'customer/map'
   # get 'companies/index'
   resources :addresses do
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/search' => 'addresses#search'
   resources :people
   resources :companies
-  
+
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
   end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: %i[show edit update destroy]
 
   # GET /companies
   # GET /companies.json
@@ -9,19 +11,18 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1
   # GET /companies/1.json
-  def show
-  end
+  def show; end
 
   # GET /companies/new
   def new
     @company = Company.new
     addresses = @company.addresses.build
-    @page_title = "New Companies"
+    @page_title = 'New Companies'
   end
 
   # GET /companies/1/edit
   def edit
-    @page_title = "Edit of " + @company.name
+    @page_title = 'Edit of ' + @company.name
     addresses = @company.addresses.empty? ? @company.addresses.build : @company.addresses
   end
 
@@ -66,14 +67,15 @@ class CompaniesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_company
-      @company = Company.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def company_params
-      params.require(:company).permit(:name, :telephone, :fax, :website, 
-        addresses_attributes: [:id, :city, :street, :street1, :street2, :country, :post_code, :_destroy])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_company
+    @company = Company.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def company_params
+    params.require(:company).permit(:name, :telephone, :fax, :website,
+                                    addresses_attributes: %i[id city street street1 street2 country post_code _destroy])
+  end
 end

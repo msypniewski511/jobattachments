@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PagesDecorator < ApplicationDecorator
   delegate_all
 
@@ -9,7 +11,4 @@ class PagesDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
-  
-
 end
